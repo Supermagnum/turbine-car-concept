@@ -1,5 +1,3 @@
-# turbine-car-concept
-
 # Recuperated Gas Turbine Car — Concept Design Specification
 
 ---
@@ -57,7 +55,106 @@ Both recuperator packages share this flow equally, each handling **1.385 kg/s**.
 
 ---
 
-## 4. Recuperator Thermal Summary
+## 4. What the Heat Exchanger Does
+
+The heat exchanger in this design is a **recuperator** — a static, counterflow,
+gas-to-gas plate heat exchanger with no moving parts. It performs five distinct
+functions simultaneously, all of which are essential to making a gas turbine
+practical in a car.
+
+---
+
+### Function 1 — Waste Heat Recovery (Primary Purpose)
+
+A simple-cycle gas turbine exhausts gas at around **546°C** after the power
+turbine has extracted useful work. That represents a large fraction of the
+fuel energy simply thrown away. The recuperator captures this heat and
+transfers it to the cold compressed air coming from the compressor before
+it enters the combustor.
+
+The compressed air arrives at the recuperator cold side at around **260–420°C**
+depending on ambient temperature. After passing through the recuperator it
+leaves at approximately **456–475°C** — already most of the way to combustion
+temperature. The combustor therefore needs to add far less fuel to reach the
+required turbine inlet temperature.
+
+The result is a **~30% reduction in fuel consumption** compared to the same
+engine running without a recuperator. Without it, the fuel consumption figures
+in this document would be unacceptable for a road car. The recuperator is what
+makes the concept viable.
+
+---
+
+### Function 2 — Exhaust Cooling
+
+As the hot exhaust gas surrenders its heat to the cold air stream, it cools
+dramatically — from ~546°C at the turbine exit to approximately **177–282°C**
+at the recuperator hot-side outlet, depending on ambient temperature. This
+cooled exhaust then travels through the rear duct to the tailpipe.
+
+Without the recuperator the exhaust would exit at over 500°C — capable of
+igniting materials it contacts and certainly damaging road surfaces. The
+recuperator makes the exhaust temperature manageable, reducing the
+engineering burden on the rear ducting and exit diffuser.
+
+---
+
+### Function 3 — Intake Air Preheating
+
+Preheating the compressed air before it enters the combustor has a secondary
+thermodynamic benefit beyond fuel saving. Warmer air entering the combustor
+means a more stable, complete combustion process — lower CO and unburned
+hydrocarbon emissions, and more consistent combustion across the full power
+range. On biodiesel, which has slightly different combustion characteristics
+to petroleum diesel, this stable pre-heated intake condition is particularly
+beneficial.
+
+---
+
+### Function 4 — FOD Protection
+
+The recuperator cold side — through which fresh ambient air passes on its
+way from the intake to the compressor — acts as a natural **Foreign Object
+Damage (FOD) barrier**. The narrow plate channels, with their tortuous
+counterflow path, physically prevent:
+
+- Insects, leaves, grit, and small stones from reaching the compressor
+- Water droplets and ice crystals, separated as air changes direction
+  through the core
+- Any debris larger than the plate gap dimension
+
+This eliminates the need for a separate **Inlet Particle Separator (IPS)**,
+which is a mandatory and bulky fitment on helicopter installations of the
+M250 family. A simple coarse mesh screen at the intake scoop is all that
+is required upstream of the recuperator.
+
+---
+
+### Function 5 — Partial Exhaust Noise Attenuation
+
+As exhaust gas passes through the narrow plate channels of the hot side,
+the acoustic energy in the gas stream is partially absorbed and dissipated
+by the plate material and the tortuous flow path. This is not a designed
+silencing function, but it is a real side effect — the recuperator acts as
+a partial muffler, reducing the high-frequency turbine whine before the
+exhaust reaches the rear duct silencer. The Chrysler A-831 turbine car
+relied on this same effect from its twin regenerators.
+
+---
+
+### Summary of Recuperator Functions
+
+| Function | Benefit |
+|---|---|
+| Waste heat recovery | ~30% fuel saving — makes the concept viable |
+| Exhaust cooling | Reduces outlet temperature from ~546°C to ~177–282°C |
+| Intake air preheating | Cleaner combustion, lower emissions on biodiesel |
+| FOD protection | Eliminates need for separate inlet particle separator |
+| Partial noise attenuation | Reduces turbine whine before rear silencer |
+
+---
+
+## 5. Recuperator Thermal Summary
 
 ### Operating Temperature Range
 
@@ -95,7 +192,7 @@ The design case for maximum heat duty is the **+5°C cool start scenario** at **
 
 ---
 
-## 5. Heat Exchanger Specification
+## 6. Heat Exchanger Specification
 
 ### Design Basis
 
@@ -149,7 +246,7 @@ twin-regenerator layout and provides symmetrical weight distribution.
 
 ---
 
-## 6. FOD Protection
+## 7. FOD Protection
 
 The recuperator layout provides Foreign Object Damage (FOD) protection as a
 natural consequence of its design. Fresh combustion air is drawn through the cold
@@ -169,7 +266,7 @@ demands a dedicated IPS.
 
 ---
 
-## 7. Electrical System
+## 8. Electrical System
 
 Two 12V / 600A AGM batteries connected in series providing 24V for engine startup.
 
@@ -195,7 +292,7 @@ automatically. Both batteries remain healthy and fully charged during normal run
 
 ---
 
-## 8. Fuel Cell
+## 9. Fuel Cell
 
 ### Available Options — ATL Saver Cell Series
 
@@ -215,7 +312,7 @@ specification.
 
 ---
 
-## 9. Fuel Consumption and Range
+## 10. Fuel Consumption and Range
 
 ### SFC Basis
 
@@ -261,7 +358,7 @@ reduced performance.
 
 ---
 
-## 10. Summary Table
+## 11. Summary Table
 
 | Parameter | Value |
 |---|---|
@@ -295,7 +392,7 @@ reduced performance.
 
 ---
 
-## 11. Alternative Engine Suggestion — Lighter Vehicle Application
+## 12. Alternative Engine Suggestion — Lighter Vehicle Application
 
 ### Rationale
 
@@ -534,3 +631,317 @@ effectively a different vehicle concept entirely.
 *Alternative engine section added as supplement to primary specification.*
 *RR300 calculations use published specifications and same thermodynamic methodology as Section 4.*
 *Arrius 2F airflow estimate based on published training manual data (Arrius 2B1: 2.03 kg/s at comparable pressure ratio).*
+
+---
+
+## 13. Lower Power Option — 100 to 200 HP Range
+
+### Rationale
+
+A 1,200–1,500 kg car requires only 100–150 HP for relaxed but fully adequate road
+performance — comfortable in traffic, capable of sustained highway cruising, and
+very economical on fuel. A turbine in this bracket transforms the concept into a
+genuinely practical everyday vehicle rather than a performance showcase.
+
+---
+
+### Recommended Engine: Rolls-Royce M250-C18
+
+The original JetRanger engine — the engine that started the M250 family in 1960.
+By far the most produced small turboshaft in history.
+
+| Parameter | Value |
+|---|---|
+| Type | Two-shaft free-turbine turboshaft |
+| Certification | 1960s — extremely mature |
+| Maximum takeoff power | **317 SHP (236 kW)** |
+| Maximum continuous power | **250 SHP (186 kW)** |
+| Pressure ratio | **6.2:1** |
+| Airflow | **1.23 kg/s** |
+| SFC | **0.77 lb/SHP/hr** |
+| Output shaft speed | **6,000 RPM** |
+| Dry weight | **64 kg (141 lb)** |
+| Length | 1,029 mm |
+| Diameter | 572 mm |
+| Engine control | Hydromechanical (Honeywell/Bendix FCU) |
+| FADEC | Not standard — see note below |
+| Applications | Bell 206 JetRanger, Hughes 500, MD500 |
+| Units produced | 38,000+ (M250 family total) |
+| Support network | Global — largest of any small turbine |
+
+**Note on engine control:** The C18 uses a proven hydromechanical fuel control
+unit. It is not FADEC-equipped as standard. However an aftermarket **electronic
+N2 overspeed protection system** is available and can be fitted — as used on
+some later C20 variants. For a car application a standalone automotive ECU
+monitoring shaft speed, TGT, and torque, interfaced with the existing
+hydromechanical FCU via a torque motor signal, provides effective electronic
+governing without a full FADEC certification burden. This is the same approach
+used by several industrial M250 installations.
+
+---
+
+### M250-C18 Recuperator Calculations
+
+Pressure ratio 6.2:1 — identical to the RR300. Cycle temperatures are therefore
+the same as Section 11 but scaled to lower mass flow.
+
+**Design case +5°C ambient:**
+
+| Parameter | Value |
+|---|---|
+| T2 cold side inlet | 260°C |
+| T4 hot side inlet | 478°C |
+| T3 cold side outlet | 456°C |
+| T5 final exhaust | 282°C |
+| Heat duty | **117 kW** |
+
+$$A_{total} = \frac{117{,}000}{100 \times 22} = \mathbf{53 \text{ m}^2}$$
+
+| Parameter | Per Package | Total |
+|---|---|---|
+| Primary surface area | **26.5 m²** | 53 m² |
+| Core volume | **~0.031 m³** | ~0.062 m³ |
+| Physical envelope (approx.) | **200 × 175 × 90 mm** | — |
+
+The C18 recuperator packages are extraordinarily compact — smaller than a
+typical car intercooler. Packaging is trivially easy.
+
+---
+
+### M250-C18 Fuel Consumption and Range
+
+Running at **220 SHP continuous** with recuperator (30% SFC improvement):
+
+$$\text{Fuel flow} = 220 \times 0.77 \times 0.70 = \mathbf{118.6 \text{ lb/hr}}
+= 53.8 \text{ kg/hr} = \mathbf{61 \text{ litres/hr}}$$
+
+| Fuel cell | Running time | Range at 82.5 km/hr |
+|---|---|---|
+| 100 litres | **98 minutes** | **~135 km** |
+| **120 litres** | **~118 minutes (1hr 58min)** | **~162 km** |
+
+Just inside the 165 km target on 120 litres — effectively equivalent to the RR300
+at half the engine purchase cost and with a 16 kg weight saving.
+
+---
+
+## 14. Acceleration Estimates — All Engines
+
+### Assumptions
+
+- Vehicle mass: **1,500 kg**
+- Layout: **Front engine, rear wheel drive**
+- Weight distribution: **55% front / 45% rear** → 675 kg on rear axle
+- Rear tyre width: **200 mm**, μ = 1.20 on dry tarmac
+- Drivetrain efficiency: **η = 0.88**
+- Maximum traction force: 1.20 × 675 × 9.81 = **7,945 N**
+- Maximum traction-limited acceleration: 7,945 / 1,500 = **5.30 m/s² (0.54g)**
+
+The traction limit governs the launch for all three engines up to the
+crossover speed where available wheel force falls to equal traction force.
+Above that speed the engine becomes the limiting factor.
+
+### Crossover Speeds
+
+| Engine | Wheel power | Crossover speed |
+|---|---|---|
+| M250-C47B | 427 kW | **193 km/h** — traction limited through entire 0–100 |
+| RR300 | 197 kW | **89 km/h** — power limited from 89–100 km/h |
+| M250-C18 | 194 SHP (145 kW) continuous / **236 SHP (176 kW) max** → 155 kW wheel | **70 km/h** — power limited from 70–100 km/h |
+
+### Phase 1 — Traction Limited (all engines, 0 to crossover)
+
+Acceleration = **5.30 m/s²** for all three.
+
+| Engine | Traction-limited to | Time for Phase 1 |
+|---|---|---|
+| M250-C47B | 100 km/h (193 km/h crossover) | **5.24 s** (0–100 done) |
+| RR300 | 89 km/h = 24.7 m/s | t₁ = 24.7 / 5.30 = **4.66 s** |
+| M250-C18 | 70 km/h = 19.4 m/s | t₁ = 19.4 / 5.30 = **3.66 s** |
+
+### Phase 2 — Power Limited (RR300 and C18 only)
+
+**RR300 — 89 to 100 km/h:**
+
+Average net force ≈ 8,142 N, average acceleration ≈ 5.43 m/s²
+
+$$t_2 = \frac{27.78 - 24.7}{5.43} = \mathbf{0.57 \text{ s}}$$
+
+**M250-C18 — 70 to 100 km/h:**
+
+At 19.4 m/s: F_net = (155,000/19.4) − 221 − (0.5×1.225×0.35×2.0×19.4²) = 7,990 − 221 − 323 = 7,446 N → a = 4.96 m/s²
+
+At 27.78 m/s: F_net = (155,000/27.78) − 221 − 661 = 5,582 − 882 = 4,700 N → a = 3.13 m/s²
+
+Average acceleration: **(4.96 + 3.13) / 2 = 4.05 m/s²**
+
+$$t_2 = \frac{27.78 - 19.4}{4.05} = \frac{8.38}{4.05} = \mathbf{2.07 \text{ s}}$$
+
+### Final 0–100 km/h Results
+
+| Engine | Max power | 0–100 km/h | Character |
+|---|---|---|---|
+| M250-C47B | 650 SHP | **~5.2 s** | Traction-limited throughout — tyre-shredding potential above 100 km/h |
+| RR300 | 300 SHP | **~5.2 s** | Near-identical feel to C47B below 100 km/h |
+| **M250-C18** | **317 SHP** | **~5.7 s** | 0.5 s slower — still very brisk, most practical |
+
+The M250-C18 result of 5.7 seconds is highly respectable in a Golf Mk2 or Volvo 740
+body — comparable to a modern hot hatchback — achieved at substantially lower fuel
+consumption than the larger engines.
+
+---
+
+## 15. FADEC Derating — How Power Limiting Works
+
+### What Derating Means
+
+Running a turbine below its certificated maximum power extends component life
+dramatically. The hot section — turbine blades, nozzle guide vanes, combustor —
+accumulates damage through creep, oxidation, and thermal fatigue at a rate that
+is highly non-linear with temperature. Reducing TGT (Turbine Gas Temperature)
+by as little as 25°C can double hot-section life.
+
+### How FADEC Implements Derating
+
+A FADEC controls engine power through four simultaneous limit schedules,
+each monitored up to 70 times per second. Whichever limit is reached first
+wins — the FADEC never allows any parameter to exceed its set value.
+
+**The four primary limits:**
+
+**1. TGT Limit (Turbine Gas Temperature)**
+The most important limit for hot-section life. The FADEC monitors the
+inter-turbine temperature sensor and caps fuel flow when TGT reaches the
+programmed ceiling. Reducing the TGT limit from, say, 810°C to 760°C
+reduces available power by roughly 10–15% but dramatically reduces
+blade creep and oxidation rate. This is the primary derating tool.
+
+**2. NG Limit (Gas Generator Speed)**
+Maximum gas generator RPM is capped in the FADEC software. Lowering
+the NG ceiling reduces compressor delivery pressure and temperature,
+directly reducing power output while keeping the entire hot section cooler.
+
+**3. Torque Limit (Q)**
+For a car application this is the most practically useful limit. The FADEC
+monitors shaft output torque via the torquemeter and caps fuel flow when
+torque reaches the programmed maximum. This protects the step-down
+gearbox and drivetrain rather than the engine itself, but as a side effect
+also prevents the engine from reaching peak TGT during normal driving.
+Setting a torque limit equivalent to 70% of maximum power achieves
+derating without the driver ever feeling a hard power cut — the engine
+simply feels like a slightly less powerful unit.
+
+**4. NP Limit (Power Turbine Speed)**
+Power turbine overspeed protection — prevents the free power turbine
+from exceeding its mechanical speed limit during load rejection events.
+Set conservatively for a car application given the absence of a helicopter
+rotor's large inertia to absorb transients.
+
+### Derating in Practice for This Car
+
+For the automotive application, the recommended approach is a **dual-mode
+FADEC calibration:**
+
+**Touring mode** — TGT limit reduced by 40–50°C below maximum, torque
+limit set to approximately 70% of peak. Engine runs cool, fuel consumption
+is minimised, TBO is maximised. Normal everyday driving.
+
+**Performance mode** — Full certificated limits restored. Used for overtaking,
+hill climbing, or track use. Time at this power level is logged by the FADEC
+health monitoring system.
+
+This is directly analogous to how modern turboprop aircraft use detachable
+power ratings — the same FADEC parameters but with different numerical limits
+selectable by the operator.
+
+### M250-C18 Without FADEC
+
+For the C18 with its hydromechanical FCU, derating is achieved mechanically
+by adjusting the **fuel control unit (FCU) stop** — a physical adjustment that
+limits maximum fuel flow regardless of throttle position. This is a well-understood
+procedure done routinely on industrial M250 installations. It is less precise than
+FADEC but entirely effective, and the adjustment is reversible. Adding an
+aftermarket electronic N2 governor provides overspeed protection, and a
+simple EGT (exhaust gas temperature) gauge with a warning light provides
+the driver with TGT awareness without full FADEC automation.
+
+---
+
+## 16. Time Between Overhaul (TBO)
+
+### M250 Family TBO — Confirmed Data
+
+TBO varies by series and component:
+
+| Engine | Component | TBO |
+|---|---|---|
+| M250-C18 (Series II) | Compressor | **3,500 hours** |
+| M250-C18 (Series II) | Turbine | **3,500 hours** |
+| M250-C18 (Series II) | Gearbox | **On condition** |
+| M250-C47B (Series IV) | Compressor impeller | **On condition** (model-dependent life limits) |
+| M250-C47B (Series IV) | Turbine | **2,000 hours** |
+| M250-C47B (Series IV) | Gearbox | **On condition** |
+| RR300 | Engine (all modules) | **2,000 hours** |
+
+**Key point:** The C18 Series II turbine and compressor are both rated at 3,500 hours
+— 75% more than the C47B turbine's 2,000 hours. This is a direct consequence of the
+C18 running at lower temperatures relative to its design margins. In an automotive
+application running derated, the C18's TBO would very likely extend further still,
+since aviation TBO figures are based on flight duty cycles with frequent high-power
+events. A car, even driven enthusiastically, spends far more time at part power.
+
+### What TBO Means in Practical Terms
+
+At **~60 litres/hr** recuperated fuel consumption, and typical usage of perhaps
+**200 hours/year** (generous for a warm-season car):
+
+| Engine | TBO | Years at 200 hrs/yr |
+|---|---|---|
+| M250-C18 | 3,500 hrs | **~17 years** between overhauls |
+| RR300 | 2,000 hrs | **~10 years** between overhauls |
+| M250-C47B | 2,000 hrs (turbine) | **~10 years** between overhauls |
+
+For context, a conventional car engine is typically rebuilt or replaced at
+150,000–200,000 km. At 82.5 km/hr average and 200 hours/year, the C18
+would cover **16,500 km/year** and reach TBO after **~280,000 km equivalent**
+— considerably better than a piston engine.
+
+### Effect of Derating on TBO
+
+Running derated in touring mode — with TGT reduced by 40–50°C — has a
+profound effect on hot-section life. The industry rule of thumb is that every
+15°C reduction in TGT **doubles the creep life** of turbine blades. A 45°C
+reduction therefore multiplies blade life by approximately 8×. In practice
+this means a derated C18 in automotive use could realistically achieve
+**5,000–6,000 hours** between hot section inspections, with the compressor
+and gearbox remaining on condition indefinitely.
+
+---
+
+## 17. Three-Engine Comparison Summary
+
+| Parameter | M250-C47B | RR300 | M250-C18 |
+|---|---|---|---|
+| Max power | 650 SHP | 300 SHP | 317 SHP |
+| Continuous power | 450–500 SHP | 240 SHP | 250 SHP |
+| Mass flow | 2.77 kg/s | ~1.87 kg/s | **1.23 kg/s** |
+| Pressure ratio | 9.2:1 | 6.2:1 | 6.2:1 |
+| Total HX surface area | 1,164 m² | 120 m² | **53 m²** |
+| Per package HX envelope | 600×500×230 mm | 300×250×95 mm | **200×175×90 mm** |
+| Engine weight | ~72 kg | ~80 kg | **64 kg** |
+| FADEC | Yes | Yes | No (see §14) |
+| TBO — turbine | 2,000 hrs | 2,000 hrs | **3,500 hrs** |
+| Recuperated fuel flow | 125 L/hr | 57 L/hr | **61 L/hr** |
+| Range on 120L | ~79 km | ~173 km | **~162 km** |
+| 0–100 km/h | ~5.2 s | ~5.2 s | ~5.7 s |
+| Support network | Excellent | Excellent | **Best of all** |
+| Relative cost | High | Medium | **Lowest** |
+| Best suited for | Performance showcase | Balanced touring | Practical daily use |
+
+---
+
+*Sections 12–16 added covering M250-C18 specification, acceleration figures,*
+*FADEC derating methodology, and TBO data.*
+*Acceleration calculations assume 1,500 kg vehicle, front engine RWD, 55/45 weight*
+*distribution, 200mm rear tyres μ=1.20, drivetrain efficiency 0.88.*
+*TBO figures from published Rolls-Royce M250 maintenance documentation.*

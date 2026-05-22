@@ -4,6 +4,8 @@
 
 ## Table of Contents
 
+- [Historical Background — The Turbine Car Programs](#historical-background--the-turbine-car-programs)
+
 1. [Recommended Engine](#1-recommended-engine)
 2. [Output Shaft and Step-Down Gearbox](#2-output-shaft-and-step-down-gearbox)
 3. [Mass Flow Rate](#3-mass-flow-rate)
@@ -26,6 +28,219 @@
 20. [Air Movement — Volumetric Flow and Pressure Drop](#20-air-movement--volumetric-flow-and-pressure-drop)
 21. [Heat Exchanger Plate Geometry — M250-C18](#21-heat-exchanger-plate-geometry--m250-c18)
 22. [Ancillary Systems, Costs and Instrumentation](#22-ancillary-systems-costs-and-instrumentation)
+
+---
+
+## Historical Background — The Turbine Car Programs
+
+### Why This Concept Has Deep Roots
+
+The gas turbine car is not a new idea. It was pursued seriously and
+publicly by multiple major manufacturers across three decades — and
+came remarkably close to production. Understanding what was achieved,
+what failed, and why it failed is essential context for any modern
+revival of the concept.
+
+---
+
+### General Motors Firebird Series — 1953 to 1964
+
+General Motors had been researching the potential of turbine engines
+since the 1940s, but it wasn't until the early 1950s that a completed
+real-life prototype emerged. The result was a series of four
+concept vehicles — the GM Firebird series — each more extreme than
+the last, built for the annual Motorama auto shows and never
+intended for public sale. These were the Jetsons-era machines that
+defined the public imagination of what a turbine car might look like.
+
+**Firebird I (XP-21) — 1953/1954**
+
+The first gas turbine automobile ever built and tested in the United
+States. At the heart of the XP-21 was the Whirlfire Turbo-Power gas
+turbine engine, capable of producing 370 horsepower at a power turbine
+speed of 13,000 rpm, expelling exhaust at 677°C. Its design was
+literally that of a jet aircraft on wheels — single seat, glass
+canopy, tail fin, delta wings. It was purely a test and show vehicle,
+never road-registered.
+
+**Firebird II — 1956**
+
+Unveiled at the GM Motorama in New York City, the Firebird II housed
+a gas turbine operating at 35,000 rpm — borderline science fiction
+for a road vehicle. Unlike its predecessor it had four seats and
+was presented as a genuine family car concept, complete with titanium
+body and an early vision of automatic highway guidance. The turbine
+was a GT-304 Whirlfire unit producing 200 HP in a more practical
+automotive configuration.
+
+**Firebird III — 1959**
+
+The Firebird III was a two-seater powered by a 225 HP Whirlfire
+GT-305 gas turbine engine and a separate two-cylinder 10 HP gas
+engine to power accessories. It featured seven fins, a
+bubble canopy, and a single joystick replacing the conventional
+steering wheel. It was displayed widely at auto shows and represents
+the high point of GM's turbine showmanship — spectacular, futuristic,
+and entirely non-functional as a road car.
+
+**Firebird IV — 1964**
+
+GM coded it internally as the XP-790 and conceived it for a future
+in which cars steered automatically via programmed guidance systems.
+Though billed as being turbine-powered, the Firebird IV was
+non-functional — a pure styling exercise. It was later
+repackaged as the Buick Century Cruiser for the 1969 show circuit
+and reportedly crushed in the 1980s.
+
+None of the four Firebirds reached public testers. They were
+show cars — the primary purpose was to demonstrate GM's
+engineering ambition and generate public excitement about the
+future of the automobile. The turbine technology in the Firebirds
+was real, but the cars themselves were never intended for the road.
+
+---
+
+### Chrysler Turbine Car — The Real Public Test
+
+Where GM used turbines for showmanship, Chrysler used them for
+science. Chrysler's turbine programme ran from the late 1930s
+through to 1979 — forty years of continuous engineering development
+across seven engine generations.
+
+**The Programme History**
+
+The CR2A third-generation engine incorporated a major innovation:
+a variable nozzle mechanism acting as a shutter that provided engine
+braking. It improved efficiency and fuel economy while reducing the
+throttle lag that had plagued the programme from its inception.
+
+The fourth-generation A-831 engine powered the famous Ghia-bodied
+Turbine Car of the public loaner programme. After testing,
+Chrysler conducted a user program from October 1963 to January 1966
+that involved 203 drivers in 133 cities in the United States,
+cumulatively driving more than one million miles.
+
+55 cars were distributed to 203 volunteers in 48 states free of
+charge for three months each. The power turbine was connected,
+without a torque converter, through a gear reduction unit to a
+modified TorqueFlite automatic transmission. Twin rotating
+recuperators transferred exhaust heat to the inlet air, greatly
+improving fuel economy.
+
+**Fuel Consumption — The Honest Figures**
+
+The fuel economy results from the public programme were mixed and
+have been reported variously by different sources. The range of
+reported figures reflects both the variability of real-world
+driving and the enthusiasm with which some drivers chose to exploit
+the car's instant torque:
+
+| Source | Reported economy |
+|---|---|
+| Average fleet figure (Chrysler records) | **13 mpg US (18.1 L/100km)** |
+| Best reported (highway) | **18–19 mpg US (12.4–13.1 L/100km)** |
+| Typical town driving | **14.5 mpg US (16.2 L/100km)** |
+| Worst reported (enthusiastic driving) | **11–11.5 mpg US (20.5–21.4 L/100km)** |
+| Contemporary V8 equivalent car | ~15 mpg US (15.7 L/100km) |
+
+About one in four test drivers stated dissatisfaction with the fuel
+economy. Chrysler blamed the poorer results on drivers showing off
+the cars, regarding their own reading of 14.5 mpg as more accurate.
+At 14.5 mpg the turbine was only fractionally below the national
+average for a car of its size.
+
+---
+
+### What Killed the Programme — The 1970s Fuel and NOx Crisis
+
+The Chrysler turbine programme did not die from engineering failure.
+It was killed by two external forces arriving simultaneously in the
+early 1970s.
+
+**1. The NOx Regulatory Crisis**
+
+The A-831's fatal regulatory issue came from the same characteristic
+that made it so different. Because it burned fuel continuously at
+combustion temperatures between 1,700 and 2,500°F, nitrogen oxide
+output ran significantly higher than a piston engine operating at
+equivalent power. When the EPA was formed in 1970 and empowered by
+the Clean Air Act, it listed NOx as a criteria pollutant requiring
+compliance from every road vehicle sold in the US.
+
+Chrysler received a $6.4 million EPA development contract in 1972
+specifically to address the NOx problem, and a seventh-generation
+turbine engine with improved emissions and fuel economy followed.
+A turbine-powered Chrysler LeBaron was built in 1977 as a potential
+production preview. But the regulatory timeline was short,
+the development costs were enormous, and Chrysler's financial
+position in the late 1970s was parlous. The programme was
+abandoned in 1979.
+
+**2. The 1973 and 1979 Oil Crises**
+
+The fuel crises of 1973 and 1979 fundamentally shifted public and
+regulatory attention toward fuel economy above all else. A turbine
+running at 13 mpg average — equivalent to a V8 — was no longer
+acceptable at a time when the national conversation had shifted
+entirely to miles per gallon. The turbine's advantages — low
+maintenance, multi-fuel capability, smooth operation, instant
+torque — were simply not the advantages anyone cared about anymore.
+
+The irony of the whole programme is that the NOx problem was a
+genuine engineering challenge, but not a fundamental dead end.
+The window to solve it closed before Chrysler had the resources
+or the regulatory timeline to finish the work.
+
+---
+
+### How Much Turbine Technology Has Improved Since Then
+
+The 1963 A-831 combustor was a simple diffusion flame design — fuel
+and air injected separately, burning at stoichiometric hot spots
+that inevitably generated high NOx. The technology available today
+is fundamentally different.
+
+**NOx Reduction — Five Decades of Progress:**
+
+Advances in lean premix Dry Low NOx (DLN) combustion technology
+have lowered NOx emissions from the 150–300 ppm level of the 1980s
+to the 15–40 ppm level today, depending on the size and type of
+unit. This 90% reduction through cost-effective pollution prevention
+is unmatched by any other industrial sector.
+
+Modern lean-premix systems can achieve NOx emissions of 5 ppmvd
+and sometimes lower when firing gas. Even on liquid fuels,
+water injection into the combustor flame zone reduces NOx by about
+40% when half as much water as fuel is injected.
+
+**Fuel Consumption Comparison — 1963 vs Modern:**
+
+| Parameter | Chrysler A-831 (1963) | Modern M250-C18 recuperated | Improvement |
+|---|---|---|---|
+| Engine power | 130 HP | 250 HP continuous | — |
+| Recuperator | Rotary regenerator | Fixed plate — no moving parts | More reliable |
+| Recuperator effectiveness | ~91–97% | ~90% | Comparable |
+| Fuel consumption (cruise) | ~13 mpg (18 L/100km) | ~57 L/hr (see §10) | Lower absolute, similar relative |
+| NOx (combustor type) | Diffusion flame — ~500+ ppm | Modern annular — 15–40 ppm | **~90–95% lower** |
+| CO | Low (turbine burns clean) | Near zero | Similar |
+| Particulates | Low | Near zero on biodiesel | Better |
+| Throttle lag | Significant complaint | Much reduced — variable geometry | Improved |
+| Cold start | Complicated procedure | FADEC automated | Greatly improved |
+| Maintenance | 5 dedicated mechanics for 50 cars | On-condition TBO — 3,500 hrs | Dramatically better |
+| Multi-fuel | Yes — diesel, petrol, kerosene | Yes — plus biodiesel, ethanol | Broader |
+
+The NOx column is the most important. What killed the Chrysler
+programme in regulatory terms is now reduced by 90–95% through
+combustion engineering alone — before any contribution from the
+water injection system described in Section 19, biodiesel fuel
+(Section 18), or the recuperator's exhaust cooling effect
+(Section 4). A modern recuperated turbine car running on biodiesel
+with modest water injection would likely meet Euro 6 NOx limits
+without any exhaust aftertreatment — something Chrysler could not
+have imagined in 1979.
+
+The concept was not wrong. The technology simply needed another
+fifty years.
 
 ---
 

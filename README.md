@@ -560,8 +560,7 @@ specification.
 
 The confirmed published SFC for the M250-C47B at cruise power is
 **0.65 lb/SHP/hr** (official engine specification database figure).
-The 0.772 figure used previously was incorrect — it overstated
-fuel consumption significantly. Running derated at **450 SHP continuous:**
+Running derated at **450 SHP continuous:**
 
 $$\text{Fuel flow} = 450 \times 0.65 = 292.5\ \text{lb/hr} = 132.7\ \text{kg/hr}$$
 

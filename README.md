@@ -33,6 +33,7 @@
 24. [Sourcing the Fuel Control Lever, Relays, and Electrical Components](#24-sourcing-the-fuel-control-lever-relays-and-electrical-components)
 25. [Suggested Livery and Markings](#25-livery-and-markings)
 26. [Commercially Available and Serviceable Recuperator Options](#26-commercially-available-and-serviceable-recuperator-options)
+27. [Exhaust Duct Calculations — All Three Engines](#27-exhaust-duct-calculations--all-three-engines)
 
 ---
 
@@ -453,7 +454,13 @@ The design case for maximum heat duty is the **+5°C cool start scenario** at **
 
 ### Total Surface Area
 
-$$A_{total} = \frac{Q}{U \times LMTD} = \frac{582{,}000}{100 \times 5} = \mathbf{1{,}164\ m^2}$$
+A 20% oversize factor is applied throughout to all recuperators. This provides
+margin against fouling, manufacturing tolerances, and part-load operation, and
+reduces internal flow velocity, lowering pressure drop.
+
+$$A_{base} = \frac{Q}{U \times LMTD} = \frac{582{,}000}{100 \times 5} = \mathbf{1{,}164\ m^2}$$
+
+$$A_{total} = 1{,}164 \times 1.20 = \mathbf{1{,}397\ m^2}$$
 
 This is **primary wetted surface area** — not external footprint.
 
@@ -466,10 +473,22 @@ twin-regenerator layout and provides symmetrical weight distribution.
 
 | Parameter | Per Package | Total |
 |---|---|---|
-| Primary surface area | **582 m²** | 1,164 m² |
-| Core volume | **~0.685 m³** | ~1.37 m³ |
-| Physical envelope (approx.) | **600 × 500 × 230 mm** | — |
+| Base surface area | 582 m² | 1,164 m² |
+| **Primary surface area (+20%)** | **698 m²** | **1,397 m²** |
+| Core volume (est.) | **~0.82 m³** | ~1.64 m³ |
+| Physical envelope (approx.) | **650 × 540 × 230 mm** | — |
 | Mass flow handled | 1.385 kg/s | 2.77 kg/s |
+
+### Intake Duct — M250-C47B
+
+At +5°C ambient (density 1.270 kg/m³), 6 m/s approach velocity, per package:
+
+| Parameter | Value |
+|---|---|
+| Intake volumetric flow (per package) | **1.091 m³/s** |
+| Duct area | **1,818 cm² (0.1818 m²)** |
+| Round duct diameter | **481 mm** |
+| Circumference | **1,511 mm** |
 
 ### Construction
 
@@ -622,9 +641,12 @@ performance with significantly lower fuel consumption.
 | **Output shaft speed** | 6,000 RPM |
 | **Step-down gearbox** | Required — 2:1 to 3:1 reduction |
 | **Mass flow rate** | **2.77 kg/s** |
-| **Total recuperator surface area** | **1,164 m²** |
-| **Per package surface area** | **582 m²** |
-| **Per package envelope** | **600 × 500 × 230 mm** |
+| **Total recuperator surface area (base)** | **1,164 m²** |
+| **Total recuperator surface area (+20%)** | **1,397 m²** |
+| **Per package surface area (+20%)** | **698 m²** |
+| **Per package envelope** | **650 × 540 × 230 mm** |
+| **Intake duct diameter (per package)** | **481 mm** |
+| **Intake duct circumference** | **1,511 mm** |
 | **Recuperator material** | SS347 stainless steel |
 | **Hot side inlet temperature** | 546°C |
 | **Final exhaust temperature** | 337°C (design case +5°C ambient) |
@@ -780,15 +802,29 @@ $$\Delta T_1 = 478 - 456 = 22°C \quad \Delta T_2 = 282 - 260 = 22°C$$
 
 $$LMTD = 22°C$$
 
-$$A_{total} = \frac{Q}{U \times LMTD} = \frac{263{,}000}{100 \times 22} = \mathbf{120 \text{ m}^2}$$
+$$A_{base} = \frac{Q}{U \times LMTD} = \frac{263{,}000}{100 \times 22} = \mathbf{120 \text{ m}^2}$$
 
-This is dramatically smaller than the C47B requirement. Split two ways:
+$$A_{total} = 120 \times 1.20 = \mathbf{143 \text{ m}^2}$$
+
+A 20% oversize factor is applied. Split two ways:
 
 | Parameter | Per Package | Total |
 |---|---|---|
-| Primary surface area | **60 m²** | **120 m²** |
-| Core volume | **~0.071 m³** | ~0.14 m³ |
-| Physical envelope (approx.) | **300 × 250 × 95 mm** | — |
+| Base surface area | 60 m² | 120 m² |
+| **Primary surface area (+20%)** | **72 m²** | **143 m²** |
+| Core volume (est.) | **~0.085 m³** | ~0.17 m³ |
+| Physical envelope (approx.) | **320 × 270 × 100 mm** | — |
+
+### Intake Duct — RR300
+
+At +5°C ambient, 6 m/s approach velocity, per package:
+
+| Parameter | Value |
+|---|---|
+| Intake volumetric flow (per package) | **0.736 m³/s** |
+| Duct area | **1,227 cm² (0.1227 m²)** |
+| Round duct diameter | **395 mm** |
+| Circumference | **1,242 mm** |
 
 The RR300 recuperator packages are roughly **one-tenth the volume** of those
 required for the C47B — compact enough to mount very neatly alongside the
@@ -943,16 +979,34 @@ the same as Section 11 but scaled to lower mass flow.
 | T5 final exhaust | 282°C |
 | Heat duty | **117 kW** |
 
-$$A_{total} = \frac{117{,}000}{100 \times 22} = \mathbf{53 \text{ m}^2}$$
+$$A_{base} = \frac{117{,}000}{100 \times 22} = \mathbf{53 \text{ m}^2}$$
+
+$$A_{total} = 53 \times 1.20 = \mathbf{64 \text{ m}^2}$$
+
+A 20% oversize factor is applied throughout.
 
 | Parameter | Per Package | Total |
 |---|---|---|
-| Primary surface area | **26.5 m²** | 53 m² |
-| Core volume | **~0.031 m³** | ~0.062 m³ |
-| Physical envelope (approx.) | **200 × 175 × 90 mm** | — |
+| Base surface area | 26.5 m² | 53 m² |
+| **Primary surface area (+20%)** | **31.9 m²** | **63.8 m²** |
+| Core volume (est.) | **~0.038 m³** | ~0.075 m³ |
+| Physical envelope (see Section 21) | **615 × 430 × 389 mm** | — |
 
-The C18 recuperator packages are extraordinarily compact — smaller than a
-typical car intercooler. Packaging is trivially easy.
+### Intake Duct — M250-C18
+
+At +5°C ambient (density 1.270 kg/m³), 6 m/s approach velocity, per package:
+
+| Parameter | Value |
+|---|---|
+| Intake volumetric flow (per package) | **0.484 m³/s** |
+| Duct area | **807 cm² (0.0807 m²)** |
+| Round duct diameter | **321 mm** |
+| Circumference | **1,007 mm** |
+| Rectangular duct (H = 430 mm) | **188 mm wide** |
+| Rectangular perimeter | **1,235 mm** |
+
+The C18 recuperator packages are compact — see Section 21 for full plate
+geometry at the +20% oversized specification.
 
 ---
 
@@ -1202,8 +1256,12 @@ this means a derated C18 in automotive use could realistically achieve
 | Continuous power | 450–500 SHP | 240 SHP | 250 SHP |
 | Mass flow | 2.77 kg/s | ~1.87 kg/s | **1.23 kg/s** |
 | Pressure ratio | 9.2:1 | 6.2:1 | 6.2:1 |
-| Total HX surface area | 1,164 m² | 120 m² | **53 m²** |
-| Per package HX envelope | 600×500×230 mm | 300×250×95 mm | **200×175×90 mm** |
+| HX base area (total) | 1,164 m² | 120 m² | 53 m² |
+| **HX area +20% (total)** | **1,397 m²** | **143 m²** | **64 m²** |
+| **Per package HX area +20%** | **698 m²** | **72 m²** | **31.9 m²** |
+| Per package HX envelope | 650×540×230 mm | 320×270×100 mm | **615×430×389 mm** |
+| Intake duct diameter (per pkg) | 481 mm | 395 mm | **321 mm** |
+| Intake duct circumference | 1,511 mm | 1,242 mm | **1,007 mm** |
 | Engine weight | ~72 kg | ~80 kg | **64 kg** |
 | FADEC | Yes | Yes | No (see §15) |
 | TBO — turbine | 2,000 hrs | 2,000 hrs | **3,500 hrs** |
@@ -1290,15 +1348,21 @@ Water injection serves two simultaneous roles in this concept:
 | Parameter | M250-C47B | RR300 | M250-C18 |
 |---|---|---|---|
 | Mass flow | 2.77 kg/s | 1.87 kg/s | 1.23 kg/s |
-| **Intake volumetric flow (ISO)** | **2.26 m³/s** | **1.53 m³/s** | **1.00 m³/s** |
+| **Intake volumetric flow (+5°C)** | **2.18 m³/s** | **1.47 m³/s** | **0.97 m³/s** |
 | Cold side volumetric flow (pressurised) | 0.543 m³/s | 0.402 m³/s | 0.265 m³/s |
-| **Hot side volumetric flow (exhaust in)** | **6.20 m³/s** | **3.84 m³/s** | **2.53 m³/s** |
-| Final exhaust volumetric flow (tailpipe) | 4.62 m³/s | 2.84 m³/s | 1.87 m³/s |
+| **Hot side vol flow at T4 (turbine exit)** | **6.20 m³/s** | **3.84 m³/s** | **2.53 m³/s** |
+| **Final exhaust vol flow at T5 (tailpipe)** | **4.62 m³/s** | **2.84 m³/s** | **1.87 m³/s** |
 | Max total pressure drop (5% rule) | 46.6 kPa | 31.4 kPa | 31.4 kPa |
 | Max cold side pressure drop | ~28 kPa | ~19 kPa | ~19 kPa |
 | Max hot side pressure drop | ~18 kPa | ~12 kPa | ~12 kPa |
-| Recommended tailpipe diameter | ~350 mm | ~270 mm | ~220 mm |
-| Or twin pipes per side | 2 × 250 mm | 2 × 190 mm | 2 × 155 mm |
+| Single tailpipe diameter — 20 m/s | 542 mm | 425 mm | 345 mm |
+| Single tailpipe diameter — 30 m/s | 443 mm | 347 mm | 281 mm |
+| Twin tailpipes each — 20 m/s | 383 mm | 300 mm | 244 mm |
+| Twin tailpipes each — 30 m/s | 313 mm | 245 mm | 199 mm |
+| Hot duct per package — 15 m/s | 513 mm | 404 mm | 327 mm |
+
+Full exhaust duct calculations including hot duct, tailpipe options, diffuser,
+and circumferences are in Section 27.
 
 Every 1% of compressor delivery pressure lost to recuperator pressure drop reduces
 cycle thermal efficiency by approximately **0.3–0.5 percentage points** — directly
@@ -1309,7 +1373,11 @@ recuperator's claimed 30% fuel saving.
 
 ## 21. Heat Exchanger Plate Geometry — M250-C18
 
-### Complete Package Summary — M250-C18
+### Complete Package Summary — M250-C18 (+20% Oversize)
+
+The plate count is recalculated to deliver 20% more primary surface area than the
+minimum required at cruise power. This is the governing design, replacing the
+earlier 96-plate figure.
 
 | Parameter | Value |
 |---|---|
@@ -1322,21 +1390,29 @@ recuperator's claimed 30% fuel saving.
 | **Ridge pitch** | **20 mm centre to centre** |
 | **Ridges per plate** | **21** |
 | **Plate stampings** | **Two** — cold plate and hot plate alternating |
-| **Plates per package** | **96** |
-| **Plate pairs per package** | **48** |
+| **Plates per package (+20%)** | **116** |
+| **Plate pairs per package** | **58** |
 | **Cell pitch** | **6.70 mm** |
-| **Stack height** | **~322 mm** |
-| **Package envelope** | **615 × 430 × 322 mm** |
-| **Cold side channel velocity** | **4.4 m/s** |
-| **Hot side channel velocity** | **12.5 m/s** |
-| **Intake duct (rectangular)** | **430 × 193 mm** |
-| **Intake duct (circular equivalent)** | **325 mm diameter** |
-| **Diffuser expansion ratio** | **3.2:1** (193 → 615 mm width) |
+| **Stack height** | **389 mm** |
+| **Package envelope** | **615 × 430 × 389 mm** |
+| **Base area per package** | 26.5 m² |
+| **Area per package (+20%)** | **31.9 m²** |
+| **Cold side channel velocity** | **4.0 m/s** |
+| **Hot side channel velocity** | **10.6 m/s** |
+| **Intake duct (rectangular)** | **430 × 188 mm** |
+| **Intake duct area** | **807 cm²** |
+| **Intake duct (round equivalent)** | **321 mm diameter** |
+| **Round duct circumference** | **1,007 mm** |
+| **Rectangular duct perimeter** | **1,235 mm** |
+| **Diffuser expansion ratio** | **3.2:1** (188 → 615 mm width) |
 | **Engine bay fit confirmed** | **Yes — 430 × 615 mm fits** |
 
-The hot side requires 5.0 mm channel height versus 1.5 mm on the cold side
-because the exhaust gas is at near-atmospheric pressure and very high temperature —
-its density is approximately **10× lower** than the compressed air on the cold side.
+**Note on cold side velocity:** At 4.0 m/s the cold channel velocity is slightly
+below the 5–10 m/s design target. This is a direct consequence of the 20% area
+oversize — more plates mean more total channel cross-section, reducing velocity
+at the same mass flow. Lower velocity is beneficial: it reduces cold side pressure
+drop and increases dwell time in the channels, both improving recuperator
+performance. The hot side at 10.6 m/s remains within its 10–15 m/s target range.
 
 ---
 
@@ -1957,6 +2033,20 @@ a 0–5V signal to either the FCU torque motor (C18 modification) or
 the FADEC throttle input. An alternative is a dash-mounted lever for
 a more aircraft-authentic feel, but pedal control is more intuitive for
 road use and less likely to be operated accidentally.
+
+**Throttle Position Sensor (TPS) — scavenge from a donor throttle body:**
+The TPS itself does not need to be purchased new. Any automotive throttle
+body contains a TPS producing exactly the 0–5V signal needed — it is
+designed for this purpose. A throttle body from any petrol-engined car at
+a breakers yard works. Remove the TPS from the throttle body, mount it on
+a simple bracket at the pedal pivot or on a dedicated angular position
+shaft, and wire it directly into the FCU torque motor circuit or FADEC
+throttle input. Common donors include the VW/Audi 1.8T throttle body,
+any Bosch Motronic-equipped engine, or a Toyota/Denso unit — all produce
+a compatible 0–5V linear output and are interchangeable for this purpose.
+Cost at a breakers yard: effectively zero. New aftermarket TPS units are
+also available from Bosch, Facet, and Delphi for €10–25 if a specific
+pinout is needed.
 
 *Note:* Gas turbine throttle response is not instantaneous — particularly
 in the C18 without FADEC. The FCU introduces a deliberate acceleration
@@ -3110,3 +3200,206 @@ a retired T100 machine or as a new spare part from Ansaldo Energia or RSAB, is t
 most practical route.** Two units in parallel give a well-matched, oversized pair in
 the correct flat-pack geometry, built from the correct material, at a known temperature
 rating that exceeds the M250-C18's operating conditions with margin.
+
+
+
+---
+
+## 27. Exhaust Duct Calculations — All Three Engines
+
+### Overview
+
+The exhaust system has two distinct duct sections with very different
+temperature and volumetric flow conditions:
+
+**Hot duct** — from the power turbine exit to the recuperator hot side
+inlet. Gas is at its hottest and lowest density in this duct. Temperature
+is T4 (478°C for C18/RR300, 546°C for C47B). This duct carries the most
+volume flow of any section in the system.
+
+**Tailpipe** — from the recuperator hot side outlet to atmosphere. Gas
+has surrendered most of its heat and exits at T5 (282°C for C18/RR300,
+337°C for C47B at +5°C ambient). Volume flow is lower than in the hot
+duct but still substantial.
+
+Both ducts split across two packages — one per recuperator side — so the
+figures below are given for both a single combined duct and twin ducts
+(one per package), which is the preferred arrangement for symmetry and
+packaging.
+
+Design case throughout: **+5°C ambient**, exhaust near-atmospheric pressure
+(105 kPa). Velocity targets: hot duct 15–20 m/s; tailpipe 20–30 m/s;
+exit diffuser 10 m/s.
+
+---
+
+### M250-C47B — Exhaust Duct Dimensions
+
+**Cycle temperatures:**
+- T4 (hot duct inlet) = **546°C** — density 0.447 kg/m³
+- T5 (tailpipe inlet) = **337°C** — density 0.600 kg/m³
+- Total mass flow = 2.77 kg/s
+
+#### Hot Duct (Power Turbine Exit → Recuperator Hot Side Inlet)
+
+| Configuration | Velocity | Area | Diameter | Circumference |
+|---|---|---|---|---|
+| Single duct | 15 m/s | 4,134 cm² | 726 mm | 2,281 mm |
+| Single duct | 20 m/s | 3,100 cm² | 628 mm | 1,973 mm |
+| **Per package (×2)** | **15 m/s** | **2,067 cm²** | **513 mm** | **1,611 mm** |
+| Per package (×2) | 20 m/s | 1,550 cm² | 444 mm | 1,395 mm |
+
+#### Tailpipe (Recuperator Hot Side Outlet → Exit Diffuser)
+
+| Configuration | Velocity | Area | Diameter | Circumference |
+|---|---|---|---|---|
+| Single tailpipe | 20 m/s | 2,309 cm² | 542 mm | 1,703 mm |
+| Single tailpipe | 30 m/s | 1,540 cm² | 443 mm | 1,391 mm |
+| **Twin (×2 per pkg)** | **20 m/s** | **1,155 cm² each** | **383 mm each** | **1,205 mm** |
+| Twin (×2 per pkg) | 30 m/s | 770 cm² each | 313 mm each | 984 mm |
+
+#### Exit Diffuser (Atmospheric Dispersion — Road Level)
+
+| Configuration | Velocity | Area | Diameter | Circumference |
+|---|---|---|---|---|
+| Single exit | 10 m/s | 4,619 cm² | 767 mm | 2,409 mm |
+| Twin exits (×2) | 10 m/s | 2,309 cm² each | 542 mm each | 1,703 mm |
+
+The C47B tailpipe is large — twin 383 mm pipes running the full length of
+the car are a significant packaging challenge and a visual statement in
+their own right. A single 443–542 mm oval or rectangular section tailpipe
+exits through a wide rear valance more practically.
+
+---
+
+### RR300 — Exhaust Duct Dimensions
+
+**Cycle temperatures:**
+- T4 (hot duct inlet) = **478°C** — density 0.487 kg/m³
+- T5 (tailpipe inlet) = **282°C** — density 0.659 kg/m³
+- Total mass flow = 1.87 kg/s
+
+#### Hot Duct
+
+| Configuration | Velocity | Area | Diameter | Circumference |
+|---|---|---|---|---|
+| Single duct | 15 m/s | 2,559 cm² | 571 mm | 1,794 mm |
+| Single duct | 20 m/s | 1,919 cm² | 494 mm | 1,553 mm |
+| **Per package (×2)** | **15 m/s** | **1,280 cm²** | **404 mm** | **1,269 mm** |
+| Per package (×2) | 20 m/s | 960 cm² | 350 mm | 1,099 mm |
+
+#### Tailpipe
+
+| Configuration | Velocity | Area | Diameter | Circumference |
+|---|---|---|---|---|
+| Single tailpipe | 20 m/s | 1,418 cm² | 425 mm | 1,335 mm |
+| Single tailpipe | 30 m/s | 946 cm² | 347 mm | 1,090 mm |
+| **Twin (×2 per pkg)** | **20 m/s** | **709 cm² each** | **300 mm each** | **944 mm** |
+| Twin (×2 per pkg) | 30 m/s | 473 cm² each | 245 mm each | 771 mm |
+
+#### Exit Diffuser
+
+| Configuration | Velocity | Area | Diameter | Circumference |
+|---|---|---|---|---|
+| Single exit | 10 m/s | 2,837 cm² | 601 mm | 1,888 mm |
+| Twin exits (×2) | 10 m/s | 1,418 cm² each | 425 mm each | 1,335 mm |
+
+---
+
+### M250-C18 — Exhaust Duct Dimensions
+
+**Cycle temperatures:**
+- T4 (hot duct inlet) = **478°C** — density 0.487 kg/m³
+- T5 (tailpipe inlet) = **282°C** — density 0.659 kg/m³
+- Total mass flow = 1.23 kg/s
+
+#### Hot Duct (Power Turbine Exit → Recuperator Hot Side Inlet)
+
+| Configuration | Velocity | Area | Diameter | Circumference |
+|---|---|---|---|---|
+| Single duct | 15 m/s | 1,683 cm² | 463 mm | 1,454 mm |
+| Single duct | 20 m/s | 1,262 cm² | 401 mm | 1,259 mm |
+| **Per package (×2)** | **15 m/s** | **842 cm²** | **327 mm** | **1,028 mm** |
+| Per package (×2) | 20 m/s | 631 cm² | 283 mm | 890 mm |
+
+The hot duct is the hottest and most thermally demanding section. SS347
+stainless with 50 mm ceramic fibre blanket insulation is appropriate.
+Flexible bellows joints at both the turbine exit and the recuperator inlet
+are mandatory — the turbine casing and recuperator packages expand
+independently under thermal load.
+
+#### Tailpipe (Recuperator Hot Side Outlet → Exit Diffuser)
+
+| Configuration | Velocity | Area | Diameter | Circumference |
+|---|---|---|---|---|
+| Single tailpipe | 20 m/s | 933 cm² | 345 mm | 1,083 mm |
+| Single tailpipe | 30 m/s | 622 cm² | 281 mm | 884 mm |
+| **Twin (×2 per pkg)** | **20 m/s** | **466 cm² each** | **244 mm each** | **766 mm** |
+| Twin (×2 per pkg) | 30 m/s | 311 cm² each | 199 mm each | 625 mm |
+
+The preferred arrangement is **twin tailpipes at 20 m/s**, 244 mm diameter
+each — one exiting each side of the rear valance. At 244 mm they are
+substantial compared to conventional exhaust pipes but not impractical,
+and the symmetrical twin-pipe layout references the twin-boom aesthetic
+of military aircraft and is visually consistent with the turbine car concept.
+
+#### Exit Diffuser (Road-Level Dispersion)
+
+| Configuration | Velocity | Area | Diameter | Circumference |
+|---|---|---|---|---|
+| Single exit | 10 m/s | 1,866 cm² | 487 mm | 1,531 mm |
+| **Twin exits (×2)** | **10 m/s** | **933 cm² each** | **345 mm each** | **1,083 mm** |
+
+The diffuser flares each 244 mm tailpipe out to 345 mm over a short cone
+section — an expansion ratio of approximately 1.4:1 in diameter, which is
+modest enough to avoid flow separation while meaningfully reducing exit
+velocity from 20 m/s to 10 m/s. At 10 m/s and 282°C, the exhaust plume
+disperses rapidly and does not present a ground-level hazard at normal
+road speeds.
+
+---
+
+### Exhaust System Summary — All Engines
+
+```mermaid
+flowchart LR
+    subgraph ENG["Engine"]
+        PT["Power Turbine\nexit"]
+    end
+
+    subgraph HOT["Hot Duct — highest temp, largest volume"]
+        HD["T4: 478–546°C\nSS347 + insulation\nbellows at both ends\nper package"]
+    end
+
+    subgraph RECUP["Recuperator\nHot Side"]
+        RH["heat surrendered\nto cold air stream"]
+    end
+
+    subgraph TAIL["Tailpipe — cooled, manageable"]
+        TP["T5: 282–337°C\nsingle or twin pipes\n20–30 m/s"]
+    end
+
+    subgraph DIFF["Exit Diffuser"]
+        DF["flare to 10 m/s\nroad-level dispersion"]
+    end
+
+    PT -->|"split ×2\nper package"| HD
+    HD --> RH
+    RH -->|"rejoined or\nstay twin"| TP
+    TP --> DF
+```
+
+#### Consolidated Dimension Reference — M250-C18 (Preferred Engine)
+
+| Duct section | Preferred config | Diameter | Circumference |
+|---|---|---|---|
+| Hot duct — per package | 327 mm @ 15 m/s | **327 mm** | **1,028 mm** |
+| Tailpipe — per package | 244 mm @ 20 m/s | **244 mm** | **766 mm** |
+| Exit diffuser — per package | 345 mm @ 10 m/s | **345 mm** | **1,083 mm** |
+| Intake duct — per package | 321 mm round @ 6 m/s | **321 mm** | **1,007 mm** |
+
+The hot duct at 327 mm per package is comparable in diameter to the intake
+duct at 321 mm — a useful packaging coincidence, as both can be routed with
+similar hardware (flanges, bellows, hangers) and the visual symmetry of
+matched intake and exhaust diameters suits the military aircraft aesthetic
+described in Section 25.

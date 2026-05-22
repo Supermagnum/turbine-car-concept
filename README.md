@@ -32,6 +32,7 @@
 23. [IMPORTANT! Turbine Operations — Startup, Shutdown, and Controls](#23-turbine-operations--startup-shutdown-and-controls)
 24. [Sourcing the Fuel Control Lever, Relays, and Electrical Components](#24-sourcing-the-fuel-control-lever-relays-and-electrical-components)
 25. [Suggested Livery and Markings](#25-livery-and-markings)
+26. [Commercially Available and Serviceable Recuperator Options](#26-commercially-available-and-serviceable-recuperator-options)
 
 ---
 
@@ -1406,7 +1407,7 @@ vacuum source. The UP28 is a support unit only and must not be used here.
 ---
 
 
-## 23. Turbine Operations — Startup, Shutdown, and Controls
+## 23. IMPORTANT! Turbine Operations — Startup, Shutdown, and Controls
 
 ### Overview
 
@@ -2676,14 +2677,14 @@ flowchart TD
 
 ---
 
-## 25.Suggested Livery and Markings
+## 25. Suggested Livery and Markings
 
-### A Aircraft Museum as Design Reference
+### The Aircraft Museum as Design Reference
 
 A turbine-powered road car has no obvious visual precedent in road car
 design. One option worth considering: the aircraft world rather than the
 automotive world as the reference library — specifically the military
-aircraft that have used the M250 family and its contemporaries in service. Aircraft from the 1960's is a nice inspiration source.
+aircraft that have used the M250 family and its contemporaries in service.
 A visit to any of the following provides direct visual inspiration that
 no online search fully replaces:
 
@@ -2874,3 +2875,238 @@ the engine bay — the same position an aircraft type plate occupies on
 the forward fuselage.
 
 ---
+
+## 26. Commercially Available and Serviceable Recuperator Options
+
+The recuperator calculated in Sections 6, 12, 13, and 21 is a custom-fabricated
+item. Custom fabrication is entirely achievable — the geometry is straightforward
+and the material is standard — but it requires finding a manufacturer willing to
+take a one-off order, which adds cost and lead time. A commercially produced unit,
+or a serviceable unit recovered from a retired microturbine, sidesteps both
+problems. The following options are real products, all confirmed to operate in
+the temperature range required by the M250-C18.
+
+---
+
+### The Matching Requirement
+
+For reference, the M250-C18 recuperator specification from Section 13 and 21:
+
+| Parameter | Requirement |
+|---|---|
+| Mass flow (both packages combined) | **1.23 kg/s** |
+| Hot side inlet temperature | **478°C** |
+| Hot side outlet temperature | **282°C** |
+| Cold side inlet temperature | **260°C** |
+| Cold side outlet temperature | **456°C** |
+| Effectiveness (ε) | **0.90** |
+| Material | SS347 stainless or equivalent |
+| Configuration | Counterflow — split two packages |
+
+Oversizing is acceptable and slightly beneficial — a larger core runs at lower
+internal velocity, reducing pressure drop and improving effectiveness marginally.
+The 5% total pressure drop limit from Section 20 must still be observed.
+
+---
+
+### Option 1 — Turbec T100 / Ansaldo AE-T100 Recuperator (Best Match)
+
+**Background**
+
+The Turbec T100, now sold as the Ansaldo Energia AE-T100, is a 100 kWe
+recuperated microturbine that has been in continuous commercial production since
+the early 2000s. At the start of 2010, at least 291 T100 units had been
+manufactured and installed worldwide, predominantly in European CHP
+applications. The recuperator is a primary surface counterflow unit built
+by Rekuperator Svenska AB (RSAB), a Volvo Technology Transfer Corporation
+spinout based in Sweden.
+
+The T100 cycle temperatures are a near-exact match to the M250-C18:
+
+| Parameter | T100 recuperator | M250-C18 requirement | Match |
+|---|---|---|---|
+| Hot side inlet | **650°C** | 478°C | ✓ Within rating — C18 is cooler |
+| Hot side outlet | **270°C** | 282°C | ✓ Close match |
+| Mass flow | **~0.8 kg/s** | 1.23 kg/s | Undersized × 0.65 — **use two in parallel** |
+| Effectiveness | **~90%** | 90% | ✓ Exact |
+| Plate material | **SS347 — 0.1 mm foil** | SS347 — 0.1 mm foil | ✓ Identical |
+| Construction | **Laser welded primary surface** | Vacuum brazed PSR | Compatible |
+
+A single T100 recuperator handles approximately 0.8 kg/s. The C18 needs 1.23 kg/s
+total — split across two packages, each handling 0.615 kg/s. A single T100
+recuperator per side is therefore slightly oversized for each package by about
+30%, which is ideal: lower face velocity, reduced pressure drop, and some margin
+for the recuperator's performance to degrade slightly over time before it becomes
+critical. Two T100 recuperators in this installation are effectively a perfectly
+sized pair.
+
+**Where to Source — New Units**
+
+Ansaldo Energia continues to produce the AE-T100 as a current commercial product.
+The recuperator is a service-replaceable module available as a spare part. Contact:
+
+- **Ansaldo Energia service division**: ansaldoenergia.com — request a quote for
+  AE-T100 recuperator module as a spare part
+- **RSAB (Rekuperator Svenska AB)**: the original manufacturer, confirmed to
+  supply recuperators for small gas turbine applications to order. They explicitly
+  designed the T100 recuperator to be scalable by varying the number of air cells,
+  making a custom-sized version straightforward if the standard T100 core is not
+  quite right. Contact via ventureradar.com/organisation/Rekuperator Svenska or
+  through Ansaldo Energia's supply chain.
+
+**Where to Source — Used and Overhauled Units**
+
+The T100's long service history means units are available as complete machines
+being retired or parted out. A complete T100 with a failed generator but an intact
+recuperator is the most practical acquisition path — the recuperator is the only
+component needed, and generator failures are the most common retirement cause.
+
+- **Surplus Record** (surplusrecord.com) — search *Turbec T100* or *Ansaldo
+  microturbine*; industrial surplus listings updated daily
+- **Salvex** (salvex.com) — industrial turbine surplus auctions; T100 units
+  have appeared in European listings
+- **Ensola AG** (Switzerland) — documented T100 distributor and service provider;
+  likely to have access to retired units or recuperator cores
+- **University research programmes** — the T100 has been used extensively in
+  European academic research (University of Genoa, DLR Germany, Cranfield UK).
+  Retired research units with intact recuperators are occasionally available
+  through institutional surplus channels.
+
+**Expected cost:** A complete used T100 unit in unknown or failed-generator
+condition: approximately **€3,000–15,000** depending on hours and condition.
+The recuperator extracted from such a unit is the target — the rest of the
+machine has no application here. A recuperator module alone, if available as
+a spare part from Ansaldo, is likely in the **€2,000–8,000** range based on
+comparable industrial recuperator pricing, though Ansaldo does not publish
+list prices.
+
+---
+
+### Option 2 — Capstone C30 Recuperator (Extracted from Surplus Unit)
+
+**Background**
+
+The Capstone C30 is a 28–30 kWe recuperated microturbine with an annular
+primary surface recuperator. It operates at a pressure ratio of approximately
+3.7:1 and exhaust temperatures broadly comparable to the M250-C18, though the
+annular geometry means the recuperator cannot be removed and used as a flat
+rectangular package without significant adaptation work.
+
+The C30 recuperator wraps concentrically around the engine — it is a hollow
+cylinder approximately 570mm diameter and 350mm long. In principle the core
+could be cut and unrolled into a flat stack, but the manifolding and sealing
+would require complete redesign. This is an option for someone with fabrication
+skills, not a drop-in solution.
+
+**Mass flow:** The C30 handles approximately 0.3–0.4 kg/s — much less than
+the C18's 1.23 kg/s. Three or four C30 recuperator cores would be needed,
+adding complexity.
+
+**Where to Source**
+
+Used C30 units are widely available and inexpensive, making recuperator cores
+cheap to acquire:
+
+- **eBay**: Capstone C30 complete units listed at **$19,500–$24,250**; units
+  being parted out are sold at significantly less, with individual components
+  listed separately. Search *Capstone C30 microturbine* on ebay.com.
+- **Machinio** (machinio.com): multiple dealers listing used Capstone C30 and
+  C65 parts and complete units
+- **Global Microturbine** (globalmicroturbine.com): specialist Capstone dealer
+  with decades of experience in the used microturbine market — C30, C65, C200
+  units bought and sold
+- **Salvex** (salvex.com): C30 units have appeared in four-unit lots at
+  auction
+
+**Verdict:** The C30 recuperator is inexpensive and available, but the annular
+geometry makes it a fabrication project rather than an off-the-shelf fit.
+Worth considering if the C18 installation becomes a major fabrication exercise
+anyway and the cost saving justifies the work. Not the first choice.
+
+---
+
+### Option 3 — RSAB Custom Order (New, Sized to Specification)
+
+RSAB explicitly designed their recuperator as a modular system where the number
+of air cells is varied to match the required mass flow and power output. Their
+T100 unit (0.8 kg/s) and their 200 kWe unit (confirmed in published research
+at approximately 1.6 kg/s) bracket the C18's 1.23 kg/s requirement exactly.
+An RSAB recuperator sized to 0.615 kg/s per package — matching the two-package
+split in this design — would be a straightforward adaptation of their existing
+T100 product.
+
+RSAB also explicitly patented their recuperator for mobile vehicle use, not
+just stationary CHP — the design was from the outset intended to be suitable
+for both applications.
+
+**Advantages over the T100 spare part route:**
+- Sized exactly to the C18's mass flow — no oversize compromise
+- New manufacture — known condition, no service history concerns
+- Flat rectangular geometry confirmed — no annular geometry complications
+- SS347 primary surface construction matches Section 21 specification exactly
+
+**Contact:** RSAB is a small specialist company. The practical route is via
+their parent company relationship with Volvo Technology Transfer Corporation,
+or through Ansaldo Energia's supply chain (since Ansaldo uses RSAB recuperators
+in the AE-T100). A direct enquiry via the patent contact details or via
+ventureradar.com is the starting point.
+
+**Expected cost:** New custom manufacture, bespoke industrial — likely in the
+range of **€5,000–20,000 per unit** depending on quantity and exact specification.
+For two units the budget is therefore approximately **€10,000–40,000** — which
+compares favourably with the cost of the M250-C18 engine itself and is justified
+by the elimination of fabrication risk.
+
+---
+
+### Option 4 — Heatric PCHE (Parker Hannifin)
+
+A Heatric Printed Circuit Heat Exchanger diffusion-bonded to the M250-C18's
+exact specification would be dramatically more compact than any primary surface
+recuperator — a single block potentially under 200 × 200 × 150 mm for both
+channels combined. The technology handles 478°C hot side inlet comfortably and
+is rated to 950°C.
+
+The limitation is cost and lead time. Heatric PCHEs are engineered to order for
+the oil and gas industry, and pricing reflects that. For a single pair of units
+the cost is likely **€15,000–50,000** or more, with a lead time of several months.
+
+**Contact:** heatric.com — all enquiries are via the Heatric engineering team,
+who quote based on specification. The specification from Section 21 is a
+sufficient basis for an initial enquiry.
+
+**Verdict:** Technically the highest-performance option and the most compact,
+but almost certainly the most expensive and least practical for a one-off build
+on a private budget. Worth noting as an option if compactness is the overriding
+priority.
+
+---
+
+### Comparative Summary
+
+```mermaid
+flowchart TD
+    START["Need a recuperator\nfor M250-C18\n1.23 kg/s · 478°C hot in · 282°C hot out"] --> Q1{"Budget and\nfabrication tolerance?"}
+
+    Q1 -->|"Low budget\nsome fabrication OK"| C30["Capstone C30\nsurplus unit — extract recuperator\n~$5,000–15,000 for whole unit\nAnnular geometry requires adaptation"]
+
+    Q1 -->|"Medium budget\ndrop-in preferred"| T100["Turbec T100 / AE-T100\nrecuperator × 2 in parallel\nUsed: €3,000–15,000 per unit\nNew spare: €2,000–8,000 per unit\nFlat pack — direct fit\nBest overall option"]
+
+    Q1 -->|"Medium-high budget\nexact sizing wanted"| RSAB["RSAB custom order\n0.615 kg/s per package\n~€5,000–20,000 per unit new\nExact fit · new condition\nDesigned for vehicle use"]
+
+    Q1 -->|"High budget\nmaximum compactness"| PCHE["Heatric PCHE\nbespoke diffusion bonded\n~€15,000–50,000+\nSmallest possible envelope"]
+```
+
+| Option | Mass flow fit | Geometry | Condition | Est. cost (pair) | Lead time |
+|---|---|---|---|---|---|
+| T100 / AE-T100 (used) | ~130% — slightly oversized | Flat pack — ideal | Used / overhauled | **€6,000–30,000** | Immediate if stock found |
+| T100 / AE-T100 (new spare) | ~130% — slightly oversized | Flat pack — ideal | New | **€4,000–16,000** | Weeks — quote from Ansaldo |
+| RSAB custom | Exact | Flat pack — ideal | New | **€10,000–40,000** | Months — bespoke order |
+| Capstone C30 (extract) | ~50% each — needs 3–4 | Annular — adaptation required | Used | **€5,000–15,000** | Immediate if sourced |
+| Heatric PCHE | Exact | Very compact block | New | **€30,000–100,000+** | Months |
+
+**The Turbec T100 / Ansaldo AE-T100 recuperator, sourced either as a used unit from
+a retired T100 machine or as a new spare part from Ansaldo Energia or RSAB, is the
+most practical route.** Two units in parallel give a well-matched, oversized pair in
+the correct flat-pack geometry, built from the correct material, at a known temperature
+rating that exceeds the M250-C18's operating conditions with margin.

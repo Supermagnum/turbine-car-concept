@@ -2683,7 +2683,7 @@ flowchart TD
 A turbine-powered road car has no obvious visual precedent in road car
 design. One option worth considering: the aircraft world rather than the
 automotive world as the reference library — specifically the military
-aircraft that have used the M250 family and its contemporaries in service.
+aircraft that have used the M250 family and its contemporaries in service. Aircraft from the 1960's is a nice inspiration source.
 A visit to any of the following provides direct visual inspiration that
 no online search fully replaces:
 

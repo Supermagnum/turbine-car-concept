@@ -21,6 +21,7 @@
 13. [Lower Power Option — 100 to 200 HP Range](#13-lower-power-option--100-to-200-hp-range)
 14. [Acceleration Estimates — All Engines](#14-acceleration-estimates--all-engines)
 15. [FADEC Derating — How Power Limiting Works](#15-fadec-derating--how-power-limiting-works)
+    - [FADEC Interface and Pinout Documentation](#fadec-interface-and-pinout-documentation)
 16. [Time Between Overhaul TBO](#16-time-between-overhaul-tbo)
 17. [Three-Engine Comparison Summary](#17-three-engine-comparison-summary)
 18. [Compatible Fuels and Seal Materials](#18-compatible-fuels-and-seal-materials)
@@ -28,7 +29,9 @@
 20. [Air Movement — Volumetric Flow and Pressure Drop](#20-air-movement--volumetric-flow-and-pressure-drop)
 21. [Heat Exchanger Plate Geometry — M250-C18](#21-heat-exchanger-plate-geometry--m250-c18)
 22. [Ancillary Systems, Costs and Instrumentation](#22-ancillary-systems-costs-and-instrumentation)
-23. [Turbine Operations — Startup, Shutdown, and Controls](#23-turbine-operations--startup-shutdown-and-controls)
+23. [IMPORTANT! Turbine Operations — Startup, Shutdown, and Controls](#23-turbine-operations--startup-shutdown-and-controls)
+24. [Sourcing the Fuel Control Lever, Relays, and Electrical Components](#24-sourcing-the-fuel-control-lever-relays-and-electrical-components)
+25. [Suggested Livery and Markings](#25-livery-and-markings)
 
 ---
 
@@ -2673,9 +2676,9 @@ flowchart TD
 
 ---
 
-## 25. Livery and Markings
+## 25.Suggested Livery and Markings
 
-### The Aircraft Museum as Design Reference
+### A Aircraft Museum as Design Reference
 
 A turbine-powered road car has no obvious visual precedent in road car
 design. One option worth considering: the aircraft world rather than the
@@ -2709,8 +2712,7 @@ walk / no-walk zone graphics, kill marking traditions, and the specific
 typefaces and colours that read clearly on a curved, vibrating surface
 in poor light.
 
-All of this translates directly to a turbine car livery. None of it is
-available from a car show or a motorsport reference.
+All of this could inform a turbine car livery in ways that car show and motorsport references generally don't.
 
 ---
 
@@ -2718,8 +2720,8 @@ available from a car show or a motorsport reference.
 
 Aircraft stencilling uses a specific vocabulary that has evolved over
 seventy years to communicate hazard information quickly and unambiguously.
-That vocabulary translates directly to a turbine car and gives it an
-authenticity that no car-derived graphic scheme can replicate.
+That vocabulary could give a turbine car an authenticity that car-derived
+graphic schemes generally don't have.
 
 **Possible safety stencils — apply where relevant:**
 
@@ -2743,10 +2745,10 @@ military stencil typefaces (used on US aircraft) are available as free
 downloads — search *military stencil font* or *MilSpec stencil*. For
 European aircraft the DIN 1451 typeface was widely used — the same
 typeface used on German Bundeswehr vehicles and on Autobahn signage.
-Both are available as free web fonts. Stencil text should be yellow on
-black panels, black on light surfaces, or white on dark military colours —
-matching the aircraft conventions that gave these markings their authority
-in the first place.
+Both are available as free web fonts. Yellow on black panels, black on
+light surfaces, or white on dark military colours all work well —
+following the aircraft conventions that gave these markings their
+legibility in the first place.
 
 ---
 
@@ -2777,46 +2779,55 @@ drawings, and from road test magazines which regularly publish comparison
 profile drawings. Resize to approximately 40–60mm long and cut vinyl
 stencils or have them printed as transfer decals by any sign shop.
 
-**Colour convention:**
-Single colour only. White silhouettes on dark bodywork. Black on light.
-Never multicolour — this is not a graphic design exercise, it is a
-record of events. The restraint is the point.
+**Colour suggestion:**
+Single colour tends to work best — white silhouettes on dark bodywork,
+black on light. Multicolour dilutes the effect; the restraint is part
+of what makes the tradition legible.
 
 ---
 
 ### Livery Zone Layout — Turbine Car Body
 
-The aircraft museum approach to livery divides the body into functional
-zones, each with a defined colour and marking logic. The following is a
-recommended zone layout based on the conventions of military utility
-helicopters — the category of aircraft most closely related to this car's
-engine source.
+A possible approach divides the body into functional zones, each with a
+defined colour and marking logic, following military utility helicopter
+conventions. The diagram below shows a top-down view of the car body
+with suggested marking placements.
 
 ```mermaid
-flowchart LR
-    subgraph FRONT["FRONT — Intake Zone"]
-        FG["Base colour\n+ INTAKE arrows\n+ NO STEP bonnet"]
-    end
+block-beta
+    columns 5
 
-    subgraph DOORS["DOORS — Identity Zone"]
-        DL["Roundel or number\n+ Kill marks below window line\n+ Data plate / build spec plate"]
-    end
+    space:5
 
-    subgraph REAR["REAR — Hazard Zone"]
-        RG["Contrasting colour panel\nor hazard stripe\n+ DANGER HOT EXHAUST\n+ MAX TEMP 300°C\n+ CAUTION TURBINE EXHAUST\n+ exhaust aperture markings"]
-    end
+    space INTAKE_L["← INTAKE\narrow"]:1 BONNET["B O N N E T\n— — — — — — — —\nNO STEP\n(both sides)"]:1 INTAKE_R["INTAKE →\narrow"]:1 space
 
-    subgraph ROOF["ROOF"]
-        RF["NO STEP both sides\n+ walk area defined if applicable"]
-    end
+    space:5
 
-    subgraph FILLERS["FILLER CAPS — Colour Coded"]
-        FC["FUEL — green cap + BIODIESEL B100\nWATER — blue cap + WATER INJECTION\nOIL — yellow cap + OIL"]
-    end
+    KILL_L["Kill marks\ndriver side\ndoor lower"]:1 space WINDSCREEN["W I N D S C R E E N"]:1 space KILL_R["Kill marks\npassenger side\ndoor lower"]:1
 
-    FRONT --> DOORS --> REAR
-    ROOF -.-> DOORS
-    FILLERS -.-> REAR
+    space:5
+
+    space:1 DATA["Data plate\n+ Roundel\nor number"]:1 ROOF["R O O F\n— — — — —\nNO STEP\nboth sides"]:1 DATA2["Data plate\n+ Roundel\nor number"]:1 space:1
+
+    space:5
+
+    space:2 BOOT["B O O T  /  R E A R  D E C K"]:1 space:2
+
+    space:5
+
+    EXHZ_L["◄ EXHAUST\nZONE ◄"]:1 REAR_L["DANGER\nHOT EXHAUST\nMAX 300°C"]:1 EXHAUST["[ exhaust\napertures ]"]:1 REAR_R["CAUTION\nTURBINE\nEXHAUST"]:1 EXHZ_R["► EXHAUST\nZONE ►"]:1
+
+    space:5
+```
+
+**Filler cap colour coding — rear or side body:**
+
+```mermaid
+block-beta
+    columns 3
+    FUEL["🟢  FUEL\nBIODIESEL B100\ngreen cap"]:1
+    WATER["🔵  WATER\nWATER INJECTION\nblue cap"]:1
+    OIL["🟡  OIL\nENGINE OIL\nyellow cap"]:1
 ```
 
 **Base colour options from military aviation:**
@@ -2858,10 +2869,8 @@ RECUPERATOR: SS347 PRIMARY SURFACE ε=0.90
 ```
 
 Anodised aluminium data plates are available from any trophy or nameplate
-engraver. Fix with four countersunk rivets to a panel where it is visible
-to anyone inspecting the engine bay — the same position an aircraft type
-plate occupies on the forward fuselage.
-
-It is not decoration. It is documentation. The distinction matters.
+engraver. A good location would be somewhere visible to anyone inspecting
+the engine bay — the same position an aircraft type plate occupies on
+the forward fuselage.
 
 ---

@@ -513,14 +513,18 @@ demands a dedicated IPS.
 
 Two 12V / 600A AGM batteries connected in series providing 24V for engine startup.
 
-```
-Starter-Generator 28V output
-        |
-    [+ Battery 2 −]
-        |
-    [+ Battery 1 −] ←— 12V tap for all car electronics
-        |
-      Ground
+```mermaid
+flowchart TD
+    SG["Starter-Generator\n28V output"]
+    B2["Battery 2\n12V / 600A AGM"]
+    B1["Battery 1\n12V / 600A AGM"]
+    GND["Chassis Ground"]
+    ACC["12V Car Electronics\nlights · instruments · accessories"]
+
+    SG -->|"28V charges series pair\n~14V per battery"| B2
+    B2 -->|"series link"| B1
+    B1 -->|"negative to ground"| GND
+    B1 -->|"12V tap\nBattery 1 (+) to Ground"| ACC
 ```
 
 | Function | Supply |
@@ -2153,16 +2157,19 @@ makes the sequence clear:
 
 Based on the above, the minimum panel for the M250-C18 installation is:
 
-```
-┌─────────────────────────────────────────────────────────────────┐
-│  [MASTER BAT]  [AVIONICS]  [FUEL PUMP]  [FUEL VALVE]           │
-│                                                                   │
-│  [IGNITION]    [STARTER ▲]  [WATER INJ MODE: OFF/AUTO/MAN]     │
-│                                                                   │
-│  [FIRE HANDLE ████████████████████████████]                     │
-│                                                                   │
-│  [MASTER WARN RESET]   [OIL PRESS OVERRIDE]                    │
-└─────────────────────────────────────────────────────────────────┘
+```mermaid
+block-beta
+    columns 4
+    MASTER["MASTER BAT"]:1
+    AVIONICS["AVIONICS"]:1
+    FUELPUMP["FUEL PUMP"]:1
+    FUELVALVE["FUEL VALVE"]:1
+    IGNITION["IGNITION"]:1
+    STARTER["STARTER"]:1
+    WATERINJ["WATER INJ — OFF / AUTO / MAN"]:2
+    FIRE["🔴  FIRE HANDLE"]:4
+    WARNRESET["MASTER WARN RESET"]:2
+    OILOVERRIDE["OIL PRESS OVERRIDE"]:2
 ```
 
 The FIRE HANDLE is the largest and most prominent item on the panel,
@@ -2172,10 +2179,14 @@ the centre — they are operated in sequence and belong adjacent to each
 other. The water injection mode selector is on the right — it is set once
 before departure and left in AUTO.
 
-For the FADEC-equipped engines (C47B / RR300) add:
+For the FADEC-equipped engines (C47B / RR300), replace the ignition and starter row with:
 
-```
-  [ENGINE MASTER ARM]   [START ●]   [TOUR / PERF]
+```mermaid
+block-beta
+    columns 3
+    ENGMASTER["ENGINE MASTER — ARM"]:1
+    STARTBTN["START ●"]:1
+    TOURPERF["TOUR / PERF"]:1
 ```
 
 The ENGINE MASTER ARM replaces the IGNITION and STARTER sequence — the
@@ -2186,58 +2197,68 @@ is the mode selector.
 
 ### Summary of Startup Sequences
 
-#### FADEC Engines (M250-C47B / RR300) — Abbreviated Checklist
+#### FADEC Engines (M250-C47B / RR300) — Start Sequence
 
-| Step | Action | Confirm |
-|---|---|---|
-| 1 | MASTER BAT — ON | Panel live |
-| 2 | AVIONICS — ON | Instruments powered |
-| 3 | FUEL VALVE — OPEN | Valve indicator green |
-| 4 | FUEL PUMP — ON | Pump light on |
-| 5 | AVIONICS — OFF | Protect from start spike |
-| 6 | ENGINE MASTER — ARM | FADEC armed |
-| 7 | START — PRESS | FADEC initiates sequence |
-| 8 | AVIONICS — ON | Instruments live for monitoring |
-| 9 | Monitor TGT and N1 | Rising — normal start |
-| 10 | Idle confirmed | Wait 2 minutes warm-up |
-| 11 | WATER INJ — AUTO | System enabled |
-| 12 | FUEL CONTROL — RUN | Power available |
+```mermaid
+flowchart TD
+    A["1 · MASTER BAT — ON\nPanel live"] -->
+    B["2 · AVIONICS — ON\nInstruments powered — confirm readings"] -->
+    C["3 · FUEL VALVE — OPEN\nValve indicator green"] -->
+    D["4 · FUEL PUMP — ON\nPump running"] -->
+    E["5 · AVIONICS — OFF\nProtect from starter current spike"] -->
+    F["6 · ENGINE MASTER — ARM\nFADEC armed and ready"] -->
+    G["7 · START — PRESS\nFADEC takes control of sequence"]
+    G --> H["8 · AVIONICS — ON\nInstruments live for monitoring"]
+    H --> I{"9 · TGT and N1\nboth rising?"}
+    I -->|Yes — normal| J["10 · Idle confirmed\nWait 2 min warm-up"]
+    I -->|"TGT high / N1 stagnant"| ABORT["ABORT\nFADEC cuts fuel automatically\nInvestigate before retry"]
+    J --> K["11 · WATER INJ — AUTO"] -->
+    L["12 · FUEL CONTROL — RUN\nPower available ✓"]
+```
 
-#### Non-FADEC (M250-C18) — Abbreviated Checklist
+#### Non-FADEC (M250-C18) — Start Sequence
 
-| Step | Action | Confirm |
-|---|---|---|
-| 1 | MASTER BAT — ON | Panel live |
-| 2 | AVIONICS — ON | Instruments powered |
-| 3 | FUEL VALVE — OPEN | Valve indicator green |
-| 4 | FUEL PUMP — ON | Pump light on |
-| 5 | FUEL CONTROL — OFF | Confirmed off position |
-| 6 | AVIONICS — OFF | Protect from start spike |
-| 7 | STARTER — ON | N1 begins rising |
-| 8 | Wait for 12–15% N1 | Watch N1 gauge |
-| 9 | IGNITION — ON | Igniter firing |
-| 10 | FUEL CONTROL — IDLE | Light-off |
-| 11 | AVIONICS — ON | Instruments live |
-| 12 | Monitor TGT — must not exceed 810°C | Watch continuously |
-| 13 | At 60% N1 — STARTER — OFF | N1 continues rising |
-| 14 | At 65–70% N1 — IGNITION — OFF | Engine self-sustaining |
-| 15 | Oil pressure confirmed | ≥ minimum in 30 seconds |
-| 16 | Idle confirmed | Wait 2 minutes warm-up |
-| 17 | WATER INJ — AUTO | System enabled |
-| 18 | FUEL CONTROL — RUN | Power available |
+```mermaid
+flowchart TD
+    A["1 · MASTER BAT — ON\nPanel live"] -->
+    B["2 · AVIONICS — ON\nConfirm instrument readings"] -->
+    C["3 · FUEL VALVE — OPEN\nValve indicator green"] -->
+    D["4 · FUEL PUMP — ON\nPump running"] -->
+    E["5 · FUEL CONTROL — OFF\nConfirm detent position"] -->
+    F["6 · AVIONICS — OFF\nProtect from starter spike"] -->
+    G["7 · STARTER — ON\nN1 begins rising"]
+    G --> H{"8 · N1 at\n12–15%?"}
+    H -->|"Not reached in 30s"| NOSTART["ABORT\nStarter / battery fault\nInvestigate"]
+    H -->|Yes| I["9 · IGNITION — ON\nIgniter firing"]
+    I --> J["10 · FUEL CONTROL — IDLE\nFuel admitted — light-off"]
+    J --> K["11 · AVIONICS — ON\nInstruments live"]
+    K --> L{"12 · TGT trend?"}
+    L -->|"Rising — N1 also rising"| M["Normal light-off\nContinue"]
+    L -->|"TGT > 810°C before 60% N1"| HOTSTART["HOT START\nFUEL CONTROL → OFF immediately\nMotor to cool — investigate"]
+    L -->|"TGT rising / N1 stagnant"| HUNG["HUNG START\nFUEL CONTROL → OFF\nMotor to purge — investigate"]
+    L -->|"No TGT rise in 5s"| NOLIGHT["NO-LIGHT\nFUEL CONTROL → OFF\nMotor to clear — retry"]
+    M --> N["13 · At 60% N1\nSTARTER — OFF"]
+    N --> O["14 · At 65–70% N1\nIGNITION — OFF\nEngine self-sustaining"]
+    O --> P{"15 · Oil pressure\n≥ minimum in 30s?"}
+    P -->|No| OILSHUT["SHUT DOWN IMMEDIATELY\nBearing failure risk"]
+    P -->|Yes| Q["16 · Idle confirmed\nWait 2 min warm-up"] -->
+    R["17 · WATER INJ — AUTO"] -->
+    S["18 · FUEL CONTROL — RUN\nPower available ✓"]
+```
 
-#### Shutdown (both engine types) — Abbreviated Checklist
+#### Shutdown — Both Engine Types
 
-| Step | Action | Confirm |
-|---|---|---|
-| 1 | Throttle/power lever — IDLE | Engine at idle |
-| 2 | Wait 3 minutes | Cool-down — TGT dropping |
-| 3 | WATER INJ — OFF | System disabled |
-| 4 | FUEL CONTROL — OFF | Flame out — N1 decelerating |
-| 5 | FUEL PUMP — OFF | (after N1 zero) |
-| 6 | FUEL VALVE — CLOSE | System safe |
-| 7 | AVIONICS — OFF | — |
-| 8 | MASTER BAT — OFF | All power removed |
+```mermaid
+flowchart TD
+    A["1 · Throttle — IDLE\nReduce power to minimum"] -->
+    B["2 · Wait 3 minutes at idle\nTGT must drop — cool-down mandatory"] -->
+    C["3 · WATER INJ — OFF\nSystem disabled"] -->
+    D["4 · FUEL CONTROL — OFF\nFlame out · N1 decelerating"] -->
+    E["5 · FUEL PUMP — OFF\nAfter N1 reaches zero"] -->
+    F["6 · FUEL VALVE — CLOSE\nFuel system isolated"] -->
+    G["7 · AVIONICS — OFF"] -->
+    H["8 · MASTER BAT — OFF\nAll power removed ✓"]
+```
 
 ---
 
@@ -2248,3 +2269,540 @@ is the mode selector.
 *Procedures based on Bell 206 JetRanger flight manual, M250-C18 Series II*
 *overhaul manual, and standard turbine engine start practice.*
 *All temperatures referenced to M250-C18 Series II published limits.*
+
+---
+
+## 24. Sourcing the Fuel Control Lever, Relays, and Electrical Components
+
+### The Three-Position Fuel Control Lever
+
+The M250-C18 fuel control lever needs three positive detented positions —
+OFF, IDLE, and RUN — with enough physical resistance between positions to
+prevent accidental movement under vibration, but smooth enough to operate
+single-handed in a moving vehicle. This is a specific requirement that
+rules out most automotive and industrial lever sources. The following
+supply it off the shelf.
+
+---
+
+#### Primary Source — Aviation Throttle Quadrant: Cockpit Innovations / Skysales
+
+**Cockpit Innovations** (cockpitinnovations.com) and their distributor
+network supply single, twin, and triple lever throttle quadrants designed
+for light aircraft and experimental builds. Their single-lever quadrant
+units — often sold under the Skysales or Van's Aircraft builder supply
+channels — are constructed from machined aluminium with adjustable
+friction locks and positive detent positions that can be set by the
+installer. The lever travel, friction, and detent positions are all
+field-adjustable with a hex key.
+
+These units are designed for Lycoming and Continental fuel injection
+systems in homebuilt aircraft, where the same OFF / IDLE / FULL RICH
+three-position requirement exists. The mechanical interface — a push-pull
+cable at the lever output — is identical to what is needed to drive the
+M250-C18 FCU torque motor or throttle arm.
+
+| Specification | Value |
+|---|---|
+| Construction | Machined aluminium — instrument panel or centre console mount |
+| Lever positions | Adjustable detents — configure for OFF / IDLE / RUN |
+| Output | Push-pull Bowden cable (standard aircraft 1/8 inch) |
+| Friction | Adjustable locking ring — prevents creep under vibration |
+| Handle options | Knurled knob, T-grip, or ball — available in black or chrome |
+| Approximate cost | **€80–180** for single lever unit |
+| Sources | Van's Aircraft (vansaircraft.com), Aircraft Spruce (aircraftspruce.eu), Skysales (skysales.eu) |
+
+**Aircraft Spruce Europe** (aircraftspruce.eu) stocks these and equivalent
+units from Electroair, Dynon, and generic OEM suppliers. Search: *throttle
+quadrant single lever experimental* or *mixture control quadrant*.
+
+---
+
+#### Alternative Source — Helicopter Collective Friction Lever Assemblies
+
+Used M250-C18 fuel control levers from Bell 206 cockpit breakdowns are
+occasionally available through helicopter parts dealers. These are the
+actual levers that controlled these engines in service — they have the
+correct detents, the correct feel, and the correct cable termination for
+the M250 FCU. The disadvantage is fitment — they are designed for a
+collective assembly, not a car dashboard, and require a custom bracket.
+
+Sources for used helicopter parts: **Helicopter Adventures** (heliparts.com),
+**Helicopters Inc.** parts division, **ePlane** (eplane.com — search Bell 206
+fuel control). Expect to pay **$30–120** for a serviceable used unit.
+
+---
+
+#### Alternative Source — Experimental Aircraft Builder Suppliers
+
+**Van's Aircraft** (vansaircraft.com) — primary builder supply house for
+the RV series — stocks a range of throttle, mixture, and carburettor heat
+quadrant levers individually and in combination panels. The mixture control
+lever in a carburetted aircraft installation is functionally identical to the
+fuel control lever needed here: it has a full-rich (RUN), a detented idle
+cut-off (IDLE), and a closed (OFF) position on a friction-adjustable quadrant.
+Single units cost approximately **$45–95** and fit a standard 57mm panel cutout.
+
+**Spruce part numbers to request:** search for *Cable, Control, Push-Pull* and
+*Throttle Quadrant, Single Lever* in the engine controls section of the
+Aircraft Spruce catalogue.
+
+---
+
+#### Cable Connection to the FCU
+
+The FCU on the M250-C18 has a conventional throttle arm that accepts a
+push-pull Bowden cable terminating in a rod-end or clevis. The cable
+outer must be anchored to a fixed bracket within approximately 50mm of
+the FCU arm pivot. Cable travel from full OFF to full RUN is approximately
+25–35mm — confirm from the specific FCU variant in hand before ordering cable.
+
+Standard aircraft push-pull cable in 1/8 inch (3.175mm) core, stainless
+wire, with a PTFE-lined conduit — available from Aircraft Spruce by the
+metre — is the correct specification. Automotive choke cables are
+dimensionally similar but use lower-quality wire and fittings; aviation
+cable is preferred for the reliability and temperature resistance required
+near the engine bay.
+
+---
+
+### Relay Requirements — Master Power and Battery Isolation
+
+#### Why a Relay Is Mandatory for the Battery Master Switch
+
+The MASTER POWER switch described in Section 23 carries the full battery
+bus current — including the starter motor's peak draw of 400–600A during
+cranking. No toggle switch, rocker switch, or key switch rated for this
+current is practical in a dashboard panel. The switch itself would need
+to be the size of a circuit breaker and would require 25mm² cable run
+all the way to the driver's hand.
+
+The correct solution — used in every aircraft, military vehicle, and
+high-current industrial installation — is a **contactor relay** (also
+called a battery contactor or master solenoid). The dashboard switch
+carries only the relay coil current — typically 1–3A at 12V — and the
+relay itself, mounted close to the battery, switches the full battery
+bus current through its heavy-duty contacts.
+
+This also means the relay can be mounted at the battery — minimising the
+length of heavy cable that is live when the system is armed.
+
+---
+
+#### Recommended Contactor — Albright SW180 or Equivalent
+
+The **Albright SW180** is the industry standard for this application. It
+is used in military vehicles, aircraft ground power units, electric
+forklift trucks, and racing cars. The SW180 is a 12V or 24V coil
+contactor rated for **200A continuous / 1,000A intermittent** — more
+than sufficient for the starter draw. It is sealed, vibration-resistant,
+and has a proven service life exceeding 100,000 operations.
+
+| Parameter | Value |
+|---|---|
+| Type | Single-pole normally-open contactor |
+| Coil voltage | 12V DC (one per battery for independent isolation) or 24V for combined |
+| Continuous rating | **200A** |
+| Intermittent rating | **1,000A** |
+| Coil current draw | ~1.5A at 12V |
+| Operating temp | −40°C to +70°C |
+| Mounting | M8 stud — any orientation |
+| Terminal studs | M8 or M10 — accepts 25–50mm² cable lugs |
+| Approximate cost | **€25–55** per unit |
+| Sources | Vehicle Wiring Products (vehiclewiringproducts.co.uk), CBS Parts, Albright International distributors |
+
+Mount the contactor directly on or adjacent to each battery — one
+contactor per battery if the batteries are to be independently isolatable,
+or one on the main positive bus if combined isolation is sufficient.
+
+---
+
+#### Wiring the Contactor Circuit
+
+```mermaid
+flowchart LR
+    BAT["BATTERY (+)"]
+    SW180_A["SW180\nMAIN STUD A"]
+    SW180_B["SW180\nMAIN STUD B"]
+    BUS["MAIN BUS (+)"]
+    COILP["SW180\nCOIL (+)"]
+    COILN["SW180\nCOIL (−)"]
+    DASHSW["MASTER BAT\nSWITCH\n10A toggle"]
+    IGN["Ignition feed (+)"]
+    GND["Chassis Ground"]
+
+    BAT -->|"25–50mm² cable"| SW180_A
+    SW180_A --- SW180_B
+    SW180_B -->|"25–50mm² cable"| BUS
+    SW180_A --> COILP
+    COILP -->|"1.5A signal wire"| DASHSW
+    DASHSW --> IGN
+    COILN --> GND
+```
+
+The MASTER BAT dashboard switch is a standard 10A-rated toggle —
+inexpensive, small, and reliable, because it carries only 1.5A coil
+current. The SW180 does the heavy work at the battery.
+
+An optional **manual emergency disconnect** — a Morse-type battery
+isolator lever mounted in the cockpit or accessible from outside — can
+bypass the contactor entirely and disconnect the battery mechanically.
+This is the racing car approach and provides a physical failsafe
+independent of all electronics.
+
+---
+
+#### Starter Relay (Pre-Engagement Solenoid)
+
+In addition to the battery master contactor, a second high-current relay
+is required to switch the starter motor circuit. On the M250-C18 in its
+helicopter installation, the starter-generator circuit is switched by a
+dedicated starter relay that is energised by the cockpit START switch.
+This relay is typically mounted on the engine accessory gearbox or firewall.
+
+**If the engine is supplied without its starter relay:**
+
+The Albright SW80 (80A continuous, 12V or 24V coil, approximately **€18–35**)
+is appropriate for this circuit, or a standard heavy-duty automotive starter
+solenoid (Bosch 0331401007 or equivalent, **€12–25**) if sourced locally.
+The starter solenoid must be rated for intermittent duty at the starter
+motor's locked-rotor current — typically 300–500A peak for a 24V turbine
+starter — so do not substitute a light-duty relay.
+
+The dashboard STARTER switch energises the starter relay coil — again,
+only 1–3A — and the relay switches the full starter motor circuit.
+
+---
+
+#### Fuel Boost Pump Relay
+
+The electric fuel boost pump (Section 23) draws approximately 5–15A
+depending on type. This is within the rating of most panel-mounted
+switches, but routing the full pump current through a long dashboard
+cable run is poor practice. A standard **Bosch-type 40A relay** (the
+ubiquitous five-pin automotive cube relay, available everywhere for
+€2–5) mounted close to the pump provides a clean switched circuit
+from a short heavy cable, controlled by a lightweight signal wire to
+the dashboard switch.
+
+---
+
+#### Firewall Shutoff Valve Relay and Actuator
+
+The firewall fuel shutoff valve (Section 23) must be electrically
+actuated — either a solenoid valve (normally-closed, spring-return,
+energised-to-open) or a motorised ball valve. For the
+normally-closed solenoid type:
+
+- The valve is CLOSED when de-energised (power off, emergency)
+- The valve OPENS when energised (normal running)
+- Pulling the FIRE handle removes power from the valve coil — it
+  closes immediately without any relay action, spring-return
+
+This is fail-safe by design — loss of electrical power closes the fuel
+supply. No relay is needed in the fire handle circuit itself; the handle
+simply breaks the power feed to the valve coil.
+
+A relay IS needed to switch the valve's continuous coil current (typically
+1–5A) cleanly from the dashboard FUEL VALVE switch without routing that
+current through panel wiring. Standard Bosch 40A cube relay, as above.
+
+---
+
+#### Relay Summary Table
+
+| Relay | Function | Type | Rating | Approx. cost |
+|---|---|---|---|---|
+| **Battery Master Contactor** | Main battery bus isolation | Albright SW180 (or equivalent) | 200A cont / 1,000A int | **€25–55** |
+| **Starter Relay** | Starter motor circuit | Albright SW80 or heavy automotive solenoid | 80–500A intermittent | **€18–35** |
+| **Fuel Pump Relay** | Electric boost pump | Bosch 40A cube relay | 40A | **€2–5** |
+| **Fuel Valve Relay** | Firewall shutoff valve coil | Bosch 40A cube relay | 40A | **€2–5** |
+| **Water Pump Relay** | Injection pump switching | Bosch 40A cube relay | 40A | **€2–5** |
+
+Total relay hardware cost: approximately **€49–105** — trivial relative to
+the engine purchase and fabrication costs, and non-negotiable for electrical
+reliability.
+
+All relays should be mounted on a common relay panel — a DIN rail strip
+or a custom aluminium plate — located in the engine bay near the firewall,
+away from heat sources. Label each relay clearly. Use automotive-grade
+sealed relay sockets (Durite, Narva, or equivalent) rather than bare PCB-mount
+relays — the sealed socket prevents moisture ingress and allows relay
+replacement without disturbing the wiring.
+
+---
+
+### Complete Electrical Architecture
+
+```mermaid
+flowchart TD
+    subgraph BATTERIES["Battery System — Engine Bay"]
+        BAT1["Battery 1\n12V / 600A AGM"]
+        BAT2["Battery 2\n12V / 600A AGM"]
+        BAT1 --- BAT2
+    end
+
+    subgraph CONTACTORS["High-Current Contactors — Firewall"]
+        SW180["Albright SW180\nBattery Master Contactor\n200A cont / 1000A int"]
+        STARTR["Starter Relay\nAlbright SW80 or equiv\n500A intermittent"]
+    end
+
+    subgraph RELAYS["Relay Panel — Engine Bay / Firewall"]
+        FPRLY["Fuel Pump Relay\nBosch 40A"]
+        FVRLY["Fuel Valve Relay\nBosch 40A"]
+        WPRLY["Water Pump Relay\nBosch 40A"]
+    end
+
+    subgraph LOADS["Loads"]
+        STARTER["Starter-Generator\n24V / 400–600A peak"]
+        FUELPMP["Electric Fuel\nBoost Pump"]
+        FUELVALVE["Firewall\nFuel Shutoff Valve\nnormally-closed solenoid"]
+        WATERPMP["Water Injection\nPWM Pump\n70–100 bar"]
+        AVBUS["Avionics Bus\nFADEC · Instruments\nEHPS · Hella UP30"]
+        CARELEC["12V Car Electronics\nlights · ABS · indicators"]
+    end
+
+    subgraph DASHBOARD["Dashboard — Signal Wiring only · max 10A per switch"]
+        MASTRSW["MASTER BAT\nswitch"]
+        STARTSW["STARTER\nswitch"]
+        FUELSW["FUEL PUMP\nswitch"]
+        FVLVSW["FUEL VALVE\nswitch"]
+        WSW["WATER INJ\nmode selector"]
+        FIRE["🔴 FIRE HANDLE\nbreaks FUELVALVE power"]
+        AVCSW["AVIONICS\nswitch"]
+    end
+
+    BAT2 -->|"24V series"| SW180
+    SW180 -->|"Main bus (+)"| STARTR
+    SW180 -->|"Main bus (+)"| FPRLY
+    SW180 -->|"Main bus (+)"| FVRLY
+    SW180 -->|"Main bus (+)"| WPRLY
+    SW180 -->|"Main bus (+)"| AVBUS
+    BAT1 -->|"12V tap"| CARELEC
+
+    STARTR -->|"24V high current"| STARTER
+    FPRLY --> FUELPMP
+    FVRLY --> FUELVALVE
+    WPRLY --> WATERPMP
+
+    STARTER -->|"28V charging"| BAT2
+
+    MASTRSW -->|"coil signal 1.5A"| SW180
+    STARTSW -->|"coil signal"| STARTR
+    FUELSW -->|"coil signal"| FPRLY
+    FVLVSW -->|"coil signal"| FVRLY
+    FIRE -->|"breaks coil power"| FVRLY
+    WSW -->|"PWM signal"| WPRLY
+    AVCSW -->|"switched feed"| AVBUS
+```
+
+---
+
+*Section 24 added covering throttle quadrant sourcing (Aircraft Spruce, Van's Aircraft,*
+*Skysales), Bowden cable specification, Albright SW180 battery master contactor,*
+*starter relay, and full relay set with costs.*
+*Albright specifications from published Albright International data sheets.*
+*Aircraft Spruce part references current as of 2024–2025 catalogue.*
+
+---
+
+## 25. Livery and Markings
+
+### The Aircraft Museum as Design Reference
+
+A turbine-powered road car has no obvious visual precedent in road car
+design. The correct reference library is not the automotive world at all —
+it is the aircraft world, specifically the military aircraft that have
+used the M250 family and its contemporaries in service. A visit to any
+of the following provides direct visual inspiration that no online search
+fully replaces:
+
+**Norway and Scandinavia:**
+- **Forsvarsmuseet / Norwegian Armed Forces Museum**, Oslo — Norwegian
+  military aviation exhibits including rotary-wing aircraft
+- **Flyhistorisk Museum Sola**, Stavanger — extensive military and
+  civil aviation collection, regularly exhibits turbine-powered aircraft
+- **Luftfartsmuseet Bodø** — significant cold-war military aviation,
+  close-up access to airframes and markings
+
+**United Kingdom (accessible for the project):**
+- **Fleet Air Arm Museum**, Yeovilton — the world's largest naval
+  aviation collection; extensive rotary-wing exhibits including
+  M250-engined types
+- **RAF Museum**, Cosford and Hendon — large cold-war jet collection;
+  outstanding stencilling and panel marking reference
+- **The Helicopter Museum**, Weston-super-Mare — the world's largest
+  dedicated helicopter collection; Bell 206 JetRangers (the M250-C18's
+  primary platform) are present and accessible
+
+What you are looking at in these museums, up close: panel lines, stencil
+typography, warning placard language, colour blocking, data plates,
+intake hazard markings, exhaust zone markers, lift point indicators,
+walk / no-walk zone graphics, kill marking traditions, and the specific
+typefaces and colours that read clearly on a curved, vibrating surface
+in poor light.
+
+All of this translates directly to a turbine car livery. None of it is
+available from a car show or a motorsport reference.
+
+---
+
+### Stencilling and Warning Markings — Authentic Turbine Language
+
+Aircraft stencilling uses a specific vocabulary that has evolved over
+seventy years to communicate hazard information quickly and unambiguously
+in multiple languages, under stress, often in darkness. That vocabulary
+is directly applicable to a turbine car and gives it an authenticity
+that no car-derived graphic scheme can replicate.
+
+**Mandatory safety stencils — apply where applicable:**
+
+| Stencil text | Location | Basis |
+|---|---|---|
+| **DANGER — HOT EXHAUST** | Rear bodywork, above and beside exhaust outlets | Helicopters use this verbatim — the tailpipe temperature is comparable |
+| **CAUTION — JET EXHAUST** or **TURBINE EXHAUST** | Rear lower valance, pointing rearward | Standard on any turbine ground vehicle |
+| **NO STEP** | Any body surface not engineered for standing load | Standard airframe marking — elegant on a bonnet or roof |
+| **INTAKE** with arrow | At intake scoops | Identifies the air inlet — consistent with aircraft intake marking practice |
+| **FUEL** with fuel type identifier | At fuel filler | Standard — include B100 or BIODIESEL below |
+| **WATER** | At water injection filler | Distinguish from fuel — same size, different colour band |
+| **BATTERY** | Battery access panel | Standard aircraft battery compartment marking |
+| **FIRE EXTINGUISHER** with arrow | If a fixed bottle is fitted | Points to the discharge point |
+| **GROUND HERE** with symbol | Earthing/bonding point on the body | Aircraft refuelling earthing point marking — practical and authentic |
+| **OIL** | Engine oil access panel | |
+| **MAX TEMP 300°C / 572°F** | Rear bodywork around exhaust zone | Advisory to ground crew and bystanders |
+
+Typography: **Helvetica Medium** or **Arial** in all-caps is the closest
+road-legal equivalent to the standard MIL-STD stencil typeface. True
+military stencil typefaces (used on US aircraft) are available as free
+downloads — search *military stencil font* or *MilSpec stencil*. For
+European aircraft the DIN 1451 typeface was widely used — the same
+typeface used on German Bundeswehr vehicles and on Autobahn signage.
+Both are available as free web fonts. Stencil text should be yellow on
+black panels, black on light surfaces, or white on dark military colours —
+matching the aircraft conventions that gave these markings their authority
+in the first place.
+
+---
+
+### Kill Markings
+
+Fighter aircraft have carried kill markings since the First World War —
+a small silhouette painted below the cockpit for each confirmed air-to-air
+victory. The tradition has been adapted by ground attack crews, submarine
+commanders, and racing teams with equal enthusiasm and no loss of
+seriousness. It translates directly and appropriately to a turbine car.
+
+**The principle:** a small silhouette of each defeated opponent, stencilled
+or painted on a consistent panel — typically the front wing, the door
+below the window line, or the bonnet — in a single contrasting colour.
+The silhouettes should be in the style of aircraft recognition profiles:
+side elevation, no detail, black or white fill only.
+
+**What counts as a kill:**
+- Any car of an identifiable make that the turbine car has out-accelerated
+  from a standing start or from a rolling pull — documented, not claimed
+- Specific models carry more weight: a Golf R is more meaningful than a
+  Micra; a Porsche 911 is more meaningful than a Golf R
+- The opponent should not have known the race was happening — unsolicited
+  victories only
+
+**Practical sources for silhouettes:**
+Standard automotive side-elevation silhouettes are available from car
+manufacturers' press image libraries, from DVLA vehicle type approval
+drawings, and from road test magazines which regularly publish comparison
+profile drawings. Resize to approximately 40–60mm long and cut vinyl
+stencils or have them printed as transfer decals by any sign shop.
+
+**Colour convention:**
+Single colour only. White silhouettes on dark bodywork. Black on light.
+Never multicolour — this is not a graphic design exercise, it is a
+record of events. The restraint is the point.
+
+---
+
+### Livery Zone Layout — Turbine Car Body
+
+The aircraft museum approach to livery divides the body into functional
+zones, each with a defined colour and marking logic. The following is a
+recommended zone layout based on the conventions of military utility
+helicopters — the category of aircraft most closely related to this car's
+engine source.
+
+```mermaid
+flowchart LR
+    subgraph FRONT["FRONT — Intake Zone"]
+        FG["Base colour\n+ INTAKE arrows\n+ NO STEP bonnet"]
+    end
+
+    subgraph DOORS["DOORS — Identity Zone"]
+        DL["Roundel or number\n+ Kill marks below window line\n+ Data plate / build spec plate"]
+    end
+
+    subgraph REAR["REAR — Hazard Zone"]
+        RG["Contrasting colour panel\nor hazard stripe\n+ DANGER HOT EXHAUST\n+ MAX TEMP 300°C\n+ CAUTION TURBINE EXHAUST\n+ exhaust aperture markings"]
+    end
+
+    subgraph ROOF["ROOF"]
+        RF["NO STEP both sides\n+ walk area defined if applicable"]
+    end
+
+    subgraph FILLERS["FILLER CAPS — Colour Coded"]
+        FC["FUEL — green cap + BIODIESEL B100\nWATER — blue cap + WATER INJECTION\nOIL — yellow cap + OIL"]
+    end
+
+    FRONT --> DOORS --> REAR
+    ROOF -.-> DOORS
+    FILLERS -.-> REAR
+```
+
+**Base colour options from military aviation:**
+
+Olive Drab (FS 34087) — US Army helicopter standard. Worn, austere, and
+immediately legible as military utility. Goes with yellow stencilling.
+
+Dark Green / Black (BS 381C 641 / 642) — British Army Air Corps scheme.
+Works well on European bodywork proportions.
+
+Overall gloss black with yellow markings — the industrial turbine aesthetic.
+Closest to how the M250 is painted on stationary gas generator installations.
+Dramatic and low-maintenance for paint chips.
+
+NATO Green / Dark Camouflage — two or three tone disruptive pattern applied
+flat, with stencils in gloss. Visually complex and rewarding up close. Best
+on larger body panels.
+
+---
+
+### The Data Plate
+
+Every military aircraft and every certificated engine carries a data plate —
+a small anodised aluminium or stainless steel plate engraved or stamped
+with the aircraft serial number, type designation, empty weight, date of
+manufacture or modification, and certifying authority. The M250-C18 itself
+has one on the accessory gearbox.
+
+A custom data plate for the car is straightforward to have made. Suggested
+content:
+
+```
+TURBINE MOTOR CAR — EXPERIMENTAL
+POWERPLANT: ROLLS-ROYCE M250-C18 SHP 317
+FUEL: BIODIESEL B100 / JET A-1
+EMPTY WEIGHT: [actual kg]
+BUILD COMPLETED: [year]
+RECUPERATOR: SS347 PRIMARY SURFACE ε=0.90
+```
+
+Anodised aluminium data plates are available from any trophy or nameplate
+engraver. Fix with four countersunk rivets to a panel where it is visible
+to anyone inspecting the engine bay — the same position an aircraft type
+plate occupies on the forward fuselage.
+
+It is not decoration. It is documentation. The distinction matters.
+
+---
+
+*Section 25 added covering aircraft museum livery reference, stencil vocabulary*
+*and typography, kill marking tradition and practice, zone layout with Mermaid*
+*diagram, military base colour options, and data plate specification.*
+*Stencil typeface references: MIL-STD-1840, DIN 1451, FS 595C colour standard.*

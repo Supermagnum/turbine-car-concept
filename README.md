@@ -2598,22 +2598,17 @@ flowchart TD
 
 ---
 
-*Section 24 added covering throttle quadrant sourcing (Aircraft Spruce, Van's Aircraft,*
-*Skysales), Bowden cable specification, Albright SW180 battery master contactor,*
-*starter relay, and full relay set with costs.*
-*Albright specifications from published Albright International data sheets.*
-*Aircraft Spruce part references current as of 2024–2025 catalogue.*
 
 ---
 
-## 25. Livery and Markings
+## 25. Suggested Livery and Markings
 
 ### The Aircraft Museum as Design Reference
 
 A turbine-powered road car has no obvious visual precedent in road car
 design. The correct reference library is not the automotive world at all —
 it is the aircraft world, specifically the military aircraft that have
-used the M250 family and its contemporaries in service. A visit to any
+used the M250 family and its contemporaries in service or aircraft from the relevant timeline. A visit to any
 of the following provides direct visual inspiration that no online search
 fully replaces:
 
@@ -2800,9 +2795,4 @@ plate occupies on the forward fuselage.
 
 It is not decoration. It is documentation. The distinction matters.
 
----
 
-*Section 25 added covering aircraft museum livery reference, stencil vocabulary*
-*and typography, kill marking tradition and practice, zone layout with Mermaid*
-*diagram, military base colour options, and data plate specification.*
-*Stencil typeface references: MIL-STD-1840, DIN 1451, FS 595C colour standard.*

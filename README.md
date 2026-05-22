@@ -23,6 +23,7 @@
 17. [Three-Engine Comparison Summary](#17-three-engine-comparison-summary)
 18. [Compatible Fuels and Seal Materials](#18-compatible-fuels-and-seal-materials)
 19. [Water Injection System](#19-water-injection-system)
+20. [Air Movement — Volumetric Flow and Pressure Drop](#20-air-movement--volumetric-flow-and-pressure-drop)
 
 ---
 
@@ -1220,3 +1221,196 @@ atmosphere is already contributing. No sensor or compensation is needed
 
 *Section 19 added covering water injection system design, rainwater sourcing,*
 *PWM pump control, and dual-mode NOx reduction and power augmentation.*
+
+---
+
+## 20. Air Movement — Volumetric Flow and Pressure Drop
+
+### Volumetric Flow Rates
+
+Mass flow figures are established in Section 3. Converting to volumetric
+flow at the relevant conditions for each point in the cycle requires knowing
+the air density, which varies with temperature and pressure.
+
+**Density of air:**
+
+$$\rho = \frac{P}{R \times T}$$
+
+Where R (specific gas constant for air) = 287 J/kg·K
+
+---
+
+#### Intake — Ambient Air at Recuperator Cold Side Inlet
+
+At ISO standard conditions (+15°C, 101.325 kPa), ρ = 1.225 kg/m³
+
+At +5°C ambient (design case), ρ = 1.269 kg/m³
+
+At +45°C ambient (hot case), ρ = 1.110 kg/m³
+
+**Volumetric flow at intake — all three engines, ISO conditions:**
+
+$$\dot{V} = \frac{\dot{m}}{\rho}$$
+
+| Engine | Mass flow | Intake volumetric flow (ISO +15°C) | Hot day +45°C | Cool day +5°C |
+|---|---|---|---|---|
+| M250-C47B | 2.77 kg/s | **2.26 m³/s (2,260 L/s)** | 2.50 m³/s | 2.18 m³/s |
+| RR300 | 1.87 kg/s | **1.53 m³/s (1,530 L/s)** | 1.68 m³/s | 1.47 m³/s |
+| M250-C18 | 1.23 kg/s | **1.00 m³/s (1,000 L/s)** | 1.11 m³/s | 0.97 m³/s |
+
+The intake volumetric flow is the largest figure in the system — this is
+ambient density air before the compressor has pressurised it. It governs
+the sizing of the intake scoop, the intake ducting cross-section, and the
+cold side face area of each recuperator package.
+
+---
+
+#### Compressor Delivery — Air at Recuperator Cold Side (High Pressure)
+
+After the compressor the air is at **pressure ratio × ambient pressure**
+and at compressor outlet temperature T2. This is the condition at the
+recuperator cold side inlet — high pressure, moderate temperature.
+
+At ISO +15°C, pressure ratio 6.2:1 (RR300 / C18):
+
+- Pressure: 6.2 × 101.325 = **628 kPa**
+- Temperature T2: **198°C = 471 K**
+- Density: 628,000 / (287 × 471) = **4.65 kg/m³**
+
+At ISO +15°C, pressure ratio 9.2:1 (C47B):
+
+- Pressure: 9.2 × 101.325 = **933 kPa**
+- Temperature T2: **365°C = 638 K**
+- Density: 933,000 / (287 × 638) = **5.10 kg/m³**
+
+**Volumetric flow at recuperator cold side inlet (high pressure air):**
+
+| Engine | Mass flow | Pressure ratio | Cold side volumetric flow |
+|---|---|---|---|
+| M250-C47B | 2.77 kg/s | 9.2:1 | 2.77 / 5.10 = **0.543 m³/s** |
+| RR300 | 1.87 kg/s | 6.2:1 | 1.87 / 4.65 = **0.402 m³/s** |
+| M250-C18 | 1.23 kg/s | 6.2:1 | 1.23 / 4.65 = **0.265 m³/s** |
+
+This pressurised volumetric flow governs the internal channel sizing of
+the recuperator cold side — much smaller than the intake figure because
+the air has been compressed to 6–9× ambient density.
+
+---
+
+#### Exhaust — Hot Side Volumetric Flow at Recuperator Inlet
+
+Turbine exhaust enters the recuperator hot side at T4 = 478–546°C
+(engine dependent) and near-atmospheric pressure (slight back pressure).
+
+At T4 = 478°C = 751 K (RR300 / C18), P ≈ 105 kPa:
+
+$$\rho_{exhaust} = \frac{105{,}000}{287 \times 751} = \mathbf{0.487 \text{ kg/m}^3}$$
+
+At T4 = 546°C = 819 K (C47B), P ≈ 105 kPa:
+
+$$\rho_{exhaust} = \frac{105{,}000}{287 \times 819} = \mathbf{0.447 \text{ kg/m}^3}$$
+
+**Volumetric flow at recuperator hot side inlet:**
+
+| Engine | Mass flow | T4 | Hot side volumetric flow |
+|---|---|---|---|
+| M250-C47B | 2.77 kg/s | 546°C | 2.77 / 0.447 = **6.20 m³/s** |
+| RR300 | 1.87 kg/s | 478°C | 1.87 / 0.487 = **3.84 m³/s** |
+| M250-C18 | 1.23 kg/s | 478°C | 1.23 / 0.487 = **2.53 m³/s** |
+
+The hot side exhaust volumetric flow is the largest internal flow in the
+recuperator — hot, low-density gas at near-atmospheric pressure. It
+governs hot side channel sizing and the exhaust ducting cross-section
+from the power turbine to the recuperator.
+
+---
+
+#### Final Exhaust — Volumetric Flow at Tailpipe
+
+After the recuperator the exhaust exits at T5 ≈ 177–282°C (engine and
+ambient dependent). Taking the design case of +5°C ambient:
+
+- RR300 / C18: T5 = 282°C = 555 K, ρ = 105,000 / (287 × 555) = **0.659 kg/m³**
+- C47B: T5 = 337°C = 610 K, ρ = 105,000 / (287 × 610) = **0.600 kg/m³**
+
+**Final exhaust volumetric flow at tailpipe:**
+
+| Engine | Mass flow | T5 (+5°C ambient) | Tailpipe volumetric flow |
+|---|---|---|---|
+| M250-C47B | 2.77 kg/s | 337°C | 2.77 / 0.600 = **4.62 m³/s** |
+| RR300 | 1.87 kg/s | 282°C | 1.87 / 0.659 = **2.84 m³/s** |
+| M250-C18 | 1.23 kg/s | 282°C | 1.23 / 0.659 = **1.87 m³/s** |
+
+These figures govern tailpipe diameter. Keeping exhaust velocity below
+~30 m/s at the tailpipe exit minimises exit noise and ensures adequate
+cooling of the gas before it reaches road level. Required tailpipe
+cross-sectional area for the M250-C18 at 30 m/s exit velocity:
+
+$$A_{tailpipe} = \frac{1.87}{30} = 0.062 \text{ m}^2$$
+
+This corresponds to a **round tailpipe diameter of ~280 mm** — or two
+pipes of ~200 mm each, one per recuperator package side. A diffuser
+exit flaring to 350–400 mm further reduces exit velocity and temperature.
+
+---
+
+### Acceptable Pressure Drop
+
+Pressure drop across the recuperator is parasitic — it consumes work
+that the compressor and turbine have already done, reducing net cycle
+efficiency. It must be minimised without sacrificing heat transfer
+effectiveness.
+
+The maximum allowable overall pressure drop is determined as **5% of the
+compressor outlet pressure**. This is the widely accepted industry
+standard for recuperated gas turbines and applies to the **combined**
+cold side and hot side pressure drops together.
+
+For a practical recuperator design, the turbine can tolerate up to
+**34.5 kPa (5 psi) counter-pressure on the cold side** and up to
+**21 kPa (3 psi) on the hot side exhaust**.
+
+**Applying the 5% rule to each engine:**
+
+| Engine | Pressure ratio | Compressor outlet pressure | 5% limit (total) | Cold side limit | Hot side limit |
+|---|---|---|---|---|---|
+| M250-C47B | 9.2:1 | 933 kPa | **46.6 kPa** | ~28 kPa | ~18 kPa |
+| RR300 | 6.2:1 | 628 kPa | **31.4 kPa** | ~19 kPa | ~12 kPa |
+| M250-C18 | 6.2:1 | 628 kPa | **31.4 kPa** | ~19 kPa | ~12 kPa |
+
+The cold side carries the higher pressure drop allowance because it is
+at high pressure — a given pressure drop represents a smaller fractional
+loss. The hot side is at near-atmospheric pressure so even a modest
+pressure drop is proportionally more significant.
+
+**Effect of exceeding the pressure drop limit:**
+
+Every 1% of compressor delivery pressure lost to recuperator pressure
+drop reduces cycle thermal efficiency by approximately **0.3–0.5
+percentage points** — directly increasing fuel consumption. Staying
+within 5% total is therefore critical to achieving the recuperator's
+claimed 30% fuel saving.
+
+---
+
+### Complete Air Movement Summary
+
+| Parameter | M250-C47B | RR300 | M250-C18 |
+|---|---|---|---|
+| Mass flow | 2.77 kg/s | 1.87 kg/s | 1.23 kg/s |
+| **Intake volumetric flow (ISO)** | **2.26 m³/s** | **1.53 m³/s** | **1.00 m³/s** |
+| Cold side volumetric flow (pressurised) | 0.543 m³/s | 0.402 m³/s | 0.265 m³/s |
+| **Hot side volumetric flow (exhaust in)** | **6.20 m³/s** | **3.84 m³/s** | **2.53 m³/s** |
+| Final exhaust volumetric flow (tailpipe) | 4.62 m³/s | 2.84 m³/s | 1.87 m³/s |
+| Max total pressure drop (5% rule) | 46.6 kPa | 31.4 kPa | 31.4 kPa |
+| Max cold side pressure drop | ~28 kPa | ~19 kPa | ~19 kPa |
+| Max hot side pressure drop | ~18 kPa | ~12 kPa | ~12 kPa |
+| Recommended tailpipe diameter | ~350 mm | ~270 mm | ~220 mm |
+| Or twin pipes per side | 2 × 250 mm | 2 × 190 mm | 2 × 155 mm |
+
+---
+
+*Section 20 added covering volumetric air flow at all cycle points and*
+*acceptable recuperator pressure drop limits based on published industry standards.*
+*Volumetric flows calculated from confirmed mass flow figures using ideal gas law.*
+*Pressure drop limits per McDonald (2000) and published turbogenerator test data.*

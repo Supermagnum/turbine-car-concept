@@ -1701,45 +1701,69 @@ Available from all major automotive parts suppliers.
 
 ### Speedometer
 
-Both the Golf Mk2 and Volvo 740 use **cable-driven mechanical
-speedometers** driven from the gearbox output. When fitting a
-non-standard gearbox or step-down reduction unit, the speedometer
-cable drive ratio changes, requiring recalibration.
+The speedometer requires no special treatment. The automatic
+gearbox used in this conversion outputs speed information as
+standard — it only requires the correct RPM range at its input
+shaft, which the step-down gearbox provides. The transmission's
+own speed output signal drives the original speedometer exactly
+as it would behind a piston engine. No conversion, no
+recalibration, no additional hardware.
 
-**The simplest solution — VSS/GPS to mechanical speedometer converter**
+If the donor vehicle is fitted with a **standalone ABS unit**
+— which most diesel automatics of this era are — the ABS
+module generates wheel speed pulses independently of the
+drivetrain. These pulses can serve directly as the speed
+signal for the speedometer and any other systems that require
+it, with no modification to the original instrument.
 
-A small electronic module reads either a **Vehicle Speed Sensor
-(VSS) pulse signal** from the gearbox output shaft, or a **GPS
-speed signal**, and drives the original mechanical speedometer
-cable at the correct rate. No modification to the existing
-speedometer or dashboard is required — the original instrument
-works exactly as standard.
+**Note on GPS-based speedometer solutions:** GPS speed units
+are not appropriate for a road-registered vehicle. Approval
+authorities treat GPS odometry as a potential instrument for
+mileage manipulation and will not certify a vehicle equipped
+with one as the primary speed/distance reference. The standard
+gearbox output is the correct and only appropriate solution.
 
-**Suitable unit: JEGS SpeedBox (or equivalent)**
+---
 
-The SpeedBox accepts GPS, VSS, or OBD-II speed signals and outputs
-a calibrated signal to drive a cable-driven mechanical speedometer.
-It is calibrated once by driving at a known speed and adjusting the
-output ratio — a five-minute procedure.
+### Preferred Donor Vehicle
 
-For this application a **Hall effect sensor on the step-down
-gearbox output shaft** — reading a toothed wheel or bolt-head
-pattern — provides a clean VSS pulse signal. This feeds the
-SpeedBox which drives the original speedometer cable at the
-correct rate regardless of the final drive ratio selected.
+The Golf Mk2 and Volvo 740 were identified as suitable body
+references on the basis of size. A more practical donor for an
+actual build is a **similarly sized diesel automatic** — ideally
+a former taxi.
 
-| Parameter | Value |
-|---|---|
-| Signal input | VSS pulse, GPS, or OBD-II |
-| Signal output | Mechanical speedometer cable drive |
-| Calibration | Adjustable — set once at commissioning |
-| Dashboard modification | **None** — original speedometer works as standard |
-| Approximate cost | **€100–200** |
+**Why a taxi:**
 
-**Alternative** — if the step-down gearbox retains a standard
-speedometer cable takeoff boss (common on industrial and helicopter
-gearbox designs), a conventional speedometer gear set calibrated to
-the final ratio is all that is required. Even simpler and cheaper.
+- Taxis are retired when the engine wears out, not when the
+  body, electrics, or running gear fail. A retired taxi typically
+  has an excellent body, fresh brakes and tyres (legally required
+  during service), intact ABS, working air conditioning, full
+  electrical system, and a sound automatic gearbox — all the
+  systems this conversion needs — at a very low purchase price
+  precisely because the engine has issues.
+- The automatic gearbox is already fitted, already connected
+  to the speedometer, already integrated with the ABS, and
+  already road-legal.
+- Diesel taxi models of appropriate size include the
+  **Volvo S70/V70 D**, **Ford Mondeo TDCi**, **Mercedes-Benz
+  E220 CDI (W210/W211)**, and **Volkswagen Passat TDI** —
+  all common taxi platforms, all available cheaply with high
+  mileage engines, all with proven automatic gearboxes and
+  standalone ABS units.
+- The diesel engine is removed entirely and replaced with the
+  turbine and step-down gearbox. The automatic transmission,
+  propshaft, rear axle, brakes, ABS, steering, and all
+  electrical systems remain untouched.
+- EHPS is not needed — a diesel automatic taxi already has
+  an engine-driven hydraulic power steering pump. This can
+  be replaced with the Volvo EHPS unit or, on many later
+  models, electric power steering is already fitted as
+  standard.
+
+The result is a vehicle where the turbine installation is the
+only significant change — everything the approval authority
+needs to assess for road safety is standard, documented, and
+already type-approved.
 
 ---
 
@@ -1815,10 +1839,9 @@ without moving to the RR300.
 | EHPS pump (Volvo donor) | Used OEM unit | €80–150 |
 | EHPS controller | Reform Motorsports or equivalent | €60–100 |
 | Hella UP30 vacuum pump | Standalone brake booster supply | €80–150 |
-| Speedometer converter | VSS/GPS to mechanical cable | €100–200 |
 | Turbine instrumentation | TGT, N1, torque, oil, fuel | €500–1,500 |
-| **Total ancillary systems** | | **~€820–2,100** |
-| **Total with engine** | | **~$17,000–40,000 + €820–2,100** |
+| **Total ancillary systems** | | **~€720–1,900** |
+| **Total with engine** | | **~$17,000–40,000 + €720–1,900** |
 
 These figures cover the engine and its direct support systems only —
 not the donor vehicle, recuperator fabrication, step-down gearbox,
@@ -1827,6 +1850,7 @@ fuel cell, exhaust system, or installation labour.
 ---
 
 *Section 22 added covering EHPS steering, Hella UP30 brake vacuum pump,*
-*speedometer solution, turbine instrumentation, and M250-C18 market pricing.*
+*speedometer (standard gearbox output — no conversion needed), turbine*
+*instrumentation, M250-C18 market pricing, and preferred donor vehicle.*
 *Hella UP30 specifications from published Hella technical data sheet.*
 *Engine pricing based on published aviation market listings 2024–2025.*

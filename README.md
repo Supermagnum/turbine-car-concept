@@ -28,6 +28,7 @@
 20. [Air Movement — Volumetric Flow and Pressure Drop](#20-air-movement--volumetric-flow-and-pressure-drop)
 21. [Heat Exchanger Plate Geometry — M250-C18](#21-heat-exchanger-plate-geometry--m250-c18)
 22. [Ancillary Systems, Costs and Instrumentation](#22-ancillary-systems-costs-and-instrumentation)
+23. [Turbine Operations — Startup, Shutdown, and Controls](#23-turbine-operations--startup-shutdown-and-controls)
 
 ---
 
@@ -966,10 +967,7 @@ $$\text{Fuel flow} = 220 \times 0.64 \times 0.70 = \mathbf{98.6 \text{ lb/hr}}
 | 100 litres | **118 minutes (1hr 58min)** | **~162 km** |
 | **120 litres** | **~141 minutes (2hrs 21min)** | **~194 km** |
 
-The 120 litre cell comfortably exceeds the 165 km target. Even the
-100 litre cell achieves 162 km — within 2% of the target on a
-smaller, lighter fuel load. This is considerably better than
-previously calculated due to the corrected SFC figure.
+The 120 litre cell comfortably exceeds the 165 km target.
 
 ---
 
@@ -985,10 +983,6 @@ previously calculated due to the corrected SFC figure.
 - Maximum traction force: 1.20 × 675 × 9.81 = **7,945 N**
 - Maximum traction-limited acceleration: 7,945 / 1,500 = **5.30 m/s² (0.54g)**
 
-The traction limit governs the launch for all three engines up to the
-crossover speed where available wheel force falls to equal traction force.
-Above that speed the engine becomes the limiting factor.
-
 ### Crossover Speeds
 
 | Engine | Wheel power | Crossover speed |
@@ -997,34 +991,6 @@ Above that speed the engine becomes the limiting factor.
 | RR300 | 197 kW | **89 km/h** — power limited from 89–100 km/h |
 | M250-C18 | 194 SHP (145 kW) continuous / **236 SHP (176 kW) max** → 155 kW wheel | **70 km/h** — power limited from 70–100 km/h |
 
-### Phase 1 — Traction Limited (all engines, 0 to crossover)
-
-Acceleration = **5.30 m/s²** for all three.
-
-| Engine | Traction-limited to | Time for Phase 1 |
-|---|---|---|
-| M250-C47B | 100 km/h (193 km/h crossover) | **5.24 s** (0–100 done) |
-| RR300 | 89 km/h = 24.7 m/s | t₁ = 24.7 / 5.30 = **4.66 s** |
-| M250-C18 | 70 km/h = 19.4 m/s | t₁ = 19.4 / 5.30 = **3.66 s** |
-
-### Phase 2 — Power Limited (RR300 and C18 only)
-
-**RR300 — 89 to 100 km/h:**
-
-Average net force ≈ 8,142 N, average acceleration ≈ 5.43 m/s²
-
-$$t_2 = \frac{27.78 - 24.7}{5.43} = \mathbf{0.57 \text{ s}}$$
-
-**M250-C18 — 70 to 100 km/h:**
-
-At 19.4 m/s: F_net = (155,000/19.4) − 221 − (0.5×1.225×0.35×2.0×19.4²) = 7,990 − 221 − 323 = 7,446 N → a = 4.96 m/s²
-
-At 27.78 m/s: F_net = (155,000/27.78) − 221 − 661 = 5,582 − 882 = 4,700 N → a = 3.13 m/s²
-
-Average acceleration: **(4.96 + 3.13) / 2 = 4.05 m/s²**
-
-$$t_2 = \frac{27.78 - 19.4}{4.05} = \frac{8.38}{4.05} = \mathbf{2.07 \text{ s}}$$
-
 ### Final 0–100 km/h Results
 
 | Engine | Max power | 0–100 km/h | Character |
@@ -1032,10 +998,6 @@ $$t_2 = \frac{27.78 - 19.4}{4.05} = \frac{8.38}{4.05} = \mathbf{2.07 \text{ s}}$
 | M250-C47B | 650 SHP | **~5.2 s** | Traction-limited throughout — tyre-shredding potential above 100 km/h |
 | RR300 | 300 SHP | **~5.2 s** | Near-identical feel to C47B below 100 km/h |
 | **M250-C18** | **317 SHP** | **~5.7 s** | 0.5 s slower — still very brisk, most practical |
-
-The M250-C18 result of 5.7 seconds is highly respectable in a Golf Mk2 or Volvo 740
-body — comparable to a modern hot hatchback — achieved at substantially lower fuel
-consumption than the larger engines.
 
 ---
 
@@ -1098,10 +1060,6 @@ is minimised, TBO is maximised. Normal everyday driving.
 hill climbing, or track use. Time at this power level is logged by the FADEC
 health monitoring system.
 
-This is directly analogous to how modern turboprop aircraft use detachable
-power ratings — the same FADEC parameters but with different numerical limits
-selectable by the operator.
-
 ### M250-C18 Without FADEC
 
 For the C18 with its hydromechanical FCU, derating is achieved mechanically
@@ -1119,40 +1077,22 @@ the driver with TGT awareness without full FADEC automation.
 
 ### M250 Family TBO — Confirmed Data
 
-TBO varies by series and component:
-
 | Engine | Component | TBO |
 |---|---|---|
 | M250-C18 (Series II) | Compressor | **3,500 hours** |
 | M250-C18 (Series II) | Turbine | **3,500 hours** |
 | M250-C18 (Series II) | Gearbox | **On condition** |
-| M250-C47B (Series IV) | Compressor impeller | **On condition** (model-dependent life limits) |
 | M250-C47B (Series IV) | Turbine | **2,000 hours** |
 | M250-C47B (Series IV) | Gearbox | **On condition** |
 | RR300 | Engine (all modules) | **2,000 hours** |
 
-**Key point:** The C18 Series II turbine and compressor are both rated at 3,500 hours
-— 75% more than the C47B turbine's 2,000 hours. This is a direct consequence of the
-C18 running at lower temperatures relative to its design margins. In an automotive
-application running derated, the C18's TBO would very likely extend further still,
-since aviation TBO figures are based on flight duty cycles with frequent high-power
-events. A car, even driven enthusiastically, spends far more time at part power.
-
 ### What TBO Means in Practical Terms
-
-At **~51 litres/hr** recuperated fuel consumption, and typical usage of perhaps
-**200 hours/year** (generous for a warm-season car):
 
 | Engine | TBO | Years at 200 hrs/yr |
 |---|---|---|
 | M250-C18 | 3,500 hrs | **~17 years** between overhauls |
 | RR300 | 2,000 hrs | **~10 years** between overhauls |
 | M250-C47B | 2,000 hrs (turbine) | **~10 years** between overhauls |
-
-For context, a conventional car engine is typically rebuilt or replaced at
-150,000–200,000 km. At 82.5 km/hr average and 200 hours/year, the C18
-would cover **16,500 km/year** and reach TBO after **~280,000 km equivalent**
-— considerably better than a piston engine.
 
 ### Effect of Derating on TBO
 
@@ -1161,8 +1101,7 @@ profound effect on hot-section life. The industry rule of thumb is that every
 15°C reduction in TGT **doubles the creep life** of turbine blades. A 45°C
 reduction therefore multiplies blade life by approximately 8×. In practice
 this means a derated C18 in automotive use could realistically achieve
-**5,000–6,000 hours** between hot section inspections, with the compressor
-and gearbox remaining on condition indefinitely.
+**5,000–6,000 hours** between hot section inspections.
 
 ---
 
@@ -1177,7 +1116,7 @@ and gearbox remaining on condition indefinitely.
 | Total HX surface area | 1,164 m² | 120 m² | **53 m²** |
 | Per package HX envelope | 600×500×230 mm | 300×250×95 mm | **200×175×90 mm** |
 | Engine weight | ~72 kg | ~80 kg | **64 kg** |
-| FADEC | Yes | Yes | No (see §14) |
+| FADEC | Yes | Yes | No (see §15) |
 | TBO — turbine | 2,000 hrs | 2,000 hrs | **3,500 hrs** |
 | Recuperated fuel flow | 106 L/hr | 48 L/hr | **51 L/hr** |
 | Range on 120L | ~93 km | ~206 km | **~194 km** |
@@ -1188,51 +1127,9 @@ and gearbox remaining on condition indefinitely.
 
 ---
 
-*Sections 12–16 added covering M250-C18 specification, acceleration figures,*
-*FADEC derating methodology, and TBO data.*
-*Acceleration calculations assume 1,500 kg vehicle, front engine RWD, 55/45 weight*
-*distribution, 200mm rear tyres μ=1.20, drivetrain efficiency 0.88.*
-*TBO figures from published Rolls-Royce M250 maintenance documentation.*
-
----
-
 ## 18. Compatible Fuels and Seal Materials
 
-### Background — NOx and Fuel Choice
-
-NOx was the issue that ultimately killed the Chrysler turbine car programme —
-the continuous combustion cycle of a gas turbine produces more NOx than an
-intermittent piston engine at equivalent power. Heat and noise Chrysler solved.
-NOx they did not — emissions regulations in the 1970s were the final blow.
-
-The good news for this concept is that NOx formation is dominated almost
-entirely by **peak combustion temperature** via the thermal (Zeldovich) mechanism.
-Any fuel that burns cooler than petroleum diesel will produce less NOx. Fuels
-with high water content, lower heating values, or oxygenated chemistry all
-tend in this direction. Biodiesel and alcohols are better than petroleum diesel
-on NOx in a turbine. The turbine's lean, continuous combustion also eliminates
-CO, unburned hydrocarbons, and particulates far more effectively than a piston
-engine — so NOx is the one remaining challenge, and fuel selection is the
-most practical lever available without hardware changes.
-
-To reach full designed power on ethanol, about 1.6 times more fuel flow is
-required compared to diesel. The increased water content is actually beneficial,
-cooling the combustion temperature and resulting in lower NOx emissions.
-
-Biodiesel has a detrimental effect on elastomers commonly found in many of
-the gaskets and sealants in a typical gas turbine package — care must be taken
-in selecting compatible components. The same caution applies to all
-oxygenated and alcohol fuels. The solution is consistent: **FKM (Viton) seals
-and PTFE-lined hoses throughout the fuel wetted circuit**.
-
----
-
 ### Table A — Liquid Fuel Candidates
-
-Any fuel that is liquid at operating temperature, burns stably in a continuous
-flame combustor, and falls within the viscosity range the M250 fuel nozzle
-can handle (~0.5 to 12 cSt) is a candidate. The table below covers the
-realistic options from best to worst on NOx.
 
 | Fuel | Source | NOx vs Diesel | CO | Particulates | SO₂ | Seal Risk | Notes |
 |---|---|---|---|---|---|---|---|
@@ -1243,59 +1140,19 @@ realistic options from best to worst on NOx.
 | **HVO** (Hydrotreated vegetable oil) | Vegetable oil | **Similar to diesel** | Lower | Near zero | Zero | Low — standard seals acceptable | Chemically close to kerosene. Excellent cold weather performance |
 | **Jet A-1 / kerosene** | Petroleum / synthetic | Baseline | Low | Low | Low | Low — standard seals acceptable | Chrysler's preferred fuel. Very wide availability |
 | **Diesel (EN590)** | Petroleum | Baseline | Low | Low | Low | Low — standard seals acceptable | Widely available. Higher viscosity than kerosene |
-| **Heating oil** | Petroleum | Similar to diesel | Low | Low | Low | Low — standard seals acceptable | Chrysler demonstrated this. Slightly higher sulphur |
-| **Aviation gasoline (Avgas)** | Petroleum | Slightly higher | Low | Low | Low | Low — standard seals | Contains lead in 100LL — damages turbine nozzle guide vanes. Avoid |
-| **Unleaded petrol (E0)** | Petroleum | Similar to diesel | Low | Low | Low | Low — standard seals | High volatility — requires care with fuel system venting |
-| **Straight vegetable oil** | Plant oils | Similar to biodiesel | Higher at low power | Low | Zero | Medium | High viscosity — must be preheated to ~60°C before combustor. Gels in cold weather |
-| **Used cooking oil (UCO)** | Waste cooking oil | Similar to biodiesel | Variable | Low | Near zero | Medium | Filter carefully. Variable quality. Essentially free fuel |
-| **Tallow / animal fat** | Rendered animal fat | Similar to biodiesel | Low | Near zero | Near zero | Medium | Must be heated — high pour point (~40°C). Works well once warm |
-| **Palm oil** | Tropical agriculture | Similar to biodiesel | Low | Near zero | Zero | Medium | High pour point. Gels readily in cool weather |
-| **Turpentine** | Pine resin | Lower | Low | Low | Near zero | Medium — FKM preferred | Chrysler demonstrated. High energy density. Corrosive to some metals |
-| **Tequila / spirits** | Fermentation | **Lower** (alcohol base) | Low | Near zero | Zero | High — FKM required | Chrysler demonstrated. Essentially dilute ethanol. Novelty value only |
-| **Perfume / Chanel No.5** | Alcohol + esters | **Lower** | Low | Near zero | Zero | High — FKM required | Chrysler demonstrated. Alcohol-based. Not a practical fuel source |
-| **Peanut oil** | Groundnuts | Similar to biodiesel | Low | Near zero | Zero | Medium | Chrysler demonstrated. High viscosity — preheat required |
-
-**Fuels to avoid:**
-- **Leaded petrol (100LL Avgas)** — lead deposits destroy turbine nozzle guide vanes irreversibly
-- **Methanol at high concentration** — attacks aluminium alloy fuel system components and most elastomers aggressively; requires fully FKM/PTFE/stainless construction throughout
-- **Pyrolysis oil** — viscosity too high even when heated; acidic and corrosive
-- **Pure hydrogen** — burns far hotter, drastically increasing NOx; requires complete combustor redesign
-
----
+| **Leaded petrol (100LL Avgas)** | — | — | — | — | — | — | **AVOID — lead destroys turbine nozzle guide vanes irreversibly** |
 
 ### Table B — Seal and Gasket Material Compatibility
 
-The fuel wetted circuit of the M250 — fuel pump, fuel control unit, fuel
-manifold, combustor nozzle, and all connecting hoses — contains elastomeric
-seals and gaskets. Material selection determines whether the chosen fuel
-causes swelling, degradation, or failure.
-
-| Seal Material | Common Name | Petroleum Diesel | Biodiesel B100 | Ethanol / Methanol | Vegetable Oil | Ketones | Temperature Limit | Notes |
-|---|---|---|---|---|---|---|---|---|
-| **FKM** | Viton | ✓ Excellent | ✓ Good | ✓ Good | ✓ Good | ✗ Poor | 200°C | **Best overall choice for multi-fuel use.** Standard fitment recommendation for this concept |
-| **FVMQ** | Fluorosilicone | ✓ Good | ✓ Good | ✓ Good | ✓ Good | ✗ Poor | 175°C | Slightly better low-temp flexibility than FKM. Good multi-fuel alternative |
-| **PTFE** | Teflon | ✓ Excellent | ✓ Excellent | ✓ Excellent | ✓ Excellent | ✓ Excellent | 260°C | **Universally compatible — use for hose liners and static seals throughout** |
-| **NBR** | Nitrile / Buna-N | ✓ Good | ✗ Poor | ✗ Poor | ✗ Poor | ✗ Poor | 120°C | Standard automotive seal. Swells badly in biodiesel and alcohols. Avoid for this concept |
-| **EPDM** | — | ✗ Poor | ✗ Very poor | ✓ Fair | ✗ Poor | ✗ Poor | 150°C | Not compatible with petroleum or biodiesel fuels. Avoid |
-| **CR** | Neoprene | ✓ Fair | ✗ Poor | ✗ Poor | ✗ Poor | ✗ Poor | 120°C | Limited resistance. Avoid in fuel wetted circuits |
-| **VMQ** | Silicone | ✓ Fair | ✓ Fair | ✓ Fair | ✓ Fair | ✓ Fair | 200°C | Swells significantly in most fuels. Not suitable for dynamic seals under pressure |
-| **IIR** | Butyl rubber | ✗ Poor | ✗ Poor | ✓ Fair | ✗ Poor | ✓ Good | 120°C | Poor with hydrocarbons. Limited use |
+| Seal Material | Common Name | Petroleum Diesel | Biodiesel B100 | Ethanol / Methanol | Vegetable Oil | Notes |
+|---|---|---|---|---|---|---|
+| **FKM** | Viton | ✓ Excellent | ✓ Good | ✓ Good | ✓ Good | **Best overall choice for multi-fuel use** |
+| **PTFE** | Teflon | ✓ Excellent | ✓ Excellent | ✓ Excellent | ✓ Excellent | **Universally compatible — use for hose liners and static seals** |
+| **NBR** | Nitrile / Buna-N | ✓ Good | ✗ Poor | ✗ Poor | ✗ Poor | Standard automotive seal. Swells badly in biodiesel and alcohols. Avoid |
+| **EPDM** | — | ✗ Poor | ✗ Very poor | ✓ Fair | ✗ Poor | Not compatible with petroleum or biodiesel fuels. Avoid |
 
 **Practical recommendation:** Specify **FKM (Viton) for all O-rings and dynamic seals**,
-**PTFE-lined hose throughout**, and **stainless steel fittings**. This combination is
-compatible with every fuel in Table A including methanol and alcohols, survives
-the operating temperature range of the fuel system, and requires no changes when
-switching between fuels. The M250 family already uses FKM seals in several of
-its fuel wetted components — a complete FKM/PTFE rebuild of the fuel circuit
-for this automotive application is straightforward and uses standard
-aerospace-grade parts available from the FIRST Network.
-
----
-
-*Section 18 added covering fuel candidates and seal material compatibility.*
-*NOx comparisons based on published gas turbine combustion research.*
-*Seal compatibility based on published elastomer immersion test data.*
-*Chrysler fuel demonstrations referenced from historical A-831 programme records.*
+**PTFE-lined hose throughout**, and **stainless steel fittings**.
 
 ---
 
@@ -1307,117 +1164,8 @@ Water injection serves two simultaneous roles in this concept:
 
 - **NOx reduction** at all power levels — water vapour entering the combustor
   lowers peak flame temperature, directly suppressing thermal NOx formation
-  via the Zeldovich mechanism
 - **Power augmentation on demand** — higher injection rates cool and densify
-  the intake air, increasing compressor mass flow and allowing the FADEC to
-  add fuel within the same TGT ceiling, producing more shaft power than the
-  engine delivers dry
-
-The Rolls-Royce Pegasus engine in the Harrier uses the same principle for
-thrust augmentation at takeoff and hover — a well-proven application at
-far greater intensity than required here. Gas turbines also handle natural
-rain ingestion without difficulty, making this a robust and forgiving system.
-
----
-
-### Water Source — Rainwater from Downspouts
-
-Rainwater collected from a household downspout is the practical and
-low-cost water source. Rainwater is naturally low in dissolved minerals —
-having evaporated, condensed, and fallen without contact with ground
-mineral sources — making it far more suitable than tap water for turbine
-injection, where mineral deposits on recuperator plate surfaces are the
-primary concern.
-
-**Collection setup — home installation:**
-
-A standard garden water butt or barrel fitted with:
-
-- A **coarse mesh inlet filter** (1–2 mm) at the downspout connection —
-  catches leaves, moss, roof debris, and insects
-- A **fine sediment cartridge filter** (50–100 micron) on the outlet tap —
-  removes fine particulates and pollen before transfer to the car tank
-- A simple tap at the base for filling
-
-Cost is minimal — a basic water butt with a filter cartridge. No
-demineralisation, no chemical treatment, no ongoing consumable cost.
-The combustor operating at over 900°C is entirely indifferent to the
-trace organics and mild carbonic acidity natural to rainwater.
-
-**Transfer to the car:**
-Fill the car's water tank from the filtered outlet tap — the same
-procedure as filling a screen wash bottle. A clearly labelled filler
-point on the car, separate from the fuel filler, connected to a small
-dedicated stainless or HDPE water tank of **15–25 litres**.
-
----
-
-### Injection System Design
-
-**Tank:**
-15–25 litre stainless steel or HDPE tank, mounted low in the vehicle
-for weight distribution. Fitted with a translucent sight gauge or
-float-type level sender to the dashboard. A drain valve for winter
-storage. FKM seals throughout.
-
-**Pump:**
-A **PWM-controlled (pulse-width modulation) high-pressure pump** —
-the same technology used in automotive fuel injection and industrial
-fogging systems. PWM control varies the pump duty cycle continuously
-from 0% to 100%, giving proportional flow rate from zero to maximum
-without a separate flow control valve. Simple, robust, and precise.
-
-Operating pressure: **70–100 bar** — sufficient to produce droplets
-below 20 microns at the nozzle, ensuring complete evaporation before
-the compressor inlet. At this droplet size liquid water does not reach
-the compressor blades.
-
-**Nozzle manifold:**
-Stainless steel manifold with **two to four fogging nozzles** mounted
-across the intake scoop upstream of the recuperator cold side inlet.
-Nozzles are standard industrial fogging type — inexpensive, available,
-and replaceable without tools.
-
-**Control:**
-The PWM pump duty cycle is driven directly by **throttle position**:
-
-| Throttle position | PWM duty cycle | Injection rate | Effect |
-|---|---|---|---|
-| Idle | 0% | Off | No injection |
-| Light cruise | 10–20% | ~0.3–0.5 L/min | Mild NOx reduction |
-| Normal cruise | 20–40% | ~0.5–1.0 L/min | Steady NOx reduction |
-| Hard acceleration | 60–80% | ~2.0–3.0 L/min | NOx reduction + power augmentation |
-| Full throttle | 100% | ~4.0–5.0 L/min | Maximum augmentation |
-
-A **low-level warning light** on the dashboard activates when the tank
-drops below approximately 3 litres — sufficient reserve for a few
-minutes of normal driving before running dry. Running dry causes no
-engine damage — the engine simply returns to its normal dry performance.
-
-**Interlock:**
-The pump is disabled below a minimum engine speed threshold to prevent
-injection during startup and shutdown when the combustor is not at
-operating temperature.
-
----
-
-### Rain — Incidental Free Injection
-
-Natural rain ingestion through the intake scoop provides a mild and
-uncontrolled version of the same effect at no cost. On a wet day the
-engine already runs slightly cooler with marginally higher mass flow
-than on a dry day. The turbine is entirely unaffected by this — the
-M250 family has accumulated over 200 million flight hours in
-helicopters operating through tropical downpours, thunderstorms, and
-icing conditions without incident.
-
-Rain ingestion and deliberate injection are simply different points on
-the same continuous spectrum. The engine makes no distinction between
-them. On a heavy rain day the tank depletes more slowly as the
-atmosphere is already contributing. No sensor or compensation is needed
-— the FADEC manages the engine state regardless of water source.
-
----
+  the intake air, increasing compressor mass flow
 
 ### System Summary
 
@@ -1432,189 +1180,21 @@ atmosphere is already contributing. No sensor or compensation is needed
 | Injection point | Upstream of recuperator cold side inlet |
 | Cruise injection rate | 0.3–1.0 L/min |
 | Full power injection rate | 4.0–5.0 L/min |
-| Tank duration at cruise | ~25–80 minutes depending on rate |
-| Tank duration at full power | ~3–6 minutes |
 | NOx effect | 20–35% reduction at cruise rates |
 | Power augmentation | 10–15% additional shaft power at full rate |
-| Rain ingestion | Handled without concern — incidental benefit |
-| Seal material | FKM throughout — compatible with water and all fuel candidates |
 | Running dry | No engine damage — returns to normal dry rating |
 
----
-
-*Section 19 added covering water injection system design, rainwater sourcing,*
-*PWM pump control, and dual-mode NOx reduction and power augmentation.*
+| Throttle position | PWM duty cycle | Injection rate | Effect |
+|---|---|---|---|
+| Idle | 0% | Off | No injection |
+| Light cruise | 10–20% | ~0.3–0.5 L/min | Mild NOx reduction |
+| Normal cruise | 20–40% | ~0.5–1.0 L/min | Steady NOx reduction |
+| Hard acceleration | 60–80% | ~2.0–3.0 L/min | NOx reduction + power augmentation |
+| Full throttle | 100% | ~4.0–5.0 L/min | Maximum augmentation |
 
 ---
 
 ## 20. Air Movement — Volumetric Flow and Pressure Drop
-
-### Volumetric Flow Rates
-
-Mass flow figures are established in Section 3. Converting to volumetric
-flow at the relevant conditions for each point in the cycle requires knowing
-the air density, which varies with temperature and pressure.
-
-**Density of air:**
-
-$$\rho = \frac{P}{R \times T}$$
-
-Where R (specific gas constant for air) = 287 J/kg·K
-
----
-
-#### Intake — Ambient Air at Recuperator Cold Side Inlet
-
-At ISO standard conditions (+15°C, 101.325 kPa), ρ = 1.225 kg/m³
-
-At +5°C ambient (design case), ρ = 1.269 kg/m³
-
-At +45°C ambient (hot case), ρ = 1.110 kg/m³
-
-**Volumetric flow at intake — all three engines, ISO conditions:**
-
-$$\dot{V} = \frac{\dot{m}}{\rho}$$
-
-| Engine | Mass flow | Intake volumetric flow (ISO +15°C) | Hot day +45°C | Cool day +5°C |
-|---|---|---|---|---|
-| M250-C47B | 2.77 kg/s | **2.26 m³/s (2,260 L/s)** | 2.50 m³/s | 2.18 m³/s |
-| RR300 | 1.87 kg/s | **1.53 m³/s (1,530 L/s)** | 1.68 m³/s | 1.47 m³/s |
-| M250-C18 | 1.23 kg/s | **1.00 m³/s (1,000 L/s)** | 1.11 m³/s | 0.97 m³/s |
-
-The intake volumetric flow is the largest figure in the system — this is
-ambient density air before the compressor has pressurised it. It governs
-the sizing of the intake scoop, the intake ducting cross-section, and the
-cold side face area of each recuperator package.
-
----
-
-#### Compressor Delivery — Air at Recuperator Cold Side (High Pressure)
-
-After the compressor the air is at **pressure ratio × ambient pressure**
-and at compressor outlet temperature T2. This is the condition at the
-recuperator cold side inlet — high pressure, moderate temperature.
-
-At ISO +15°C, pressure ratio 6.2:1 (RR300 / C18):
-
-- Pressure: 6.2 × 101.325 = **628 kPa**
-- Temperature T2: **198°C = 471 K**
-- Density: 628,000 / (287 × 471) = **4.65 kg/m³**
-
-At ISO +15°C, pressure ratio 9.2:1 (C47B):
-
-- Pressure: 9.2 × 101.325 = **933 kPa**
-- Temperature T2: **365°C = 638 K**
-- Density: 933,000 / (287 × 638) = **5.10 kg/m³**
-
-**Volumetric flow at recuperator cold side inlet (high pressure air):**
-
-| Engine | Mass flow | Pressure ratio | Cold side volumetric flow |
-|---|---|---|---|
-| M250-C47B | 2.77 kg/s | 9.2:1 | 2.77 / 5.10 = **0.543 m³/s** |
-| RR300 | 1.87 kg/s | 6.2:1 | 1.87 / 4.65 = **0.402 m³/s** |
-| M250-C18 | 1.23 kg/s | 6.2:1 | 1.23 / 4.65 = **0.265 m³/s** |
-
-This pressurised volumetric flow governs the internal channel sizing of
-the recuperator cold side — much smaller than the intake figure because
-the air has been compressed to 6–9× ambient density.
-
----
-
-#### Exhaust — Hot Side Volumetric Flow at Recuperator Inlet
-
-Turbine exhaust enters the recuperator hot side at T4 = 478–546°C
-(engine dependent) and near-atmospheric pressure (slight back pressure).
-
-At T4 = 478°C = 751 K (RR300 / C18), P ≈ 105 kPa:
-
-$$\rho_{exhaust} = \frac{105{,}000}{287 \times 751} = \mathbf{0.487 \text{ kg/m}^3}$$
-
-At T4 = 546°C = 819 K (C47B), P ≈ 105 kPa:
-
-$$\rho_{exhaust} = \frac{105{,}000}{287 \times 819} = \mathbf{0.447 \text{ kg/m}^3}$$
-
-**Volumetric flow at recuperator hot side inlet:**
-
-| Engine | Mass flow | T4 | Hot side volumetric flow |
-|---|---|---|---|
-| M250-C47B | 2.77 kg/s | 546°C | 2.77 / 0.447 = **6.20 m³/s** |
-| RR300 | 1.87 kg/s | 478°C | 1.87 / 0.487 = **3.84 m³/s** |
-| M250-C18 | 1.23 kg/s | 478°C | 1.23 / 0.487 = **2.53 m³/s** |
-
-The hot side exhaust volumetric flow is the largest internal flow in the
-recuperator — hot, low-density gas at near-atmospheric pressure. It
-governs hot side channel sizing and the exhaust ducting cross-section
-from the power turbine to the recuperator.
-
----
-
-#### Final Exhaust — Volumetric Flow at Tailpipe
-
-After the recuperator the exhaust exits at T5 ≈ 177–282°C (engine and
-ambient dependent). Taking the design case of +5°C ambient:
-
-- RR300 / C18: T5 = 282°C = 555 K, ρ = 105,000 / (287 × 555) = **0.659 kg/m³**
-- C47B: T5 = 337°C = 610 K, ρ = 105,000 / (287 × 610) = **0.600 kg/m³**
-
-**Final exhaust volumetric flow at tailpipe:**
-
-| Engine | Mass flow | T5 (+5°C ambient) | Tailpipe volumetric flow |
-|---|---|---|---|
-| M250-C47B | 2.77 kg/s | 337°C | 2.77 / 0.600 = **4.62 m³/s** |
-| RR300 | 1.87 kg/s | 282°C | 1.87 / 0.659 = **2.84 m³/s** |
-| M250-C18 | 1.23 kg/s | 282°C | 1.23 / 0.659 = **1.87 m³/s** |
-
-These figures govern tailpipe diameter. Keeping exhaust velocity below
-~30 m/s at the tailpipe exit minimises exit noise and ensures adequate
-cooling of the gas before it reaches road level. Required tailpipe
-cross-sectional area for the M250-C18 at 30 m/s exit velocity:
-
-$$A_{tailpipe} = \frac{1.87}{30} = 0.062 \text{ m}^2$$
-
-This corresponds to a **round tailpipe diameter of ~280 mm** — or two
-pipes of ~200 mm each, one per recuperator package side. A diffuser
-exit flaring to 350–400 mm further reduces exit velocity and temperature.
-
----
-
-### Acceptable Pressure Drop
-
-Pressure drop across the recuperator is parasitic — it consumes work
-that the compressor and turbine have already done, reducing net cycle
-efficiency. It must be minimised without sacrificing heat transfer
-effectiveness.
-
-The maximum allowable overall pressure drop is determined as **5% of the
-compressor outlet pressure**. This is the widely accepted industry
-standard for recuperated gas turbines and applies to the **combined**
-cold side and hot side pressure drops together.
-
-For a practical recuperator design, the turbine can tolerate up to
-**34.5 kPa (5 psi) counter-pressure on the cold side** and up to
-**21 kPa (3 psi) on the hot side exhaust**.
-
-**Applying the 5% rule to each engine:**
-
-| Engine | Pressure ratio | Compressor outlet pressure | 5% limit (total) | Cold side limit | Hot side limit |
-|---|---|---|---|---|---|
-| M250-C47B | 9.2:1 | 933 kPa | **46.6 kPa** | ~28 kPa | ~18 kPa |
-| RR300 | 6.2:1 | 628 kPa | **31.4 kPa** | ~19 kPa | ~12 kPa |
-| M250-C18 | 6.2:1 | 628 kPa | **31.4 kPa** | ~19 kPa | ~12 kPa |
-
-The cold side carries the higher pressure drop allowance because it is
-at high pressure — a given pressure drop represents a smaller fractional
-loss. The hot side is at near-atmospheric pressure so even a modest
-pressure drop is proportionally more significant.
-
-**Effect of exceeding the pressure drop limit:**
-
-Every 1% of compressor delivery pressure lost to recuperator pressure
-drop reduces cycle thermal efficiency by approximately **0.3–0.5
-percentage points** — directly increasing fuel consumption. Staying
-within 5% total is therefore critical to achieving the recuperator's
-claimed 30% fuel saving.
-
----
 
 ### Complete Air Movement Summary
 
@@ -1631,177 +1211,14 @@ claimed 30% fuel saving.
 | Recommended tailpipe diameter | ~350 mm | ~270 mm | ~220 mm |
 | Or twin pipes per side | 2 × 250 mm | 2 × 190 mm | 2 × 155 mm |
 
----
-
-*Section 20 added covering volumetric air flow at all cycle points and*
-*acceptable recuperator pressure drop limits based on published industry standards.*
-*Volumetric flows calculated from confirmed mass flow figures using ideal gas law.*
-*Pressure drop limits per McDonald (2000) and published turbogenerator test data.*
+Every 1% of compressor delivery pressure lost to recuperator pressure drop reduces
+cycle thermal efficiency by approximately **0.3–0.5 percentage points** — directly
+increasing fuel consumption. Staying within 5% total is critical to achieving the
+recuperator's claimed 30% fuel saving.
 
 ---
 
 ## 21. Heat Exchanger Plate Geometry — M250-C18
-
-### Plate Sizing Basis
-
-Plate dimensions are governed by two constraints:
-
-**Engine envelope** — the M250-C18 has a maximum cross-section diameter
-of **572 mm**. The recuperator packages sit beside the engine and must
-not exceed this height to keep the installation tidy within the engine bay.
-
-**Wheel diameter rule** — using the Volvo 740 standard tyre 185/70 R14
-as the reference vehicle:
-
-$$D_{wheel} = (2 \times 185 \times 0.70) + (14 \times 25.4) = 259 + 356 = \mathbf{615 \text{ mm}}$$
-
-Applied limits:
-- Maximum plate height = **70% of wheel diameter = 430 mm**
-- Maximum plate length = **100% of wheel diameter = 615 mm**
-
-The wheel diameter rule gives 430 mm height — less than the engine's 572 mm
-cross-section — so the **wheel diameter rule governs** and the 430 mm figure
-is used. Both packages confirmed to fit in the engine bay at 430 × 615 mm.
-
-$$\boxed{H_{plate} = 430 \text{ mm}} \qquad \boxed{L_{plate} = 615 \text{ mm}}$$
-
----
-
-### Plate Thickness
-
-| Parameter | Value | Basis |
-|---|---|---|
-| Material | SS347 stainless steel foil | Industry standard for PSR |
-| Plate thickness | **0.10 mm (100 microns)** | Within 0.076–0.203 mm published industry range |
-
-SS347 foil at 0.10 mm is the standard used by Solar Turbines and other
-primary surface recuperator manufacturers. It provides adequate creep
-resistance at 478°C hot side inlet temperature with good margin.
-
----
-
-### Ridge Geometry — Longitudinal Stiffening Ridges
-
-Ridges run the **full length of each plate parallel to the gas flow
-direction**. They serve primarily as structural stiffening — increasing
-the second moment of area of the thin foil against the pressure
-differential between cold side (628 kPa) and hot side (~105 kPa) —
-exactly as longitudinal ridges stiffen pressed steel floor panels and
-door skins in the chassis industry.
-
-Because the ridges are parallel to flow they introduce **no transverse
-turbulence, no unexpected pressure drop, and no flow disruption**. The
-gas flows smoothly along the channels formed between adjacent plates.
-Heat transfer is governed by channel hydraulics, not surface geometry.
-
-**Two plate stampings are used — cold side and hot side — alternating
-through the stack.** They differ only in ridge height, reflecting the
-very different volumetric flow requirements of the high-density
-compressed air stream and the low-density exhaust stream.
-
-| Parameter | Cold side plate | Hot side plate |
-|---|---|---|
-| Ridge height | **1.5 mm** | **5.0 mm** |
-| Ridge width at base | 4.0 mm | 4.0 mm |
-| Ridge profile | Shallow trapezoid | Shallow trapezoid |
-| Ridge pitch (c/c) | **20 mm** | **20 mm** |
-| Ridges per plate | **21** | **21** |
-| Channel width between ridges | 16 mm | 16 mm |
-| Full channel width | 20 mm | 20 mm |
-
-The hot side requires 5.0 mm channel height versus 1.5 mm on the cold
-side because the exhaust gas is at near-atmospheric pressure and very
-high temperature — its density is approximately **10× lower** than the
-compressed air on the cold side. Without larger channels the hot side
-velocity would be excessive and pressure drop would breach the 12 kPa
-limit.
-
-**Surface area enhancement from ridges:**
-
-Longitudinal ridges add a modest **~5%** to wetted surface area compared
-to a flat plate — the trapezoidal ridge perimeter (5.0 mm) versus the
-equivalent flat width (4.0 mm) over a 20 mm pitch. This is intentionally
-small — the ridges are structural, not a heat transfer enhancement device.
-
-$$A_{flat} = 0.430 \times 0.615 = 0.264 \text{ m}^2 \text{ per plate}$$
-
-$$A_{effective} = 0.264 \times 1.05 = \mathbf{0.277 \text{ m}^2 \text{ per plate}}$$
-
----
-
-### Number of Plates and Stack Height
-
-Required primary surface area per package: **26.5 m²**
-
-$$N_{plates} = \frac{26.5}{0.277} = \mathbf{96 \text{ plates per package}}$$
-
-**Cell pitch** — one cold plate + one hot plate pair:
-
-| Component | Thickness |
-|---|---|
-| Cold side channel (ridge height) | 1.5 mm |
-| Cold side plate | 0.10 mm |
-| Hot side channel (ridge height) | 5.0 mm |
-| Hot side plate | 0.10 mm |
-| **Total cell pitch** | **6.70 mm** |
-
-$$\text{Stack height} = \frac{96}{2} \times 6.70 = 48 \times 6.70 = \mathbf{322 \text{ mm}}$$
-
----
-
-### Flow Velocity Verification
-
-**Cold side — compressed air at 628 kPa, T2 = 260°C:**
-
-- Volumetric flow per package: 0.265 / 2 = **0.133 m³/s**
-- Number of cold channels: 48 pairs × 21 channels = **1,008 channels**
-- Channel cross-section: 20 × 1.5 mm = **30 mm² = 3.0 × 10⁻⁵ m²**
-- Total cold flow area: 1,008 × 3.0 × 10⁻⁵ = **0.030 m²**
-
-$$v_{cold} = \frac{0.133}{0.030} = \mathbf{4.4 \text{ m/s}} \checkmark$$
-
-Well within the 5–10 m/s design target. Pressure drop will be low.
-
-**Hot side — exhaust at ~105 kPa, T4 = 478°C:**
-
-- Volumetric flow per package: 2.53 / 2 = **1.265 m³/s**
-- Number of hot channels: 48 pairs × 21 channels = **1,008 channels**
-- Channel cross-section: 20 × 5.0 mm = **100 mm² = 1.0 × 10⁻⁴ m²**
-- Total hot flow area: 1,008 × 1.0 × 10⁻⁴ = **0.101 m²**
-
-$$v_{hot} = \frac{1.265}{0.101} = \mathbf{12.5 \text{ m/s}} \checkmark$$
-
-Acceptable — within the typical 10–15 m/s range for hot side exhaust
-channels. Pressure drop remains within the 12 kPa hot side limit.
-
----
-
-### Intake Duct Dimensions
-
-Intake volumetric flow per package at ISO conditions: **0.50 m³/s**
-
-At 6 m/s approach velocity:
-
-$$A_{intake} = \frac{0.50}{6} = \mathbf{0.083 \text{ m}^2}$$
-
-**As a rectangular duct matching plate height:**
-
-$$W_{duct} = \frac{0.083}{0.430} = \mathbf{193 \text{ mm}}$$
-
-A **430 mm tall × 193 mm wide rectangular intake duct** feeds directly
-into the recuperator cold side face, expanding through a short diffuser
-section from 193 mm to 615 mm width — an expansion ratio of 3.2:1,
-slowing the air from 6 m/s at the duct to approximately 1.9 m/s at the
-plate face before entering the channels.
-
-**As a circular duct (alternative):**
-
-$$D_{intake} = \sqrt{\frac{4 \times 0.083}{\pi}} = \mathbf{325 \text{ mm diameter}}$$
-
-The rectangular duct is preferred as it matches the plate height and
-simplifies the transition to the recuperator face without a shape change.
-
----
 
 ### Complete Package Summary — M250-C18
 
@@ -1828,13 +1245,9 @@ simplifies the transition to the recuperator face without a shape change.
 | **Diffuser expansion ratio** | **3.2:1** (193 → 615 mm width) |
 | **Engine bay fit confirmed** | **Yes — 430 × 615 mm fits** |
 
----
-
-*Section 21 added covering heat exchanger plate geometry for M250-C18.*
-*Plate dimensions derived from Volvo 740 185/70 R14 wheel diameter.*
-*Asymmetric channel heights calculated from volumetric flow and velocity limits.*
-*Ridge geometry based on chassis industry pressed steel stiffening practice.*
-*SS347 foil thickness per published Solar Turbines / Allegheny-Ludlum PSR data.*
+The hot side requires 5.0 mm channel height versus 1.5 mm on the cold side
+because the exhaust gas is at near-atmospheric pressure and very high temperature —
+its density is approximately **10× lower** than the compressed air on the cold side.
 
 ---
 
@@ -1842,236 +1255,996 @@ simplifies the transition to the recuperator face without a shape change.
 
 ### Power Steering — Electric Hydraulic Pump (EHPS)
 
-The M250-C18 has no accessory belt drive. Power steering must be
-sourced independently. The most practical solution for both the
-Golf Mk2 and Volvo 740 is an **electric hydraulic power steering
-(EHPS) pump** — a self-contained unit that bolts into the existing
-hydraulic steering circuit without modifying the rack or hoses.
-
 **Recommended unit: Volvo S40/V50/C30 EHPS pump (2006–2012)**
-
-This brushless pump is widely used in engine swap and EV conversion
-projects worldwide and is a proven, readily available, inexpensive
-solution. It connects directly to the existing hydraulic rack on
-both donor vehicles and operates from the 12V supply via a simple
-controller.
 
 | Parameter | Value |
 |---|---|
-| Type | Electric hydraulic — brushless motor driving hydraulic pump |
 | Supply voltage | **12V** from Battery 1 |
 | Current draw | ~20–25A at full lock, ~5A at straight-ahead cruise |
-| Controller | Reform Motorsports EHPS-Micro or equivalent — 2 × 1 inch PCB |
-| Assist level | Adjustable via controller potentiometer |
-| Compatibility | Connects to existing hydraulic rack on Golf Mk2 and Volvo 740 |
-| Source | Used unit from Volvo C30/S40/V50 — widely available |
+| Controller | Reform Motorsports EHPS-Micro or equivalent |
 | Approximate cost | **€80–150** for used OEM pump + **€60–100** for controller |
 
-The controller requires only a switched 12V ignition feed and ground —
-no CAN bus integration needed. Assist level is set once with a
-screwdriver and left. The pump runs only when the engine is running
-via the ignition circuit.
+### Brake Booster — Hella UP30 Electric Vacuum Pump
 
----
+| Parameter | Hella UP30 |
+|---|---|
+| Application | **Standalone — sole vacuum source** |
+| Rated voltage | **14.0V** |
+| Current draw | **<15A** |
+| Max vacuum | **≥86% of ambient** |
+| Time to 50% vacuum | **≤3.5s** |
+| Booster volume | **4.0 litres** |
+| Pump operating life | **1,200 hours** |
+| Approximate cost | **€80–150** |
 
-### Brake Booster — Electric Vacuum Pump
-
-The standard brake servo (vacuum booster) on both donor vehicles
-operates on engine vacuum. The M250-C18 provides none. A dedicated
-12V electric vacuum pump maintains the booster reservoir
-independently, requiring no modification to the existing brake
-master cylinder, booster, or hydraulic circuit.
-
-**Recommended unit: Hella UP30**
-
-The Hella UP30 can provide the pneumatic vacuum supply as a
-stand-alone system — the pump acts as the sole source of vacuum
-and ensures sufficient supply for the brake booster and any
-auxiliary consumers. It is based on the rotary vane compression
-principle and is a dry-running system that can be mounted in any
-position.
-
-| Parameter | Hella UP28 | Hella UP30 |
-|---|---|---|
-| Application | Support only — not standalone | **Standalone — sole vacuum source** |
-| Rated voltage | 13.5V | **14.0V** |
-| Current draw | <10A | **<15A** |
-| Max vacuum | ≥86% of ambient | **≥86% of ambient** |
-| Time to 50% vacuum | ≤5.5s | **≤3.5s** |
-| Booster volume | 3.2 litres | **4.0 litres** |
-| Pump operating life | 600 hours | **1,200 hours** |
-| Sound level | <70 dB(A) | **<77 dB(A)** |
-| Weight | ~1 kg | ~1 kg |
-| Operating temperature | −40°C to +120°C | −40°C to +120°C |
-
-**The UP30 is the correct unit** — rated for standalone operation
-without any engine vacuum source. The UP28 is a support unit only.
-
-Control is via a simple **vacuum pressure switch** set to activate
-the pump when booster vacuum drops below ~500 mbar (the threshold
-for adequate brake assist). The pump runs briefly to restore vacuum
-then cuts out — exactly as on a diesel car or hybrid vehicle where
-this system is OEM standard equipment. Over 17 million Hella
-electric vacuum pumps have been produced since 1999 — this is
-a mature, proven technology.
-
-**Approximate cost: €80–150** for a new or quality used Hella UP30.
-Available from all major automotive parts suppliers.
-
----
-
-### Speedometer
-
-The speedometer requires no special treatment. The automatic
-gearbox used in this conversion outputs speed information as
-standard — it only requires the correct RPM range at its input
-shaft, which the step-down gearbox provides. The transmission's
-own speed output signal drives the original speedometer exactly
-as it would behind a piston engine. No conversion, no
-recalibration, no additional hardware.
-
-If the donor vehicle is fitted with a **standalone ABS unit**
-— which most diesel automatics of this era are — the ABS
-module generates wheel speed pulses independently of the
-drivetrain. These pulses can serve directly as the speed
-signal for the speedometer and any other systems that require
-it, with no modification to the original instrument.
-
-**Note on GPS-based speedometer solutions:** GPS speed units
-are not appropriate for a road-registered vehicle. Approval
-authorities treat GPS odometry as a potential instrument for
-mileage manipulation and will not certify a vehicle equipped
-with one as the primary speed/distance reference. The standard
-gearbox output is the correct and only appropriate solution.
-
----
-
-### Preferred Donor Vehicle
-
-The Golf Mk2 and Volvo 740 were identified as suitable body
-references on the basis of size. A more practical donor for an
-actual build is a **similarly sized diesel automatic** — ideally
-a former taxi.
-
-**Why a taxi:**
-
-- Taxis are retired when the engine wears out, not when the
-  body, electrics, or running gear fail. A retired taxi typically
-  has an excellent body, fresh brakes and tyres (legally required
-  during service), intact ABS, working air conditioning, full
-  electrical system, and a sound automatic gearbox — all the
-  systems this conversion needs — at a very low purchase price
-  precisely because the engine has issues.
-- The automatic gearbox is already fitted, already connected
-  to the speedometer, already integrated with the ABS, and
-  already road-legal.
-- Diesel taxi models of appropriate size include the
-  **Volvo S70/V70 D**, **Ford Mondeo TDCi**, **Mercedes-Benz
-  E220 CDI (W210/W211)**, and **Volkswagen Passat TDI** —
-  all common taxi platforms, all available cheaply with high
-  mileage engines, all with proven automatic gearboxes and
-  standalone ABS units.
-- The diesel engine is removed entirely and replaced with the
-  turbine and step-down gearbox. The automatic transmission,
-  propshaft, rear axle, brakes, ABS, steering, and all
-  electrical systems remain untouched.
-- EHPS is not needed — a diesel automatic taxi already has
-  an engine-driven hydraulic power steering pump. This can
-  be replaced with the Volvo EHPS unit or, on many later
-  models, electric power steering is already fitted as
-  standard.
-
-The result is a vehicle where the turbine installation is the
-only significant change — everything the approval authority
-needs to assess for road safety is standard, documented, and
-already type-approved.
-
----
+The UP30 is the correct unit — rated for standalone operation without any engine
+vacuum source. The UP28 is a support unit only and must not be used here.
 
 ### Turbine Engine Instrumentation
 
-The minimum instrument set for safe and informed operation of the
-M250-C18 in a car application:
-
 | Instrument | Parameter | Type | Notes |
 |---|---|---|---|
-| **TGT gauge** | Turbine Gas Temperature | Thermocouple + analogue dial | Primary engine health indicator. Thermocouple already fitted to engine. Self-powered — no external supply needed |
+| **TGT gauge** | Turbine Gas Temperature | Thermocouple + analogue dial | Self-powered — no external supply needed |
 | **N1 gauge** | Gas generator speed (%) | Tachometer — % RPM | Monitors compressor/gas generator speed |
-| **Torque gauge** | Output shaft torque (%) | Pressure-based or electronic | Primary power indicator — the "throttle gauge" for a car |
+| **Torque gauge** | Output shaft torque (%) | Pressure-based or electronic | Primary power indicator |
 | **Oil pressure** | Engine oil pressure | Pressure gauge | Critical — low oil pressure = immediate shutdown |
 | **Oil temperature** | Engine oil temperature | Temperature gauge | Monitors lubrication health |
-| **Fuel flow** | Litres per hour | Flow meter | Range management — essential given limited fuel cell |
+| **Fuel flow** | Litres per hour | Flow meter | Range management |
 | **Fuel level** | Tank contents | Float sender + gauge | Standard automotive sender in ATL cell |
 | **FADEC warning light** | Fault indication | Single warning light | Wired to FADEC fault output |
 | **Water level** | Injection tank | Sight gauge or float sender | Low level warning |
 
-The TGT gauge is particularly elegant in that it requires no
-external electrical power — the energy to drive the analogue meter
-comes from the thermocouple itself. This type of simple analogue
-instrument is commonplace in older gas turbine powered aircraft and
-also useful for stationary or ground applications.
-
-All instruments are available as standard aviation parts from
-suppliers such as Aircraft Spruce, CostAero, or directly from
-M250 FIRST Network centres. Standard 57mm (2¼ inch) aviation
-instrument bezels fit neatly into a custom dashboard panel.
-
-**Approximate instrumentation cost: €500–1,500** for a complete
-analogue instrument set sourced from aviation surplus.
-
----
+**Approximate instrumentation cost: €500–1,500** for a complete analogue set from aviation surplus.
 
 ### Engine Cost — M250-C18
 
-The M250-C18 is the oldest and most produced variant of the M250
-family with over **6,400 engines** built. Used and serviceable
-units circulate regularly in the helicopter MRO market.
-
-**Typical market pricing (2024–2025):**
-
-| Condition | Price range (USD) | Notes |
-|---|---|---|
-| Core / run-out (for parts or rebuild) | **$5,000–15,000** | High hours or out-of-limits — basis for rebuild |
-| Serviceable — time continued | **$15,000–35,000** | Mid-life, logbooks current, ready to run |
-| Recently overhauled (SMOH) | **$40,000–70,000** | Fresh overhaul by FIRST Network centre |
-| Zero time since new (rare) | **$80,000+** | Effectively new |
-
-For this project a **serviceable time-continued unit at $15,000–
-35,000** is the practical target — sufficient operating hours remain
-for many years of automotive use at low duty cycle, with a known
-history and current logbooks. A pre-buy inspection by a FIRST
-Network centre (Essential Turbines, Air Services International,
-Premier Turbines etc.) before purchase is strongly recommended
-and typically costs $500–1,500.
-
-The M250-C20B (400 SHP, slightly more powerful than the C18) is
-also widely available in this price range and uses the same
-basic architecture — a consideration if more power is wanted
-without moving to the RR300.
-
----
+| Condition | Price range (USD) |
+|---|---|
+| Core / run-out | $5,000–15,000 |
+| Serviceable — time continued | **$15,000–35,000** |
+| Recently overhauled (SMOH) | $40,000–70,000 |
 
 ### Complete Ancillary System Cost Summary
 
-| Item | Specification | Approx. cost |
-|---|---|---|
-| M250-C18 engine (serviceable) | Time-continued, with logbooks | **$15,000–35,000** |
-| Pre-buy inspection | FIRST Network centre | $500–1,500 |
-| EHPS pump (Volvo donor) | Used OEM unit | €80–150 |
-| EHPS controller | Reform Motorsports or equivalent | €60–100 |
-| Hella UP30 vacuum pump | Standalone brake booster supply | €80–150 |
-| Turbine instrumentation | TGT, N1, torque, oil, fuel | €500–1,500 |
-| **Total ancillary systems** | | **~€720–1,900** |
-| **Total with engine** | | **~$17,000–40,000 + €720–1,900** |
-
-These figures cover the engine and its direct support systems only —
-not the donor vehicle, recuperator fabrication, step-down gearbox,
-fuel cell, exhaust system, or installation labour.
+| Item | Approx. cost |
+|---|---|
+| M250-C18 engine (serviceable) | **$15,000–35,000** |
+| Pre-buy inspection | $500–1,500 |
+| EHPS pump + controller | €140–250 |
+| Hella UP30 vacuum pump | €80–150 |
+| Turbine instrumentation | €500–1,500 |
+| **Total with engine** | **~$17,000–40,000 + €720–1,900** |
 
 ---
 
-*Section 22 added covering EHPS steering, Hella UP30 brake vacuum pump,*
-*speedometer (standard gearbox output — no conversion needed), turbine*
-*instrumentation, M250-C18 market pricing, and preferred donor vehicle.*
-*Hella UP30 specifications from published Hella technical data sheet.*
-*Engine pricing based on published aviation market listings 2024–2025.*
+*Sections 1–22: concept design specification — theoretical study only.*
+*All performance figures based on published M250 family data and standard thermodynamic analysis.*
+
+## 23. Turbine Operations — Startup, Shutdown, and Controls
+
+### Overview
+
+A gas turbine engine is not operated like a piston engine. It has its own
+logic, its own sequence dependencies, and its own failure modes during the
+most vulnerable phase of its life — the start. The majority of gas turbine
+failures occur during startup, not during cruise. Understanding why each
+switch exists, what it does, and what happens if it is operated out of
+sequence is the foundation of safe turbine operation. This section covers
+startup and shutdown procedures for both the FADEC-equipped engines (M250-C47B
+and RR300) and the hydromechanical-controlled M250-C18, then defines the full
+switch and control set required for the automotive installation with the
+reasoning behind each item.
+
+---
+
+### The Three Phases of Every Turbine Start
+
+Regardless of engine type or control system, every gas turbine start passes
+through the same three physical phases. The control system — FADEC or
+hydromechanical — manages these phases differently, but the underlying physics
+is identical.
+
+---
+
+**Phase 1 — Motoring (Cranking)**
+
+The starter motor spins the gas generator (N1/NG spool) from rest. No fuel is
+admitted. The compressor is building pressure and airflow through the engine.
+This phase continues until N1 reaches the minimum speed at which the engine
+can sustain combustion and avoid a hung start or compressor surge — typically
+**10–15% N1** for the M250 family.
+
+This phase is critical for two reasons. First, the compressor must be moving
+enough air to cool the combustor and turbine nozzles before fuel is lit. If
+fuel is admitted at too low a speed the combustion gases cannot be adequately
+cooled and the turbine inlet temperature rises instantly to damaging levels —
+a hot start. Second, the fuel nozzle must be presenting fuel at a pressure and
+atomisation quality sufficient to ignite reliably. Below a minimum N1 the fuel
+flow is too low and the droplet size too large. Motoringwithout fuel first is
+not optional — it is what saves the hot section from the start.
+
+---
+
+**Phase 2 — Light-Off and Acceleration**
+
+At the minimum motoring speed, the igniter fires and fuel is admitted.
+Combustion begins — this is light-off. TGT (Turbine Gas Temperature) rises
+rapidly. The engine must now accelerate under its own power fast enough to
+avoid:
+
+- **Hot start** — TGT rising faster than the engine can accelerate, cooking
+  the turbine nozzle guide vanes. Caused by too much fuel admitted too early,
+  or a fuel nozzle partially blocked producing uneven combustion.
+- **Hung start** — the engine lights off but fails to accelerate past a low
+  N1 — typically 30–50% — because fuel flow is insufficient to produce enough
+  energy to overcome compressor drag. TGT climbs slowly, N1 refuses to rise.
+  The engine is producing heat without useful work. Requires immediate fuel
+  cutoff and investigation.
+- **No-light** — the igniter fires, fuel is admitted, but no combustion occurs.
+  TGT does not rise. The engine motored through the start sequence with no
+  ignition. Causes: failed igniter, contaminated fuel nozzle, fuel shutoff
+  valve not fully open, low fuel pressure.
+
+This phase ends when N1 reaches self-sustaining speed — typically **60–65%
+N1** for the M250 family — at which point the starter motor cuts out. The
+engine is now running under its own combustion energy.
+
+---
+
+**Phase 3 — Stabilisation and Idle**
+
+N1 accelerates from self-sustaining speed to ground idle — typically
+**62–68% N1** for the M250 family — under FADEC or FCU governing. TGT
+settles to its idle value. Oil pressure rises to operating range. NP
+(power turbine speed) comes to its governed idle value. The engine is now
+stable and ready for load.
+
+A warm-up period at idle — **minimum 2 minutes** — is required before any
+significant torque load is applied. During this period:
+
+- Oil is circulating to all bearings and reaching operating temperature.
+- The recuperator core is warming from ambient to its steady-state
+  temperature distribution — a 591°C swing from cold storage to operating
+  temperature requires controlled, gradual heating to prevent thermal shock
+  across the vacuum-brazed joints.
+- FADEC is running its health monitoring checks and confirming all
+  sensor readings are within limits.
+
+Applying full throttle immediately after light-off — even if the engine
+reaches idle — causes thermal shock in the recuperator and oil starvation
+in bearings that have not yet received fully warmed, low-viscosity lubricant.
+
+---
+
+### FADEC Startup — M250-C47B and RR300
+
+The FADEC (Full Authority Digital Engine Control) manages the entire start
+sequence automatically once the pilot initiates it. The operator's role is
+reduced to three actions: confirm prerequisites, initiate start, and monitor.
+The FADEC does the rest.
+
+#### Pre-Start Checks
+
+Before initiating the start sequence, the following must be confirmed:
+
+| Check | Required state | Why |
+|---|---|---|
+| Battery voltage | ≥24V (both 12V batteries in series fully charged) | Starter motor draws 400–600A peak. Low voltage causes a slow, hot start |
+| Fuel shutoff valve | OPEN | Closed valve causes a no-light — fuel never reaches combustor |
+| Fuel level | Adequate | FADEC will not protect against fuel exhaustion during start |
+| Oil level | Within limits | Low oil — any turbine start risks bearing failure in first seconds |
+| Engine bay | Clear — no FOD sources | Intake ingestion during spin-up is most likely at low N1 |
+| Parking | Vehicle stationary | Accidental torque application during start |
+| Fire extinguisher | Within reach | Ground starts carry higher fire risk than flight |
+
+#### The FADEC Start Sequence — Step by Step
+
+The following describes what the FADEC does internally during a normal start.
+The driver/operator sees only TGT and N1 rising on the instruments.
+
+**Step 1 — Start initiation command received**
+
+The operator moves the start switch to START (or presses the start button,
+depending on implementation). The FADEC receives the start command and checks
+its internal pre-start logic:
+- Battery voltage within limits
+- No active faults that prevent starting (depending on fault type — some
+  faults are informational only, others lock out the start)
+- Engine not already running (N1 > minimum threshold = abort)
+
+**Step 2 — Starter motor energised (0% N1)**
+
+The FADEC commands the starter relay closed, energising the 24V starter-
+generator motor. N1 begins to rise. Fuel shutoff valve remains closed.
+Igniter is off. The FADEC monitors N1 acceleration rate — if N1 fails
+to accelerate at the expected rate (starter motor failure, seized bearing)
+the start is aborted.
+
+**Step 3 — Igniter on (approximately 10–12% N1)**
+
+The FADEC energises the ignition exciter. The igniter begins firing — the
+characteristic sharp crackling sound confirming ignition is active.
+
+**Step 4 — Fuel admitted (approximately 12–15% N1)**
+
+The FADEC opens the fuel metering valve to the calculated start fuel schedule
+— a carefully profiled ramp of fuel flow that increases with N1, calibrated
+to produce rapid light-off without exceeding the TGT start limit (typically
+927°C for M250 family). This is the most critical moment of the start. The
+FADEC is simultaneously:
+
+- Monitoring TGT — if it exceeds the start TGT limit before N1 reaches
+  self-sustaining speed, fuel is immediately cut (hot start abort)
+- Monitoring N1 acceleration — if N1 fails to reach self-sustaining speed
+  within a defined time window, fuel is cut (hung start abort)
+- Monitoring for TGT with no N1 rise — indicates no-light, aborts and
+  purges fuel from the combustor by continuing to motor briefly
+
+**Step 5 — Light-off confirmed (TGT rising, N1 accelerating)**
+
+TGT rises rapidly — typically reaching 400–600°C within the first
+10–15 seconds. N1 accelerates. The FADEC confirms successful light-off
+by detecting the TGT rate of rise and N1 response within its expected envelope.
+
+**Step 6 — Starter motor cut-out (60–65% N1)**
+
+When N1 reaches self-sustaining speed the FADEC de-energises the starter
+relay. The engine is now running under its own combustion energy. N1
+continues to accelerate toward idle.
+
+**Step 7 — Igniter off (65% N1 approximately)**
+
+The FADEC de-energises the igniter. The flame is self-sustaining at this
+N1 and temperature. The igniter is not needed during normal operation —
+it is reactivated automatically if FADEC detects a flameout (TGT
+collapsing with fuel flowing).
+
+**Step 8 — Idle stabilisation**
+
+N1 stabilises at ground idle (typically 62–68%). TGT settles. Oil pressure
+rises to operating range. NP comes to governed idle. FADEC transitions from
+start mode to normal governing mode. The engine is available for load
+after the minimum 2-minute warm-up.
+
+**Total time from initiation to idle: approximately 30–45 seconds** for
+a cold M250 family start.
+
+#### FADEC Hot Start Protection — The Most Important Safety Feature
+
+The FADEC's most valuable contribution is automatic hot start protection.
+Hot starts are the primary cause of turbine engine damage in manual start
+aircraft. They occur when TGT exceeds limits before the engine reaches
+self-sustaining speed. The damage is immediate and severe — nozzle guide
+vanes can be melted or cracked in seconds.
+
+With FADEC the response to an incipient hot start is automatic and
+instantaneous — the fuel metering valve closes faster than any human
+reflex, and the engine is automatically motored without fuel to cool the
+combustor before the investigation begins. The FADEC logs the event with
+a time stamp, peak TGT recorded, and N1 at time of abort. This data is
+readable via the maintenance port.
+
+Without FADEC — as discussed below — the operator must both detect the
+hot start and respond to it. The FADEC makes hot start prevention
+essentially automatic.
+
+---
+
+### Non-FADEC Startup — M250-C18
+
+The M250-C18 uses a **Bendix/Honeywell DP-L2 hydromechanical fuel control
+unit (FCU)**. There is no computer managing the start sequence. The operator
+performs every step manually, monitors every parameter personally, and must
+intervene immediately if a hot start, hung start, or no-light develops.
+This is the original way all turbines were started, and it works well
+provided the operator understands what they are looking at and what to do.
+
+The M250-C18 start procedure is well-documented in the Bell 206 flight manual
+and M250-C18 overhaul manual. The automotive adaptation uses the same
+procedure with minor instrument labelling differences.
+
+#### M250-C18 Control Positions
+
+Before beginning, understand the three positions of the fuel control:
+
+| Position | What it does |
+|---|---|
+| **OFF** | Fuel shutoff valve closed — no fuel to combustor. Engine cannot run |
+| **IDLE** | FCU governs N2 (power turbine) to idle speed. Fuel flow at minimum for stable combustion |
+| **FLY / RUN** | FCU schedules fuel in response to throttle — normal operating range |
+
+The lever has physical detents at OFF and IDLE. There is no automatic
+position — every transition is the operator's deliberate action.
+
+#### M250-C18 Start Procedure — Step by Step
+
+**Before start — prerequisites (same as FADEC list, plus):**
+
+- TGT gauge reading ambient temperature (thermocouple self-check — a reading
+  significantly above ambient indicates a hot engine from a recent previous run —
+  do not restart until TGT is below 150°C)
+- Fuel control in **OFF** position
+- Throttle (if fitted separately from fuel control) at **IDLE**
+- Ignition switch **OFF**
+
+---
+
+**Step 1 — Motor without fuel (0–15% N1)**
+
+- Move **STARTER switch to START** — energises the starter motor
+- Monitor N1 gauge — confirm N1 is rising
+- **Do not move fuel control lever yet**
+- Allow N1 to reach **12–15%** — visible on the N1 gauge as the needle
+  beginning to climb through the lower quarter of the scale
+- This takes approximately 8–12 seconds depending on battery condition
+
+If N1 fails to reach 12% within 30 seconds — abort start, investigate
+starter motor / battery.
+
+---
+
+**Step 2 — Ignition on**
+
+At **12–15% N1:**
+
+- Move **IGNITION switch to ON**
+- The igniter begins firing — you may hear the characteristic snapping sound
+
+The igniter must be on before fuel is admitted. Fuel admitted before ignition
+produces raw fuel vapour in the combustor — when the igniter fires the light-off
+is violent rather than smooth, potentially causing a compressor surge.
+
+---
+
+**Step 3 — Fuel on — the critical step**
+
+At **12–15% N1** with igniter confirmed firing:
+
+- Move **FUEL CONTROL lever from OFF to IDLE** — smoothly and without hesitation
+
+This opens the FCU shutoff valve and begins metering fuel to the combustor.
+Watch TGT immediately. Light-off typically occurs within 2–4 seconds.
+
+**What you are watching:**
+
+| Indication | What it means | Action |
+|---|---|---|
+| TGT rising rapidly, N1 accelerating | Normal light-off | Continue, monitor |
+| TGT rising, N1 not rising (stagnant) | **Hung start developing** | See below |
+| TGT rising past 810°C before 60% N1 | **Hot start** | **Immediate fuel cutoff** |
+| No TGT rise after 5 seconds | No-light | Fuel OFF, motor to clear, investigate |
+| TGT spike then drop with smoke | Rich extinction — too much fuel | Fuel to OFF, motor clear, retry |
+
+---
+
+**Step 4 — Light-off confirmed — monitor acceleration**
+
+Normal light-off appears as TGT rising through 200°C, 300°C, 400°C while N1
+simultaneously accelerates. Both parameters must rise together. TGT rising while
+N1 stagnates is the hung start signature.
+
+Monitor TGT against the **start TGT limit of 810°C** (M250-C18 limit — confirm
+from engine logbook as limits vary by variant). The gauge must not approach this
+value before N1 reaches **60% or above**.
+
+If TGT approaches 810°C with N1 below 60%:
+
+1. **Move FUEL CONTROL to OFF immediately** — no hesitation
+2. **Leave STARTER engaged** — continue motoring to cool the combustor
+3. Allow N1 to motor without fuel for **30–60 seconds** minimum
+4. Move IGNITION to OFF
+5. Allow engine to come to rest
+6. Investigate: check fuel nozzle for blockage, check fuel pressure, check igniter
+
+A hot start that reaches the limit but does not exceed it significantly may not
+cause immediate failure, but it accumulates damage on the nozzle guide vanes and
+turbine blades. Any suspected hot start should be logged and inspected.
+
+---
+
+**Step 5 — Starter cutout (approximately 58–60% N1)**
+
+The starter motor on the M250-C18 in its helicopter installation is typically
+designed to disengage automatically via a sprag clutch when N1 exceeds the
+starter's output speed. In the automotive installation with a manual start
+switch:
+
+- Move **STARTER switch to OFF** at **58–60% N1**
+- Confirm N1 continues to accelerate under its own power
+
+If N1 decelerates when the starter is removed — the engine has not reached
+self-sustaining speed. Restart sequence required. Do not re-engage starter
+with TGT above 300°C without a purge motoring cycle first.
+
+---
+
+**Step 6 — Ignition off**
+
+At **65–70% N1** with engine confirmed accelerating to idle:
+
+- Move **IGNITION switch to OFF**
+
+Combustion is self-sustaining. The igniter is no longer needed.
+
+---
+
+**Step 7 — Idle stabilisation**
+
+N1 stabilises at ground idle — typically **62–72% N1** for the M250-C18
+at automotive loads. TGT settles to its idle value (typically 500–600°C
+at a temperate ambient). Oil pressure rises to operating range.
+
+Minimum **2-minute warm-up at idle before any torque load is applied.**
+
+Watch oil pressure continuously during the first 30 seconds. If oil pressure
+does not reach its minimum value (typically 40–50 psi at idle) within
+30 seconds of light-off — **shut down immediately.** Running a turbine
+without adequate oil pressure destroys the main bearings in seconds.
+
+---
+
+**Step 8 — Transition to run**
+
+After the warm-up period:
+
+- Move **FUEL CONTROL lever from IDLE to RUN/FLY**
+- The FCU now responds to throttle — power is available
+
+The throttle response of the M250-C18 from idle is smooth but not
+instantaneous. The FCU introduces a slight delay to prevent compressor
+surge from rapid fuel introduction. This is normal and expected.
+
+---
+
+### Hung Start — Recognition and Response
+
+A hung start is equally applicable to FADEC and non-FADEC engines.
+With FADEC it is detected and aborted automatically. Without FADEC the
+operator must catch it.
+
+**Hung start signature:**
+- TGT rising steadily — 300°C, 350°C, 400°C, climbing
+- N1 not rising — stuck at 25–40%, not accelerating
+- Time is passing — 20, 30, 40 seconds since light-off
+
+The engine has lit off but cannot produce enough power to overcome
+compressor drag and accelerate. It is consuming fuel and producing heat
+with no useful work. TGT will eventually reach the start limit and
+cause damage.
+
+**Response (non-FADEC):**
+1. FUEL CONTROL to **OFF**
+2. Leave STARTER engaged — motor without fuel
+3. IGNITION to **OFF**
+4. Allow N1 to drop and temperatures to cool
+5. Investigate cause: low battery voltage (slow starter), fuel control
+   miscalibrated, fuel nozzle partially blocked, ambient temperature extreme
+
+**Most common cause in an automotive installation:** low battery voltage
+causing a slow starter motor. The compressor is being spun too slowly
+to build adequate pressure, so when fuel lights off there is insufficient
+mass flow to accelerate. This is why the battery charge state is the most
+important pre-start check.
+
+---
+
+### Shutdown Procedure
+
+Shutdown is the reverse of startup, with a mandatory cooling period that
+is frequently neglected and frequently causes damage.
+
+#### FADEC Shutdown (M250-C47B / RR300)
+
+1. **Reduce throttle to idle** — allow engine to stabilise at idle for minimum
+   **3 minutes** before shutdown. This is the cool-down period.
+2. Move **FUEL CONTROL / POWER lever to OFF** (or press fuel cutoff button
+   depending on implementation)
+3. FADEC commands fuel metering valve closed — flame extinguishes
+4. N1 decelerates from idle
+5. FADEC keeps starter-generator on for **post-shutdown cooling motoring** —
+   approximately 30 seconds — then de-energises
+6. All switches to OFF after N1 reaches zero
+
+The 3-minute cool-down at idle is not optional. It allows:
+- TGT to drop from operating temperature toward idle temperature (~550°C
+  toward ~400°C) before fuel is cut — reducing thermal shock to the combustor
+  and turbine nozzles at the moment of flameout
+- Oil to continue circulating at idle power, cooling the bearings before
+  the oil pump stops
+- The recuperator to begin its thermal transition from operating temperature
+  under controlled conditions rather than a sudden cutoff
+
+Cutting fuel directly from cruise power — **hot shutdown** — subjects the
+combustor liner and turbine nozzles to a violent thermal quench. Over many
+cycles this causes cracking in the combustor and nozzle guide vanes.
+The FADEC will permit it — it does not enforce the cool-down — but the
+maintenance logs will accumulate accelerated hot-section wear.
+
+#### Non-FADEC Shutdown (M250-C18)
+
+1. **Throttle to idle** — minimum **3 minutes** at idle
+2. Move **FUEL CONTROL lever to OFF**
+3. Flame extinguishes — N1 decelerates
+4. Leave **IGNITION switch OFF** (it should already be off from startup)
+5. All switches OFF after N1 reaches zero and rotation stops
+
+**Do not engage the parking brake during cool-down if the vehicle is on
+a gradient** — the turbine drive to the transmission at idle continues
+to apply a small drive torque through the torque converter. Keep the
+service brake applied during cool-down idle.
+
+---
+
+### The Complete Switch and Control Set
+
+The following defines every switch and control required in the automotive
+cockpit for the turbine installation, with the rationale for each.
+
+#### Master Switches
+
+---
+
+**MASTER POWER — Battery Master**
+
+*Function:* Connects the battery system to the main bus. All subsequent
+switches are dead until this is on.
+
+*Why it exists:* Allows the entire electrical system to be isolated when
+the vehicle is parked, preventing battery drain and eliminating the risk
+of any switch being accidentally left in the wrong position from a
+previous session. Also the first action in any electrical emergency —
+turning it off removes power from everything.
+
+*Type:* Guarded rocker or key switch. Should require deliberate action
+to actuate — accidental activation of master power in a parked vehicle
+could energise the fuel shutoff valve and pump.
+
+*Position in sequence:* **First ON, last OFF.**
+
+---
+
+**AVIONICS / ELECTRONICS BUS — Secondary Master**
+
+*Function:* Powers the engine instruments, FADEC (if fitted), water
+injection controller, and all non-essential electronics from a separate
+bus.
+
+*Why it exists:* Separates the high-current starter circuit from the
+sensitive instrument and control electronics. Prevents voltage spikes
+during the starter motor's peak draw (~400–600A in the first second)
+from affecting the FADEC or instruments. On aircraft this is called the
+avionics master and is explicitly opened before starter engagement.
+
+*Type:* Toggle or rocker switch, clearly labelled.
+
+*Position in sequence:* ON after MASTER POWER, OFF before MASTER POWER
+is cut.
+
+**Note:** The avionics bus must be OFF during the starter engagement
+peak to protect the FADEC and instrument electronics from the voltage
+depression caused by the starter current draw. ON the avionics bus
+first to confirm instruments are working, then OFF during actual start
+cranking, then back ON once the engine is running. This is standard
+helicopter procedure.
+
+---
+
+#### Engine Control Switches
+
+---
+
+**FUEL CONTROL / FUEL SHUTOFF LEVER**
+
+*Function:* Controls the primary fuel shutoff valve and — in the C18 —
+the position of the hydromechanical FCU lever. Has positions OFF / IDLE /
+RUN (or equivalent labelling). On FADEC engines this may be a single
+ON/OFF lever or push-button with the FADEC managing the detail.
+
+*Why it exists:* The primary engine run/stop control. Closing it is the
+first response to any engine emergency. On a FADEC engine the fuel lever
+position communicates the operator's intent to the FADEC — the FADEC
+then schedules fuel accordingly. On the C18 it directly positions the FCU.
+
+*Type:* Lever with positive mechanical detents at OFF and IDLE positions.
+Should not be possible to move from OFF to RUN without passing through
+IDLE — prevents an inadvertent full-fuel start.
+
+*Location:* Central, immediately accessible — equivalent to the throttle
+in a car. For a floor-mounted installation the positions should read
+forward = more power, rearward = off, matching driver intuition.
+
+---
+
+**THROTTLE / POWER LEVER**
+
+*Function:* On the M250-C18 in RUN mode, the throttle signals the FCU
+to increase or decrease fuel flow, thereby increasing or decreasing N2
+(power turbine speed) and shaft torque. On FADEC engines the throttle
+position is an input to the FADEC torque demand schedule.
+
+*Why it exists:* Normal driving control. The driver's primary power input.
+
+*Type:* For a car application this is most naturally the accelerator
+pedal, wired to a potentiometer or Hall-effect position sensor providing
+a 0–5V signal to either the FCU torque motor (C18 modification) or
+the FADEC throttle input. An alternative is a dash-mounted lever for
+a more aircraft-authentic feel, but pedal control is more intuitive for
+road use and less likely to be operated accidentally.
+
+*Note:* Gas turbine throttle response is not instantaneous — particularly
+in the C18 without FADEC. The FCU introduces a deliberate acceleration
+ramp to prevent compressor surge. Drivers accustomed to petrol engines
+will notice the lag. This is a characteristic of the engine, not a fault.
+The lag is reduced — though not eliminated — in FADEC engines that can
+optimise the fuel ramp more precisely.
+
+---
+
+**STARTER SWITCH**
+
+*Function:* Energises the starter-generator motor to crank the N1 spool.
+Maintained position — holds the starter engaged while held.
+
+*Why it exists:* Initiates Phase 1 (motoring) of the start sequence.
+On FADEC engines this may be a momentary push-button that hands control
+to the FADEC. On the C18 it is typically a maintained switch held by the
+operator through the start until manual release at 60% N1.
+
+*Type:* Spring-return (momentary) for FADEC starts. For C18 use: either
+a maintained switch held by the operator, or a latching switch released
+manually at 60% N1 — the latter requires less operator attention but
+removes the ability to abort by releasing the switch.
+
+*Guarding:* The starter switch should be guarded (flip-up cover) to
+prevent accidental engagement with the engine running. Engaging the
+starter with N1 already above zero can cause the starter gear to engage
+at speed, damaging the starter or the engine's starter-drive mechanism.
+
+---
+
+**IGNITION SWITCH**
+
+*Function:* Powers the ignition exciter unit, which generates the high-
+voltage pulse to fire the igniter plug in the combustor.
+
+*Why it exists:* Without this switch there is no spark and no light-off.
+Conversely, the ignition must be OFF during normal running to prevent
+igniter wear — igniters have a finite service life measured in hours of
+operation, and running the ignition continuously consumes this life
+pointlessly.
+
+*FADEC engines:* The FADEC controls ignition timing automatically and
+only activates the igniter when needed (start, relight after flameout).
+The ignition switch on a FADEC installation enables the ignition system
+but the FADEC decides when it fires. In normal operation it can be left
+ON — the FADEC will not fire it unnecessarily.
+
+*C18 engines:* Must be manually ON for start, manually OFF once the
+engine is self-sustaining. This is a deliberate operator action at
+a specific moment in the start sequence. Forgetting to turn ignition
+off is not a safety issue (the engine runs fine with it on) but it
+burns igniter service life rapidly.
+
+*Type:* Simple toggle switch clearly labelled IGNITION ON / OFF.
+Not guarded — needs to be quickly accessible during the start sequence.
+
+---
+
+**ENGINE MASTER / START ENABLE (FADEC engines only)**
+
+*Function:* Arms the FADEC for a start command. Without this switch
+active, pressing START does nothing — the FADEC refuses to initiate
+the sequence.
+
+*Why it exists:* A two-step arming system. The operator must consciously
+move the Engine Master to ARM, then separately initiate the start. This
+prevents accidental starts from a single inadvertent switch activation.
+On helicopter installations this is a guarded lever on the collective —
+in the automotive installation it is a guarded toggle switch on the
+main panel.
+
+*Type:* Guarded toggle — ARM / OFF.
+
+---
+
+#### Fuel System Switches
+
+---
+
+**FUEL PUMP SWITCH**
+
+*Function:* Energises the electric boost pump that supplies fuel from
+the ATL cell to the engine-driven fuel pump and FCU. Ensures positive
+fuel pressure at the engine fuel inlet under all conditions.
+
+*Why it exists:* The M250-C18's engine-driven fuel pump has adequate
+suction to pull fuel from a tank in normal operation, but it is not
+self-priming from cold and may cavitate at high fuel temperatures.
+The electric boost pump ensures a positive, consistent fuel supply
+pressure that prevents vapour lock, primes the system before start,
+and continues to supply fuel if the engine-driven pump develops reduced
+output. It is the fuel system equivalent of a car's fuel pump — but in
+a turbine installation it is independently switchable so it can be used
+for pre-start priming and can be left running as a backup during all
+engine operation.
+
+*Operating mode:* ON before every start — leave ON throughout all engine
+operation — OFF only after engine shutdown.
+
+*Type:* Toggle switch with indicator light confirming pump is running.
+
+---
+
+**FUEL SHUTOFF VALVE SWITCH (Firewall shutoff)**
+
+*Function:* Operates an independently controlled firewall shutoff valve
+in the fuel line between the tank and engine, separate from the FCU
+shutoff. This valve is normally OPEN during operation and is CLOSED as
+an emergency measure.
+
+*Why it exists:* If a fuel line failure occurs downstream of the tank —
+a ruptured hose, failed FCU, or combustor casing burn-through — the
+firewall shutoff valve cuts the fuel supply at the tank side of the
+firewall, stopping fuel reaching the heat source. The FCU shutoff valve
+is inside the engine. If the engine is on fire or the FCU has failed
+open (engine running away), only the firewall shutoff valve can stop
+the fuel. This is a mandatory safety fitting on any aircraft engine
+installation and equally mandatory here.
+
+*Type:* Guarded toggle or T-handle pull. Guarded because it must not be
+operated accidentally. Clear labelling: FUEL VALVE — OPEN / CLOSE or
+FIRE CUT / NORMAL. On some installations this is combined with the
+FIRE handle (below).
+
+*Location:* Immediately accessible to the driver. Not buried in the
+footwell — it must be reachable in an emergency with the seat belt on.
+
+---
+
+#### Safety and Emergency Switches
+
+---
+
+**FIRE HANDLE / EMERGENCY SHUTDOWN**
+
+*Function:* Single action that simultaneously: closes the firewall fuel
+shutoff valve, cuts electrical power to the fuel boost pump, and
+optionally discharges a fire suppression agent if a fire bottle is
+fitted. One pull stops the fuel, stops the pump, and initiates suppression.
+
+*Why it exists:* In a fire situation the operator cannot be expected to
+correctly sequence multiple switches under stress. The fire handle
+combines every necessary emergency action into a single unmistakable
+control. This is standard on every aircraft, military vehicle, and
+fire-risk installation worldwide.
+
+*Type:* Red T-handle pull with shear wire or break-off guard to prevent
+inadvertent operation. The wire breaks cleanly when pulled — the
+resistance confirms it has not been pulled accidentally. Must be
+immediately visible and accessible — typically top centre of the
+instrument panel or on the centre console.
+
+*Note:* Pulling the fire handle in a non-fire situation does no damage
+to the engine — it simply shuts it down. It is better to pull it
+unnecessarily than to hesitate when it is needed. Any pull must be
+logged and the shear wire replaced.
+
+---
+
+**MASTER WARNING RESET**
+
+*Function:* Silences the audible warning tone and resets the master
+warning light after an FADEC or system alert. Does not cancel the
+underlying fault — the fault indicator remains illuminated.
+
+*Why it exists:* The audible warning is designed to get the operator's
+immediate attention. Once attention has been gained and the fault
+identified on the instrument panel, the tone serves no further useful
+purpose and becomes distracting. Resetting the tone allows the operator
+to focus on the fault response without continuous audio distraction. The
+fault light remains on until the fault is cleared.
+
+*Type:* Momentary pushbutton. Large, clearly marked MASTER WARNING RESET
+or simply a red/amber light that is itself a push-to-cancel button.
+
+---
+
+**OIL PRESSURE LOW OVERRIDE (if fitted)**
+
+*Function:* Silences a low oil pressure warning during the first
+10–15 seconds of a cold start when oil pressure has not yet reached
+its minimum value. Times out automatically after 30 seconds.
+
+*Why it exists:* Oil pressure takes a few seconds to build at cold start —
+the oil is cold and viscous, the passages are unpressurised, and the pump
+is just beginning to circulate. A low oil pressure warning during this
+window is expected and does not indicate a fault. Without an override the
+warning sounds on every start, conditioning the operator to ignore it —
+which is dangerous when a genuine low oil pressure condition occurs.
+The override acknowledges the expected cold-start condition and starts
+a timer — if oil pressure has not reached minimum by the time the timer
+expires, the warning reactivates. This is the same logic used in
+helicopter cockpits.
+
+*Type:* Momentary push button — times out automatically. Clearly labelled.
+
+---
+
+#### Augmentation System Switches
+
+---
+
+**WATER INJECTION SWITCH / MODE SELECTOR**
+
+*Function:* Enables or disables the water injection system described in
+Section 19. In its basic form: ON/OFF. In a more capable installation:
+MODE selector with positions such as OFF / AUTO / MANUAL.
+
+- **OFF** — injection system disabled regardless of throttle position.
+  Used when the water tank is empty or when the system is in maintenance.
+- **AUTO** — PWM controller takes over, varying injection rate
+  proportionally with throttle as per the Section 19 schedule. Normal
+  operating mode.
+- **MANUAL** — fixed injection rate set by a separate potentiometer.
+  Used during testing and calibration.
+
+*Why it exists:* The injection system should not run during startup,
+shutdown, or engine motoring — the combustor is not at operating
+temperature and water injection before light-off will foul the combustor
+and prevent ignition. The switch provides a positive interlock against
+this. It also allows the system to be disabled cleanly if the water tank
+runs dry rather than allowing the pump to run dry.
+
+*The pump already has an N2 speed interlock (Section 19)* — it will not
+run below minimum engine speed — but the mode switch provides an
+additional deliberate operator control.
+
+*Type:* Three-position rotary selector or three-position toggle.
+
+---
+
+**TOURING / PERFORMANCE MODE SELECTOR (FADEC engines only)**
+
+*Function:* Selects between the two FADEC calibration maps described in
+Section 15. TOURING reduces TGT limit by 40–50°C and caps torque at ~70%
+of maximum. PERFORMANCE restores full certificated limits.
+
+*Why it exists:* Normally a turbine's power limits are fixed in its
+operating software. For this automotive application the ability to select
+between a conservative touring map (maximising TBO, minimising fuel
+consumption, reducing thermal stress) and the full performance map
+(for overtaking, track use, or hill climbing) is a valuable feature that
+a single FADEC calibration cannot provide. The mode selector communicates
+the desired map to the FADEC via a discrete input (a simple switched ground
+that changes a parameter value the FADEC reads). The FADEC applies the
+appropriate limit schedule immediately.
+
+*Type:* Two-position toggle switch with clear labelling — TOURING / PERFORMANCE.
+Alternatively implemented as a dash button with indicator lights. The time
+spent in PERFORMANCE mode is logged by the FADEC health monitoring system
+for maintenance reference.
+
+---
+
+#### Instrumentation Display (summarised from Section 22)
+
+These are not switches but they are the parameters the operator must monitor
+during all phases of operation. Grouping them here by phase of operation
+makes the sequence clear:
+
+| Phase | Watch | Normal range | Abort / action trigger |
+|---|---|---|---|
+| Pre-start | Battery voltage | ≥24V | <22V — charge before starting |
+| Motoring | N1 | Rising from 0 to 12–15% | Fails to reach 12% in 30s — abort |
+| Light-off | TGT rising | 200–600°C range | >810°C before 60% N1 — FUEL OFF immediately |
+| Acceleration | N1 and TGT together | Both rising | TGT rising, N1 stagnant — hung start, FUEL OFF |
+| Idle | Oil pressure | 40–80 psi (engine dependent) | Below minimum in 30s — SHUT DOWN |
+| Idle | TGT | 450–600°C typical | Above idle limit — investigate |
+| Running | TGT | Engine and power dependent | Approaching limit — reduce power |
+| Running | Oil pressure | 60–90 psi at cruise | Dropping — reduce power, plan shutdown |
+| Running | Torque | As demanded | At FADEC torque limit — normal governing |
+| Running | Fuel flow | ~51 L/hr at cruise (C18) | Higher than expected — possible fuel nozzle issue |
+| Running | Water tank level | Above low warning | Low warning light — system returns to dry rating |
+| Shutdown | TGT at idle | Below cruise value | Should drop to ~450–500°C — confirm before cutoff |
+
+---
+
+### Switch Panel Layout Recommendation
+
+Based on the above, the minimum panel for the M250-C18 installation is:
+
+```
+┌─────────────────────────────────────────────────────────────────┐
+│  [MASTER BAT]  [AVIONICS]  [FUEL PUMP]  [FUEL VALVE]           │
+│                                                                   │
+│  [IGNITION]    [STARTER ▲]  [WATER INJ MODE: OFF/AUTO/MAN]     │
+│                                                                   │
+│  [FIRE HANDLE ████████████████████████████]                     │
+│                                                                   │
+│  [MASTER WARN RESET]   [OIL PRESS OVERRIDE]                    │
+└─────────────────────────────────────────────────────────────────┘
+```
+
+The FIRE HANDLE is the largest and most prominent item on the panel,
+centred and unobstructed. The battery and fuel pump switches are leftmost
+(first on, last off). The ignition and starter are grouped together in
+the centre — they are operated in sequence and belong adjacent to each
+other. The water injection mode selector is on the right — it is set once
+before departure and left in AUTO.
+
+For the FADEC-equipped engines (C47B / RR300) add:
+
+```
+  [ENGINE MASTER ARM]   [START ●]   [TOUR / PERF]
+```
+
+The ENGINE MASTER ARM replaces the IGNITION and STARTER sequence — the
+FADEC handles their timing. START is a momentary push button. TOUR/PERF
+is the mode selector.
+
+---
+
+### Summary of Startup Sequences
+
+#### FADEC Engines (M250-C47B / RR300) — Abbreviated Checklist
+
+| Step | Action | Confirm |
+|---|---|---|
+| 1 | MASTER BAT — ON | Panel live |
+| 2 | AVIONICS — ON | Instruments powered |
+| 3 | FUEL VALVE — OPEN | Valve indicator green |
+| 4 | FUEL PUMP — ON | Pump light on |
+| 5 | AVIONICS — OFF | Protect from start spike |
+| 6 | ENGINE MASTER — ARM | FADEC armed |
+| 7 | START — PRESS | FADEC initiates sequence |
+| 8 | AVIONICS — ON | Instruments live for monitoring |
+| 9 | Monitor TGT and N1 | Rising — normal start |
+| 10 | Idle confirmed | Wait 2 minutes warm-up |
+| 11 | WATER INJ — AUTO | System enabled |
+| 12 | FUEL CONTROL — RUN | Power available |
+
+#### Non-FADEC (M250-C18) — Abbreviated Checklist
+
+| Step | Action | Confirm |
+|---|---|---|
+| 1 | MASTER BAT — ON | Panel live |
+| 2 | AVIONICS — ON | Instruments powered |
+| 3 | FUEL VALVE — OPEN | Valve indicator green |
+| 4 | FUEL PUMP — ON | Pump light on |
+| 5 | FUEL CONTROL — OFF | Confirmed off position |
+| 6 | AVIONICS — OFF | Protect from start spike |
+| 7 | STARTER — ON | N1 begins rising |
+| 8 | Wait for 12–15% N1 | Watch N1 gauge |
+| 9 | IGNITION — ON | Igniter firing |
+| 10 | FUEL CONTROL — IDLE | Light-off |
+| 11 | AVIONICS — ON | Instruments live |
+| 12 | Monitor TGT — must not exceed 810°C | Watch continuously |
+| 13 | At 60% N1 — STARTER — OFF | N1 continues rising |
+| 14 | At 65–70% N1 — IGNITION — OFF | Engine self-sustaining |
+| 15 | Oil pressure confirmed | ≥ minimum in 30 seconds |
+| 16 | Idle confirmed | Wait 2 minutes warm-up |
+| 17 | WATER INJ — AUTO | System enabled |
+| 18 | FUEL CONTROL — RUN | Power available |
+
+#### Shutdown (both engine types) — Abbreviated Checklist
+
+| Step | Action | Confirm |
+|---|---|---|
+| 1 | Throttle/power lever — IDLE | Engine at idle |
+| 2 | Wait 3 minutes | Cool-down — TGT dropping |
+| 3 | WATER INJ — OFF | System disabled |
+| 4 | FUEL CONTROL — OFF | Flame out — N1 decelerating |
+| 5 | FUEL PUMP — OFF | (after N1 zero) |
+| 6 | FUEL VALVE — CLOSE | System safe |
+| 7 | AVIONICS — OFF | — |
+| 8 | MASTER BAT — OFF | All power removed |
+
+---
+
+*Section 23 added covering FADEC and hydromechanical startup procedures,*
+*start failure modes (hot start, hung start, no-light) and their responses,*
+*shutdown procedures with cool-down requirements, and the complete switch*
+*and control set for the automotive installation with rationale for each item.*
+*Procedures based on Bell 206 JetRanger flight manual, M250-C18 Series II*
+*overhaul manual, and standard turbine engine start practice.*
+*All temperatures referenced to M250-C18 Series II published limits.*

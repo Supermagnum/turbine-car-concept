@@ -25,6 +25,7 @@
 19. [Water Injection System](#19-water-injection-system)
 20. [Air Movement — Volumetric Flow and Pressure Drop](#20-air-movement--volumetric-flow-and-pressure-drop)
 21. [Heat Exchanger Plate Geometry — M250-C18](#21-heat-exchanger-plate-geometry--m250-c18)
+22. [Ancillary Systems, Costs and Instrumentation](#22-ancillary-systems-costs-and-instrumentation)
 
 ---
 
@@ -1613,3 +1614,219 @@ simplifies the transition to the recuperator face without a shape change.
 *Asymmetric channel heights calculated from volumetric flow and velocity limits.*
 *Ridge geometry based on chassis industry pressed steel stiffening practice.*
 *SS347 foil thickness per published Solar Turbines / Allegheny-Ludlum PSR data.*
+
+---
+
+## 22. Ancillary Systems, Costs and Instrumentation
+
+### Power Steering — Electric Hydraulic Pump (EHPS)
+
+The M250-C18 has no accessory belt drive. Power steering must be
+sourced independently. The most practical solution for both the
+Golf Mk2 and Volvo 740 is an **electric hydraulic power steering
+(EHPS) pump** — a self-contained unit that bolts into the existing
+hydraulic steering circuit without modifying the rack or hoses.
+
+**Recommended unit: Volvo S40/V50/C30 EHPS pump (2006–2012)**
+
+This brushless pump is widely used in engine swap and EV conversion
+projects worldwide and is a proven, readily available, inexpensive
+solution. It connects directly to the existing hydraulic rack on
+both donor vehicles and operates from the 12V supply via a simple
+controller.
+
+| Parameter | Value |
+|---|---|
+| Type | Electric hydraulic — brushless motor driving hydraulic pump |
+| Supply voltage | **12V** from Battery 1 |
+| Current draw | ~20–25A at full lock, ~5A at straight-ahead cruise |
+| Controller | Reform Motorsports EHPS-Micro or equivalent — 2 × 1 inch PCB |
+| Assist level | Adjustable via controller potentiometer |
+| Compatibility | Connects to existing hydraulic rack on Golf Mk2 and Volvo 740 |
+| Source | Used unit from Volvo C30/S40/V50 — widely available |
+| Approximate cost | **€80–150** for used OEM pump + **€60–100** for controller |
+
+The controller requires only a switched 12V ignition feed and ground —
+no CAN bus integration needed. Assist level is set once with a
+screwdriver and left. The pump runs only when the engine is running
+via the ignition circuit.
+
+---
+
+### Brake Booster — Electric Vacuum Pump
+
+The standard brake servo (vacuum booster) on both donor vehicles
+operates on engine vacuum. The M250-C18 provides none. A dedicated
+12V electric vacuum pump maintains the booster reservoir
+independently, requiring no modification to the existing brake
+master cylinder, booster, or hydraulic circuit.
+
+**Recommended unit: Hella UP30**
+
+The Hella UP30 can provide the pneumatic vacuum supply as a
+stand-alone system — the pump acts as the sole source of vacuum
+and ensures sufficient supply for the brake booster and any
+auxiliary consumers. It is based on the rotary vane compression
+principle and is a dry-running system that can be mounted in any
+position.
+
+| Parameter | Hella UP28 | Hella UP30 |
+|---|---|---|
+| Application | Support only — not standalone | **Standalone — sole vacuum source** |
+| Rated voltage | 13.5V | **14.0V** |
+| Current draw | <10A | **<15A** |
+| Max vacuum | ≥86% of ambient | **≥86% of ambient** |
+| Time to 50% vacuum | ≤5.5s | **≤3.5s** |
+| Booster volume | 3.2 litres | **4.0 litres** |
+| Pump operating life | 600 hours | **1,200 hours** |
+| Sound level | <70 dB(A) | **<77 dB(A)** |
+| Weight | ~1 kg | ~1 kg |
+| Operating temperature | −40°C to +120°C | −40°C to +120°C |
+
+**The UP30 is the correct unit** — rated for standalone operation
+without any engine vacuum source. The UP28 is a support unit only.
+
+Control is via a simple **vacuum pressure switch** set to activate
+the pump when booster vacuum drops below ~500 mbar (the threshold
+for adequate brake assist). The pump runs briefly to restore vacuum
+then cuts out — exactly as on a diesel car or hybrid vehicle where
+this system is OEM standard equipment. Over 17 million Hella
+electric vacuum pumps have been produced since 1999 — this is
+a mature, proven technology.
+
+**Approximate cost: €80–150** for a new or quality used Hella UP30.
+Available from all major automotive parts suppliers.
+
+---
+
+### Speedometer
+
+Both the Golf Mk2 and Volvo 740 use **cable-driven mechanical
+speedometers** driven from the gearbox output. When fitting a
+non-standard gearbox or step-down reduction unit, the speedometer
+cable drive ratio changes, requiring recalibration.
+
+**The simplest solution — VSS/GPS to mechanical speedometer converter**
+
+A small electronic module reads either a **Vehicle Speed Sensor
+(VSS) pulse signal** from the gearbox output shaft, or a **GPS
+speed signal**, and drives the original mechanical speedometer
+cable at the correct rate. No modification to the existing
+speedometer or dashboard is required — the original instrument
+works exactly as standard.
+
+**Suitable unit: JEGS SpeedBox (or equivalent)**
+
+The SpeedBox accepts GPS, VSS, or OBD-II speed signals and outputs
+a calibrated signal to drive a cable-driven mechanical speedometer.
+It is calibrated once by driving at a known speed and adjusting the
+output ratio — a five-minute procedure.
+
+For this application a **Hall effect sensor on the step-down
+gearbox output shaft** — reading a toothed wheel or bolt-head
+pattern — provides a clean VSS pulse signal. This feeds the
+SpeedBox which drives the original speedometer cable at the
+correct rate regardless of the final drive ratio selected.
+
+| Parameter | Value |
+|---|---|
+| Signal input | VSS pulse, GPS, or OBD-II |
+| Signal output | Mechanical speedometer cable drive |
+| Calibration | Adjustable — set once at commissioning |
+| Dashboard modification | **None** — original speedometer works as standard |
+| Approximate cost | **€100–200** |
+
+**Alternative** — if the step-down gearbox retains a standard
+speedometer cable takeoff boss (common on industrial and helicopter
+gearbox designs), a conventional speedometer gear set calibrated to
+the final ratio is all that is required. Even simpler and cheaper.
+
+---
+
+### Turbine Engine Instrumentation
+
+The minimum instrument set for safe and informed operation of the
+M250-C18 in a car application:
+
+| Instrument | Parameter | Type | Notes |
+|---|---|---|---|
+| **TGT gauge** | Turbine Gas Temperature | Thermocouple + analogue dial | Primary engine health indicator. Thermocouple already fitted to engine. Self-powered — no external supply needed |
+| **N1 gauge** | Gas generator speed (%) | Tachometer — % RPM | Monitors compressor/gas generator speed |
+| **Torque gauge** | Output shaft torque (%) | Pressure-based or electronic | Primary power indicator — the "throttle gauge" for a car |
+| **Oil pressure** | Engine oil pressure | Pressure gauge | Critical — low oil pressure = immediate shutdown |
+| **Oil temperature** | Engine oil temperature | Temperature gauge | Monitors lubrication health |
+| **Fuel flow** | Litres per hour | Flow meter | Range management — essential given limited fuel cell |
+| **Fuel level** | Tank contents | Float sender + gauge | Standard automotive sender in ATL cell |
+| **FADEC warning light** | Fault indication | Single warning light | Wired to FADEC fault output |
+| **Water level** | Injection tank | Sight gauge or float sender | Low level warning |
+
+The TGT gauge is particularly elegant in that it requires no
+external electrical power — the energy to drive the analogue meter
+comes from the thermocouple itself. This type of simple analogue
+instrument is commonplace in older gas turbine powered aircraft and
+also useful for stationary or ground applications.
+
+All instruments are available as standard aviation parts from
+suppliers such as Aircraft Spruce, CostAero, or directly from
+M250 FIRST Network centres. Standard 57mm (2¼ inch) aviation
+instrument bezels fit neatly into a custom dashboard panel.
+
+**Approximate instrumentation cost: €500–1,500** for a complete
+analogue instrument set sourced from aviation surplus.
+
+---
+
+### Engine Cost — M250-C18
+
+The M250-C18 is the oldest and most produced variant of the M250
+family with over **6,400 engines** built. Used and serviceable
+units circulate regularly in the helicopter MRO market.
+
+**Typical market pricing (2024–2025):**
+
+| Condition | Price range (USD) | Notes |
+|---|---|---|
+| Core / run-out (for parts or rebuild) | **$5,000–15,000** | High hours or out-of-limits — basis for rebuild |
+| Serviceable — time continued | **$15,000–35,000** | Mid-life, logbooks current, ready to run |
+| Recently overhauled (SMOH) | **$40,000–70,000** | Fresh overhaul by FIRST Network centre |
+| Zero time since new (rare) | **$80,000+** | Effectively new |
+
+For this project a **serviceable time-continued unit at $15,000–
+35,000** is the practical target — sufficient operating hours remain
+for many years of automotive use at low duty cycle, with a known
+history and current logbooks. A pre-buy inspection by a FIRST
+Network centre (Essential Turbines, Air Services International,
+Premier Turbines etc.) before purchase is strongly recommended
+and typically costs $500–1,500.
+
+The M250-C20B (400 SHP, slightly more powerful than the C18) is
+also widely available in this price range and uses the same
+basic architecture — a consideration if more power is wanted
+without moving to the RR300.
+
+---
+
+### Complete Ancillary System Cost Summary
+
+| Item | Specification | Approx. cost |
+|---|---|---|
+| M250-C18 engine (serviceable) | Time-continued, with logbooks | **$15,000–35,000** |
+| Pre-buy inspection | FIRST Network centre | $500–1,500 |
+| EHPS pump (Volvo donor) | Used OEM unit | €80–150 |
+| EHPS controller | Reform Motorsports or equivalent | €60–100 |
+| Hella UP30 vacuum pump | Standalone brake booster supply | €80–150 |
+| Speedometer converter | VSS/GPS to mechanical cable | €100–200 |
+| Turbine instrumentation | TGT, N1, torque, oil, fuel | €500–1,500 |
+| **Total ancillary systems** | | **~€820–2,100** |
+| **Total with engine** | | **~$17,000–40,000 + €820–2,100** |
+
+These figures cover the engine and its direct support systems only —
+not the donor vehicle, recuperator fabrication, step-down gearbox,
+fuel cell, exhaust system, or installation labour.
+
+---
+
+*Section 22 added covering EHPS steering, Hella UP30 brake vacuum pump,*
+*speedometer solution, turbine instrumentation, and M250-C18 market pricing.*
+*Hella UP30 specifications from published Hella technical data sheet.*
+*Engine pricing based on published aviation market listings 2024–2025.*

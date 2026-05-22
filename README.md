@@ -635,9 +635,6 @@ performance with significantly lower fuel consumption.
 
 ---
 
-*Concept design specification — theoretical study only.*
-*All performance figures based on published M250 family data and standard thermodynamic analysis.*
-*Recuperator dimensions and surface area calculated for ε = 0.90, U = 100 W/m²K, design case +5°C ambient.*
 
 ---
 
@@ -878,9 +875,6 @@ effectively a different vehicle concept entirely.
 
 ---
 
-*Alternative engine section added as supplement to primary specification.*
-*RR300 calculations use published specifications and same thermodynamic methodology as Section 4.*
-*Arrius 2F airflow estimate based on published training manual data (Arrius 2B1: 2.03 kg/s at comparable pressure ratio).*
 
 ---
 
@@ -1074,6 +1068,93 @@ FADEC but entirely effective, and the adjustment is reversible. Adding an
 aftermarket electronic N2 governor provides overspeed protection, and a
 simple EGT (exhaust gas temperature) gauge with a warning light provides
 the driver with TGT awareness without full FADEC automation.
+
+---
+
+### FADEC Interface and Pinout Documentation
+
+Integrating the FADEC into an automotive installation requires understanding
+its electrical interface — which pins carry which signals, what voltage
+levels the discrete inputs expect, and how to read fault codes from the
+maintenance port. The following are the primary sources.
+
+---
+
+#### Rolls-Royce M250-C47B / RR300 — Official Documentation
+
+**Rolls-Royce M250 Series IV Maintenance Manual**
+The definitive source for FADEC wiring diagrams, connector pinouts, and
+discrete input/output specifications. Covers the C40, C47, and C47B.
+
+- Available through **Rolls-Royce Customer Portal** for registered operators:
+  [https://customers.rolls-royce.com](https://customers.rolls-royce.com)
+- Also available via the **Rolls-Royce FIRST Network** — any authorised
+  M250 overhaul facility will hold a current copy. Premier Turbines, Essential
+  Turbines, and Air Services International are listed FIRST centres.
+- IPC (Illustrated Parts Catalogue) and Wiring Manual are separate volumes —
+  the Wiring Manual is the pinout reference.
+
+**FAA Type Certificate Data Sheet (TCDS)**
+Gives the regulatory baseline for the engine control system — not a pinout
+document but confirms the FADEC certification basis and interface requirements.
+
+- TCDS E3EA — M250 family:
+  [https://rgl.faa.gov/Regulatory_and_Guidance_Library/rgMakeModel.nsf/0/E3EA](https://rgl.faa.gov/Regulatory_and_Guidance_Library/rgMakeModel.nsf/0/E3EA)
+
+---
+
+#### FADEC Connector and Discrete Input Reference — General
+
+The M250-C47B FADEC uses a **MIL-DTL-38999 Series III** circular connector
+— the standard mil-spec connector used across virtually all modern turbine
+engine FADECs. This means the physical connector, pin numbering convention,
+and insertion/extraction tooling are standardised and documented independently
+of the engine manufacturer.
+
+**MIL-DTL-38999 Series III specification:**
+[https://quicksearch.dla.mil/qsDocDetails.aspx?ident_number=34797](https://quicksearch.dla.mil/qsDocDetails.aspx?ident_number=34797)
+
+Connector shells, inserts, and contacts are available from:
+- **Amphenol Aerospace**: [https://www.amphenol-aerospace.com](https://www.amphenol-aerospace.com)
+- **TE Connectivity / Deutsch**: [https://www.te.com/en/industries/aerospace-defense.html](https://www.te.com/en/industries/aerospace-defense.html)
+
+---
+
+#### Turbine FADEC Integration — Community and Builder Resources
+
+For practical automotive integration — not official sources, but
+accumulated builder experience:
+
+**Turbine Truck / Turbine Car builders forum threads:**
+- **The Garage Journal** — search *turbine FADEC automotive*:
+  [https://www.garagejournal.com/forum/](https://www.garagejournal.com/forum/)
+- **Home Built Airplanes (HBA) forum** — covers M250 industrial installations
+  and FADEC interfacing from experimental aircraft builders:
+  [https://www.homebuiltairplanes.com/forums/](https://www.homebuiltairplanes.com/forums/)
+
+**Guy Norris / Aviation Week turbine car coverage** — documents previous
+M250 automotive conversions including interface approaches:
+[https://aviationweek.com](https://aviationweek.com) — search *M250 automotive*
+
+---
+
+#### FADEC Fault Code Reading — Maintenance Port
+
+The M250-C47B FADEC maintenance port uses an **RS-422 serial interface**
+at 19,200 baud. A standard RS-422 to USB adapter (available from Moxa,
+Advantech, or generically for €15–40) connected to a laptop running the
+Rolls-Royce **CEDAM** (Control and Engine Data Acquisition Module) software
+reads fault codes, event logs, and real-time parameter streams.
+
+CEDAM is available to registered operators through the Rolls-Royce customer
+portal. Independent access: contact any FIRST Network overhaul centre —
+they routinely provide data downloads as a service during pre-buy inspections.
+
+For the RR300, the same RS-422 interface applies. Robinson Helicopter Company
+(the R66's manufacturer) documents the maintenance port in their maintenance
+manual, which is publicly available:
+[https://www.robinsonheli.com/r66-helicopter/](https://www.robinsonheli.com/r66-helicopter/)
+— select R66 Maintenance Manual from the publications section.
 
 ---
 
@@ -1321,8 +1402,6 @@ vacuum source. The UP28 is a support unit only and must not be used here.
 
 ---
 
-*Sections 1–22: concept design specification — theoretical study only.*
-*All performance figures based on published M250 family data and standard thermodynamic analysis.*
 
 ## 23. Turbine Operations — Startup, Shutdown, and Controls
 
@@ -2262,13 +2341,6 @@ flowchart TD
 
 ---
 
-*Section 23 added covering FADEC and hydromechanical startup procedures,*
-*start failure modes (hot start, hung start, no-light) and their responses,*
-*shutdown procedures with cool-down requirements, and the complete switch*
-*and control set for the automotive installation with rationale for each item.*
-*Procedures based on Bell 206 JetRanger flight manual, M250-C18 Series II*
-*overhaul manual, and standard turbine engine start practice.*
-*All temperatures referenced to M250-C18 Series II published limits.*
 
 ---
 
@@ -2601,16 +2673,16 @@ flowchart TD
 
 ---
 
-## 25. Suggested Livery and Markings
+## 25. Livery and Markings
 
 ### The Aircraft Museum as Design Reference
 
 A turbine-powered road car has no obvious visual precedent in road car
-design. The correct reference library is not the automotive world at all —
-it is the aircraft world, specifically the military aircraft that have
-used the M250 family and its contemporaries in service or aircraft from the relevant timeline. A visit to any
-of the following provides direct visual inspiration that no online search
-fully replaces:
+design. One option worth considering: the aircraft world rather than the
+automotive world as the reference library — specifically the military
+aircraft that have used the M250 family and its contemporaries in service.
+A visit to any of the following provides direct visual inspiration that
+no online search fully replaces:
 
 **Norway and Scandinavia:**
 - **Forsvarsmuseet / Norwegian Armed Forces Museum**, Oslo — Norwegian
@@ -2645,12 +2717,11 @@ available from a car show or a motorsport reference.
 ### Stencilling and Warning Markings — Authentic Turbine Language
 
 Aircraft stencilling uses a specific vocabulary that has evolved over
-seventy years to communicate hazard information quickly and unambiguously
-in multiple languages, under stress, often in darkness. That vocabulary
-is directly applicable to a turbine car and gives it an authenticity
-that no car-derived graphic scheme can replicate.
+seventy years to communicate hazard information quickly and unambiguously.
+That vocabulary translates directly to a turbine car and gives it an
+authenticity that no car-derived graphic scheme can replicate.
 
-**Mandatory safety stencils — apply where applicable:**
+**Possible safety stencils — apply where relevant:**
 
 | Stencil text | Location | Basis |
 |---|---|---|
@@ -2684,14 +2755,12 @@ in the first place.
 Fighter aircraft have carried kill markings since the First World War —
 a small silhouette painted below the cockpit for each confirmed air-to-air
 victory. The tradition has been adapted by ground attack crews, submarine
-commanders, and racing teams with equal enthusiasm and no loss of
-seriousness. It translates directly and appropriately to a turbine car.
+commanders, and racing teams. It could translate to a turbine car.
 
-**The principle:** a small silhouette of each defeated opponent, stencilled
-or painted on a consistent panel — typically the front wing, the door
-below the window line, or the bonnet — in a single contrasting colour.
-The silhouettes should be in the style of aircraft recognition profiles:
-side elevation, no detail, black or white fill only.
+**One possible approach:** a small silhouette of each defeated opponent,
+stencilled or painted on a consistent panel — typically the front wing,
+the door below the window line, or the bonnet — in a single contrasting
+colour. Side elevation, no detail, black or white fill only.
 
 **What counts as a kill:**
 - Any car of an identifiable make that the turbine car has out-accelerated
@@ -2795,4 +2864,4 @@ plate occupies on the forward fuselage.
 
 It is not decoration. It is documentation. The distinction matters.
 
-
+---

@@ -36,6 +36,8 @@
 27. [Exhaust Duct Calculations — All Three Engines](#27-exhaust-duct-calculations--all-three-engines)
 28. [CFD and Simulation Tools for Heat Exchanger Analysis](#28-cfd-and-simulation-tools-for-heat-exchanger-analysis)
 29. [Plate Pair Spacing — Calculated Values and Surface Enhancement](#29-plate-pair-spacing--calculated-values-and-surface-enhancement)
+30. [Reference Documents and Links](#30-reference-documents-and-links)
+31. [Glossary](#31-glossary)
 
 ---
 
@@ -3751,3 +3753,528 @@ overall cell pitch reasonable.
 | U target with CFD optimisation | **≥ 100 W/m²K** | Per original design assumption |
 | Stack height at U = 73 W/m²K | **529 mm** | 158 plates per package |
 | Stack height at U = 100 W/m²K | **389 mm** | 116 plates — original Section 21 value |
+
+---
+
+## 30. Reference Documents and Links
+
+All links verified as accessible. Where a document is behind a paywall
+or requires registration, the public access route is noted.
+
+---
+
+### Engine Documentation
+
+**Rolls-Royce M250-C18 Series — Operation and Maintenance Manual**
+The primary reference for all C18 procedures, limits, and component data.
+Publicly accessible via All-Guides:
+- https://all-guidesbox.com/manual/1980277/rolls-royce-250-c18-series-operation-and-maintenance-manual-380.html
+
+Also hosted on Scribd (may require free account):
+- https://www.scribd.com/document/608718640/250-C18-Operation-Maintenance-Manual
+
+PDF from miravim2.org (direct download, no account required):
+- https://miravim2.org/wp-content/uploads/2025/04/Allison-250-C18-Rolls-Royce-Operation-Maintenance-Manual.pdf
+
+**Rolls-Royce M250-C18 Commercial Service Letter Index**
+Index of all CSLs including TBO, fuel approvals, and inspection requirements:
+- https://silo.tips/download/rolls-royce-corporation-m250-c18-commercial-service-letter-csl-technical-publica
+
+**Bell 206B3 JetRanger Flight Manual (BHT-206B3-FM-1)**
+The primary-source start and shutdown procedures for the M250-C18 in service:
+- https://www.mvheli.com/wp-content/uploads/bell-206b3-fm-1.pdf
+
+Military variant (US Navy TH-57, US Army OH-58) manuals including M250 procedures:
+- https://www.flight-manuals-online.com/product/bell-206-jetranger/
+
+**FAA Type Certificate Data Sheet E3EA — M250 Engine Family**
+Regulatory basis for M250 certification, power ratings, and fuel approvals:
+- https://rgl.faa.gov/Regulatory_and_Guidance_Library/rgMakeModel.nsf/0/E3EA
+
+**Robinson R66 Maintenance Manual (RR300 engine)**
+Publicly available from Robinson Helicopter Company — contains RR300 FADEC
+interface and maintenance port documentation:
+- https://www.robinsonheli.com/r66-helicopter/
+
+---
+
+### FADEC and Electrical Interface
+
+**MIL-DTL-38999 Series III Connector Specification**
+The military connector standard used on M250-C47B and RR300 FADEC connectors.
+Published by the Defense Logistics Agency:
+- https://quicksearch.dla.mil/qsDocDetails.aspx?ident_number=34797
+
+**Albright SW180 Contactor Data Sheet**
+Full performance curves, coil specifications, and mounting options:
+- https://www.albrightinternational.com/wpcms/wp-content/uploads/2022/12/SW180-Data-Sheet.pdf
+
+**Albright Stud Contactor Series Catalogue**
+Covers SW60, SW80, SW180, SW200 and all available options:
+- https://www.albrightinternational.com/wpcms/wp-content/uploads/2022/06/Stud-Contactor-Series-Catalogue.pdf
+
+**Albright SW180 Product Page**
+Current specifications and ordering information:
+- https://www.albrightinternational.com/products/sw180/
+
+---
+
+### Throttle Control and Fuel Lever Sourcing
+
+**Aircraft Spruce Europe — Engine Controls Section**
+Throttle quadrants, mixture levers, push-pull cables. Search: *throttle quadrant
+single lever* or *mixture control quadrant*:
+- https://www.aircraftspruce.eu/categories/co/controls/controls.html
+
+**Van's Aircraft — Engine Controls**
+Builder supply source for throttle and mixture quadrant levers:
+- https://www.vansaircraft.com/parts-and-hardware/
+
+**ATL Saver Cell Series — Product Page**
+FIA FT3-1999 approved fuel cells including 100L and 120L variants:
+- https://www.atlinc.com/saver-cell-series.html
+
+**ATL Fuel Cell Design Guide (PDF)**
+Technical guide covering foam specifications, hardware, and installation:
+- https://www.atlinc.com/pdfs/Racing/ATL-Design-Guide-8x14-FINAL-WEB.pdf
+
+**ATL Saver Cell Assembly Instructions (PDF)**
+Assembly and hardware installation reference:
+- https://atlinc.com/pdfs/Racing/DS447-ATL-Saver-Cell-Assembly-Instructions.pdf
+
+---
+
+### Ancillary Systems
+
+**Hella Electric Vacuum Pumps — Technical Overview**
+UP28, UP30, UP32 comparison table with specifications:
+- https://www.hella.com/techworld/en/ti/electric-vacuum-pumps/
+
+**Hella UP30/UP32 Technical Data Sheet (PDF)**
+Detailed specifications from EVWest:
+- https://www.evwest.com/support/SC-VP-Hella-UP28-Vacuum-Pump-Technical-Information.pdf
+
+**Hella UP30 Product Page**
+Current product information and ordering:
+- https://www.hella.com/microsite-electronics/en/UP30-32-vacuum-pump-117.html
+
+---
+
+### Heat Exchanger and CFD
+
+**OpenFOAM — Official Download and Documentation**
+Primary source for OpenFOAM installation. Two maintained branches:
+- OpenCFD (commercial steward): https://www.openfoam.com
+- OpenFOAM Foundation: https://www.openfoam.org
+
+**CfdOF — FreeCAD Addon for OpenFOAM**
+GitHub repository with installation instructions for Linux:
+- https://github.com/jaheyns/CfdOF
+
+**OpenFOAM Conjugate Heat Transfer Tutorial**
+Wiki tutorial covering chtMultiRegionFoam setup for fluid-solid-fluid problems:
+- https://wiki.openfoam.com/Conjugate_heat_transfer_by_Bruno_Santos
+
+**preCICE Heat Exchanger CHT Tutorial**
+Complete shell-and-tube heat exchanger tutorial coupling OpenFOAM and CalculiX,
+with all case files in a public repository:
+- https://precice.org/tutorials-heat-exchanger
+
+**Turbec T100 / Ansaldo AE-T100**
+Information on the microturbine whose recuperator is the recommended
+off-the-shelf option for this project (Section 26):
+- https://www.ansaldoenergia.com
+
+**Rekuperator Svenska AB (RSAB)**
+Manufacturer of the T100 recuperator — commercial supplier of primary surface
+recuperators for small gas turbine applications:
+- Contact via Ansaldo Energia supply chain or VentureRadar listing
+
+**Heatric PCHE (Parker Hannifin)**
+Diffusion-bonded printed circuit heat exchangers for highest compactness:
+- https://www.heatric.com
+
+---
+
+### Regulatory and Standards
+
+**EU Euro 6 Emissions Regulation — Official Text**
+Regulation (EC) No 715/2007 and subsequent amendments:
+- https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32007R0715
+
+**FIA Technical Regulations — Fuel Cell Standards**
+FIA FT3-1999 standard referenced for the ATL fuel cell approval:
+- https://www.fia.com/regulation/category/110
+
+**Chrysler Turbine Car Programme — Historical Record**
+Allpar.com detailed history of the A-831 programme including fuel test data:
+- https://www.allpar.com/cars/turbine.html
+
+---
+
+## 31. Glossary
+
+**AGM (Absorbed Glass Mat)**
+A type of lead-acid battery where the electrolyte is absorbed into a fibreglass
+mat between the plates. Maintenance-free, vibration-resistant, and capable of
+delivering the very high peak currents required for turbine starter motors.
+Used in this design as two 12V/600A units in series to provide 24V startup supply.
+
+**Albright SW180**
+A heavy-duty single-pole DC contactor (relay) manufactured by Albright
+International, rated 200A continuous and up to 1,000A intermittent. Used as the
+battery master contactor in this design — it switches the full battery bus current
+via a small coil signal from the dashboard switch, so the dashboard switch itself
+carries only 1.5A.
+
+**ATL Saver Cell**
+A flexible bladder-type fuel cell manufactured by Aero Tec Laboratories,
+approved to FIA FT3-1999 standard. Constructed from a proprietary tough plastic
+alloy with internal foam baffling to prevent surge and slosh. Specified in this
+design in 120-litre capacity, compatible with biodiesel (B100).
+
+**B100**
+Pure biodiesel — 100% fatty acid methyl ester (FAME) derived from vegetable oil
+or animal fat, with no petroleum diesel content. Selected in this design as the
+primary fuel for its near-zero particulate emissions, slightly lower NOx than
+petroleum diesel in turbine combustion, and complete renewable sourcing.
+
+**Biodiesel**
+A renewable fuel produced by transesterification of vegetable oils or animal fats.
+Compatible with the M250-C18 combustor. Requires FKM (Viton) seals throughout
+the fuel wetted circuit as it degrades standard NBR/nitrile rubber. See Section 18.
+
+**Bowden Cable**
+A push-pull flexible control cable consisting of an inner wire running through an
+outer conduit. Used to connect the dashboard fuel control lever to the FCU throttle
+arm on the M250-C18. Standard aviation specification: 1/8 inch (3.175 mm) stainless
+core, PTFE-lined conduit.
+
+**CalculiX**
+An open-source finite element solver for structural, thermal, and coupled
+thermomechanical analysis. The default solver integrated into FreeCAD's FEM
+workbench. Suitable for thermal stress analysis of the recuperator plate stack
+(verifying SS347 foil integrity under the 523 kPa pressure differential) but
+not capable of multi-region conjugate heat transfer CFD.
+
+**CfdOF**
+A FreeCAD addon workbench that provides a graphical user interface for OpenFOAM.
+Allows mesh creation, boundary condition setup, solver selection, and case
+management from within FreeCAD without manually editing OpenFOAM text files.
+Installed via the FreeCAD Addon Manager.
+
+**CHT (Conjugate Heat Transfer)**
+A simulation approach that simultaneously solves heat conduction through solid
+regions and convective heat transfer in fluid regions. Required for accurate
+recuperator simulation — it computes the temperature fields in the hot gas,
+cold gas, and SS347 plate simultaneously, including the wall resistance between them.
+
+**chtMultiRegionFoam**
+The OpenFOAM solver for conjugate heat transfer problems with multiple regions
+(fluid and solid). The correct solver for recuperator simulation — it handles
+the two gas streams and the separating wall in a single coupled calculation.
+
+**Chrysler A-831**
+The fourth-generation Chrysler turbine engine, used in the 55 Ghia-bodied
+Turbine Cars loaned to 203 members of the public between 1963 and 1966. The
+programme demonstrated multi-fuel capability and twin rotating recuperators but
+was ultimately discontinued due to NOx emissions regulations and the 1973 oil crisis.
+
+**Compressor (N1 / NG)**
+The rotating component that pressurises the incoming air before it enters
+the combustor. In a two-shaft free-turbine engine like the M250-C18, the
+compressor is driven by its own gas producer turbine (not the power turbine)
+and spins at its own speed — referred to as N1 or NG (gas generator speed).
+
+**Counterflow**
+A heat exchanger flow arrangement where the hot fluid and cold fluid travel in
+opposite directions along the length of the core. For a given inlet and outlet
+temperature specification, counterflow requires less surface area than parallel
+flow and achieves higher effectiveness. All recuperators in this design use
+counterflow arrangement.
+
+**Creep**
+The slow permanent deformation of a material under sustained stress at elevated
+temperature. The primary life-limiting failure mechanism for turbine blades and
+nozzle guide vanes. Reducing TGT by 15°C approximately doubles creep life —
+the fundamental reason for derating turbine engines.
+
+**DLN (Dry Low NOx)**
+A combustor design approach that premixes fuel and air before ignition,
+burning at a leaner, cooler mixture than diffusion-flame designs. Reduces
+thermal NOx formation by lowering peak flame temperature. Modern M250 family
+combustors achieve 15–40 ppm NOx versus 500+ ppm for the 1963 Chrysler A-831
+diffusion-flame design.
+
+**EHPS (Electric Hydraulic Power Steering)**
+A self-contained power steering pump driven by an electric motor rather than
+the engine. Specified in this design as a Volvo S40/V50/C30 donor unit,
+operating from the 12V supply. Required because the M250-C18 has no accessory
+belt drive to power a conventional hydraulic pump.
+
+**Effectiveness (ε)**
+A dimensionless measure of recuperator performance. Defined as the ratio of
+actual heat transfer to the maximum possible heat transfer given the inlet
+temperatures. ε = 0.90 (90%) is the target for this design — meaning 90% of
+the theoretical maximum heat is recovered from the exhaust before it exits.
+
+**FADEC (Full Authority Digital Engine Control)**
+A computer system that manages all aspects of engine fuel metering, starting,
+governing, and protection. On the M250-C47B and RR300, FADEC monitors up to
+70 parameters per second and manages the complete start sequence automatically,
+including hot start abort. The M250-C18 uses a hydromechanical FCU instead.
+
+**FCU (Fuel Control Unit)**
+The hydromechanical device on the M250-C18 that meters fuel flow to the
+combustor in response to throttle position, N1 speed, TGT, and other parameters.
+The Bendix/Honeywell DP-L2 FCU on the C18 has three lever positions:
+OFF, IDLE, and RUN/FLY. It is the non-electronic equivalent of FADEC.
+
+**FIA FT3-1999**
+A safety standard published by the Fédération Internationale de l'Automobile
+specifying the construction, testing, and approval requirements for fuel cells
+used in competition vehicles. The ATL Saver Cell specified in this design is
+FT3-1999 approved.
+
+**FIRST Network**
+Rolls-Royce's worldwide network of authorised M250 overhaul and maintenance
+centres (Field Inspection, Repair, and Support Team). Includes Essential
+Turbines, Air Services International, Premier Turbines, and others. The
+primary source for pre-buy inspections and engine logbook verification.
+
+**FKM (Fluoroelastomer / Viton)**
+An elastomeric seal material with excellent resistance to petroleum fuels,
+biodiesel, alcohols, and high temperatures. Specified throughout the fuel
+wetted circuit in this design as the universal seal material compatible with
+all candidate fuels in Section 18. Standard automotive NBR (nitrile) seals
+degrade rapidly in biodiesel.
+
+**FOD (Foreign Object Damage)**
+Damage to compressor blades or turbine nozzles caused by ingestion of solid
+objects — stones, insects, ice crystals, debris. In helicopter installations,
+a dedicated Inlet Particle Separator (IPS) prevents FOD. In this design,
+the recuperator cold side channels provide FOD protection as a natural
+consequence of their geometry — debris cannot navigate the narrow plate channels.
+
+**Free Power Turbine**
+A turbine stage that is mechanically independent of the gas generator (N1)
+spool — it is driven by expanding exhaust gas and its shaft connects directly
+to the output gearbox. The M250-C18 is a two-shaft free power turbine design:
+N1 drives the compressor; the power turbine (N2/NP) delivers shaft output.
+This gives excellent torque at zero output shaft speed — ideal for vehicle use.
+
+**Hung Start**
+A turbine start failure where the engine lights off but fails to accelerate
+past a low N1, typically 30–50%, because fuel energy is insufficient to
+overcome compressor drag. TGT rises slowly while N1 stagnates. Requires
+immediate fuel cutoff and investigation. Common cause: low battery voltage
+producing a slow starter motor and insufficient compressor mass flow at light-off.
+
+**Hot Start**
+A turbine start failure where TGT exceeds the start limit before N1 reaches
+self-sustaining speed, causing immediate and potentially severe damage to
+nozzle guide vanes and turbine blades. The most serious start failure mode.
+FADEC prevents hot starts automatically; on the M250-C18 the operator must
+monitor TGT manually and cut fuel immediately if the limit is approached.
+
+**HVO (Hydrotreated Vegetable Oil)**
+A biofuel produced by hydrotreatment of vegetable oils, producing a product
+chemically close to petroleum diesel. Excellent cold-weather performance and
+compatible with standard elastomeric seals. Slightly higher NOx than B100
+biodiesel but better than petroleum diesel. Listed as a compatible fuel in Section 18.
+
+**Hydraulic Diameter (Dh)**
+An equivalent diameter used to characterise non-circular flow channels for
+heat transfer and pressure drop calculations. Defined as four times the
+cross-sectional area divided by the wetted perimeter: Dh = 4A/P.
+For the cold channel (16 × 1.5 mm): Dh = 2.74 mm.
+For the hot channel (16 × 5.0 mm): Dh = 7.62 mm.
+
+**LMTD (Log Mean Temperature Difference)**
+The effective driving temperature difference across a heat exchanger,
+calculated from the four terminal temperatures (hot in, hot out, cold in, cold out).
+For a counterflow arrangement at ε = 0.90, the LMTD for the M250-C18 recuperator
+is 22°C — a very small temperature difference that requires large surface area
+to transfer the design heat duty.
+
+**Manglik-Bergles Correlation (1995)**
+A widely cited empirical correlation for heat transfer (j-factor) and pressure
+drop (f-factor) in offset strip fin heat exchangers, covering a wide range of
+fin geometries and Reynolds numbers. Used in Section 29 to calculate the
+convection coefficient enhancement from OSF geometry relative to plain
+longitudinal channels.
+
+**MIL-DTL-38999**
+A US military specification for circular electrical connectors used in aerospace
+and defence applications. Series III is the variant fitted to M250-C47B and
+RR300 FADEC connectors — a sealed, multi-pin circular connector with a
+positive locking coupling nut.
+
+**N1 / NG (Gas Generator Speed)**
+The rotational speed of the gas producer (compressor + gas producer turbine)
+spool, expressed as a percentage of its design speed. The primary indicator
+of engine power state during starting. For the M250-C18, self-sustaining speed
+is approximately 60% N1; ground idle is 62–72% N1.
+
+**NOx (Nitrogen Oxides)**
+A group of gaseous compounds (primarily NO and NO₂) formed when nitrogen and
+oxygen in air react at high temperatures. The primary regulatory challenge for
+gas turbine automotive applications — the reason the Chrysler turbine car
+programme was discontinued in 1979. Modern DLN combustors achieve 15–40 ppm
+versus 500+ ppm for 1960s diffusion-flame designs. Biodiesel and water
+injection further reduce NOx in this design.
+
+**NP / N2 (Power Turbine Speed)**
+The rotational speed of the free power turbine, which drives the output shaft.
+Independent of N1. Governed by the FCU or FADEC in response to load demand.
+Overspeed of NP during load rejection is a significant risk in a car application
+(no rotor inertia to absorb the transient) and is managed by NP limit scheduling
+in the FCU or FADEC.
+
+**NTU (Number of Transfer Units)**
+A dimensionless parameter used in heat exchanger design. NTU = U × A / (ṁ × Cp).
+For ε = 0.90 in a counterflow arrangement, NTU ≈ 9.0. Higher NTU means better
+effectiveness but more surface area (or higher U).
+
+**Nusselt Number (Nu)**
+A dimensionless number representing the ratio of convective to conductive heat
+transfer across a boundary layer. In laminar channel flow, Nu depends only on
+channel geometry — not on velocity. For rectangular channels, the Shah & London
+correlation gives Nu = 4–8 depending on aspect ratio. OSF geometry raises Nu
+significantly by periodically resetting the boundary layer.
+
+**OpenFOAM**
+An open-source C++ framework for computational fluid dynamics, widely used in
+both research and industry. The `chtMultiRegionFoam` solver handles conjugate
+heat transfer problems involving multiple fluid and solid regions. Available at
+openfoam.com and openfoam.org. Runs natively on Linux.
+
+**OSF (Offset Strip Fin)**
+A heat exchanger surface enhancement where the fin is divided into short strips,
+each offset laterally relative to the adjacent strip. The offset interrupts the
+thermal boundary layer, preventing it from growing thick along the channel length
+and substantially increasing the convection coefficient. Required in the
+recuperator design to achieve U ≥ 73 W/m²K. The Manglik-Bergles (1995)
+correlation describes OSF performance quantitatively.
+
+**Primary Surface Recuperator (PSR)**
+A heat exchanger where the primary heat transfer surface is the thin metal plate
+itself — as opposed to secondary surface designs where fins are attached to a
+thicker base plate. PSR construction uses 0.10 mm SS347 stainless steel foil,
+vacuum brazed or laser welded. Maximises surface area per unit volume. Used by
+Solar Turbines, RSAB (Turbec T100), and specified in this design.
+
+**Pressure Ratio (PR)**
+The ratio of compressor outlet pressure to compressor inlet pressure. The M250-C18
+has PR = 6.2:1, meaning the air is compressed to 6.2 times atmospheric pressure
+before entering the combustor. Higher PR improves simple-cycle efficiency but
+raises compressor outlet temperature, reducing the temperature differential
+available for the recuperator and making recuperation less effective at high
+ambient temperatures.
+
+**PWM (Pulse Width Modulation)**
+A method of controlling electrical power to a device by rapidly switching it
+on and off at a fixed frequency, varying the proportion of on-time (duty cycle)
+from 0–100%. Used in this design to control the water injection pump — 0% duty
+cycle means no injection; 100% means maximum injection rate. Duty cycle is
+set proportionally to throttle position.
+
+**Recuperator**
+A static, counterflow, gas-to-gas heat exchanger that transfers heat from the
+turbine exhaust to the compressed air before it enters the combustor. Has no
+moving parts, unlike the rotating regenerators used on the Chrysler A-831.
+The recuperator reduces fuel consumption by approximately 30% by pre-heating
+the combustion air with heat that would otherwise be wasted as exhaust.
+
+**Reynolds Number (Re)**
+A dimensionless parameter indicating whether flow is laminar (Re < 2,300) or
+turbulent (Re > 4,000). In the recuperator channels of this design, both streams
+are laminar at design conditions — Re ≈ 1,627 cold side, Re ≈ 1,824 hot side.
+Laminar flow has lower pressure drop but lower convection coefficients than
+turbulent flow, requiring surface enhancement (OSF) to achieve adequate U.
+
+**RS-422**
+A serial communication standard used for the M250-C47B FADEC maintenance port.
+Operates at 19,200 baud. A standard RS-422 to USB adapter allows a laptop to
+read fault codes, event logs, and real-time parameter streams from the FADEC
+using Rolls-Royce CEDAM software.
+
+**SFC (Specific Fuel Consumption)**
+The fuel flow per unit of shaft power output. For the M250-C18, SFC = 0.64
+lb/SHP/hr. Lower SFC means better fuel efficiency. The recuperator reduces
+effective SFC by approximately 30% by pre-heating combustion air and reducing
+the fuel needed to reach combustion temperature.
+
+**Shah & London Correlation (1978)**
+A reference work (R.K. Shah and A.L. London, *Laminar Flow Forced Convection
+in Ducts*, Academic Press, 1978) containing tabulated and correlated Nusselt
+numbers for laminar flow in ducts of various cross-sections. Used in Section 29
+to calculate the convection coefficients for the rectangular recuperator channels.
+
+**SHP (Shaft Horsepower)**
+A unit of mechanical power measured at the output shaft of a turbine engine,
+after all internal losses. 1 SHP = 745.7 W. The M250-C18 is rated at 317 SHP
+maximum takeoff power, typically derated to 220 SHP for automotive cruise use.
+
+**SS347 (Stainless Steel 347)**
+An austenitic stainless steel alloy (18% Cr, 11% Ni, stabilised with niobium)
+with excellent high-temperature strength and oxidation resistance to approximately
+675°C sustained. The standard material for gas turbine primary surface recuperators,
+used at 0.10 mm foil thickness. Compatible with all fuels and operating
+temperatures in this design without requiring Inconel.
+
+**TBO (Time Between Overhaul)**
+The manufacturer-specified interval at which a turbine engine must be returned to
+an approved overhaul facility for inspection and refurbishment of life-limited
+components. For the M250-C18 Series II: 3,500 hours for compressor and turbine.
+In automotive use at low duty cycle, the effective TBO is likely considerably longer.
+
+**TGT (Turbine Gas Temperature)**
+The temperature of the gas between the gas producer turbine and the power turbine,
+measured by a thermocouple. The primary indicator of engine health and the most
+important limit to monitor during starting and operation. The M250-C18 start limit
+is 810°C; exceeding this causes immediate damage to nozzle guide vanes.
+
+**TIT (Turbine Inlet Temperature)**
+The temperature of the combustion gas entering the first stage turbine nozzle
+guide vanes. The highest temperature in the engine cycle — approximately 900°C
+(1,173 K) for the M250 family. Not directly measured in service; TGT (measured
+downstream) is used as a proxy.
+
+**TPS (Throttle Position Sensor)**
+A potentiometer or Hall-effect sensor that measures the angular position of a
+throttle or control lever and outputs a 0–5V signal proportional to position.
+In this design, a TPS from a donor automotive throttle body (VW/Audi 1.8T,
+Bosch Motronic-equipped engines, or Toyota/Denso units) is mounted on the
+accelerator pedal pivot or a dedicated shaft and wired to the FCU torque motor
+circuit or FADEC throttle input.
+
+**Turbec T100 / Ansaldo AE-T100**
+A 100 kWe recuperated microturbine in continuous commercial production since
+the early 2000s. Its primary surface recuperator — manufactured by RSAB using
+0.10 mm SS347 foil, operating at 650°C hot side inlet and 0.8 kg/s mass flow —
+is the recommended off-the-shelf recuperator option for this project (Section 26).
+Two T100 recuperators in parallel give a well-matched, slightly oversized pair
+for the M250-C18.
+
+**U (Overall Heat Transfer Coefficient)**
+A single parameter combining the convection resistances on both fluid sides and
+the conduction resistance of the separating wall: 1/U = 1/h_cold + t/k + 1/h_hot.
+The design assumption is U = 100 W/m²K. Calculation in Section 29 shows plain
+longitudinal channels achieve U = 23.3 W/m²K; offset strip fin geometry achieves
+U = 73 W/m²K, with 100 W/m²K achievable through CFD-optimised OSF geometry.
+
+**Vacuum Brazing**
+A joining process where the heat exchanger plates are assembled with brazing
+alloy between them, placed in a vacuum furnace, and heated until the alloy flows
+and bonds the plates together. Produces a strong, leak-free joint with no flux
+contamination and excellent corrosion resistance. The standard joining method
+for SS347 primary surface recuperators.
+
+**Zeldovich Mechanism**
+The dominant chemical pathway for thermal NOx formation in high-temperature
+combustion. Atmospheric nitrogen (N₂) dissociates and reacts with oxygen at
+temperatures above approximately 1,500°C to form NO, which then oxidises to
+NO₂. NOx production by this mechanism increases exponentially with flame
+temperature — the primary reason why DLN combustors, biodiesel, and water
+injection all reduce NOx: they all lower peak combustion temperature.

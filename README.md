@@ -34,6 +34,8 @@
 25. [Suggested Livery and Markings](#25-livery-and-markings)
 26. [Commercially Available and Serviceable Recuperator Options](#26-commercially-available-and-serviceable-recuperator-options)
 27. [Exhaust Duct Calculations — All Three Engines](#27-exhaust-duct-calculations--all-three-engines)
+28. [CFD and Simulation Tools for Heat Exchanger Analysis](#28-cfd-and-simulation-tools-for-heat-exchanger-analysis)
+29. [Plate Pair Spacing — Calculated Values and Surface Enhancement](#29-plate-pair-spacing--calculated-values-and-surface-enhancement)
 
 ---
 
@@ -3403,3 +3405,349 @@ duct at 321 mm — a useful packaging coincidence, as both can be routed with
 similar hardware (flanges, bellows, hangers) and the visual symmetry of
 matched intake and exhaust diameters suits the military aircraft aesthetic
 described in Section 25.
+
+
+---
+
+## 28. CFD and Simulation Tools for Heat Exchanger Analysis
+
+### What FreeCad Can and Cannot Do
+
+FreeCad is the natural starting point because it is already the geometry
+tool for this project on Linux. The honest answer on its simulation
+capability is: partially suitable, but not sufficient alone.
+
+The FreeCAD FEM workbench integrates external solvers including
+CalculiX, Elmer, Z88, and Mystran, supporting structural, thermal,
+electromagnetic, and fluid simulations. CalculiX, the default
+solver, handles steady-state heat conduction through solid regions and can
+apply temperature boundary conditions — meaning it can tell you the
+temperature distribution through the SS347 plate stack given fixed surface
+temperatures on both sides. This is genuinely useful for the structural
+thermal stress analysis: verifying that 0.10 mm foil at a 523 kPa
+differential and 478°C does not creep or buckle under the temperature
+gradient.
+
+What FreeCAD/CalculiX cannot do for the recuperator is model the two-fluid
+counterflow problem — it has no multi-region conjugate heat transfer solver
+that simultaneously computes moving hot gas, moving cold gas, and conduction
+through the wall between them. That is the hard part of the recuperator
+simulation, and it requires a dedicated CFD tool.
+
+---
+
+### The Right Tool Stack — OpenFOAM + CfdOF
+
+The recuperator requires **Conjugate Heat Transfer (CHT)** simulation —
+simultaneously solving two fluid domains (hot exhaust gas and cold
+compressed air) and the solid SS347 plate between them. OpenFOAM enables
+this through CHT simulations which solve fluid and solid regions
+simultaneously, accounting for conduction through walls and convection on
+both sides. The `chtMultiRegionFoam` solver is particularly suited for
+this, allowing simultaneous computation of solid and fluid temperature
+fields.
+
+The practical route for a first-time user on Linux is **CfdOF** — a
+FreeCAD addon that wraps OpenFOAM behind a graphical interface.
+CfdOF is installed into FreeCAD using the Addon manager: select Tools,
+Addon manager, select CfdOF in the list of workbenches, and click
+Install/update. On Linux the AppImage version of FreeCAD is recommended
+as the most robust installation option, as the snap-packaged version
+restricts filesystem access in ways that prevent CfdOF from calling
+OpenFOAM correctly.
+
+The full workflow:
+
+```mermaid
+flowchart TD
+    A["FreeCAD — Part/PartDesign\nModel one representative plate pair:\ncold channel + SS347 foil + hot channel\nwith OSF geometry if using enhanced surface"] --> B
+
+    B["CfdOF + OpenFOAM\nchtMultiRegionFoam\nSolve: temperature fields in both fluids\nand solid wall simultaneously\nOutputs: h_cold · h_hot · U_actual · ΔP"] --> C
+
+    C{"U_actual ≥ 73–100 W/m²K\nΔP within 5% limits?"}
+
+    C -->|Yes| D["FreeCAD FEM + CalculiX\nImport temperature map from OpenFOAM\nas thermal boundary condition\nVerify plate stress at 523 kPa differential\nCheck creep margin at 478°C"]
+
+    C -->|"U low — adjust geometry"| E["Modify fin geometry:\nstrip length · fin spacing · channel height\nReturn to OpenFOAM"]
+
+    D --> F["Geometry confirmed\nProceed to fabrication drawings"]
+```
+
+**Key simplification:** model only a **single representative plate pair**
+— one cold channel, one 0.10 mm SS347 wall, one hot channel — with
+periodic boundary conditions on the lateral faces. This reduces the mesh
+from the full 116-plate stack to a few hundred thousand cells and gives
+the same convection coefficient result. The plate-level simulation
+validates U; the analytical calculation in Section 21 then gives the
+total area requirement from that validated U.
+
+A directly applicable tutorial exists: preCICE provides a complete
+heat exchanger conjugate heat transfer tutorial coupling OpenFOAM and
+CalculiX, including all case files in a public repository. The
+OpenFOAM wiki also documents the CHT setup: the conjugate heat transfer
+tutorial covers setting up fluid flow in fluid regions alongside heat
+conduction in solid regions within one simulation.
+
+---
+
+### Elmer — Complementary Role
+
+Elmer is an open-source multiphysics simulation software developed
+by CSC — IT Center for Science. FreeCAD's FEM workbench already
+integrates Elmer as one of its solvers alongside CalculiX. Elmer is
+easier to set up for a first project than raw OpenFOAM and is well suited
+to the conduction and low-Reynolds-number side of the problem. Its CFD
+solver is less capable than OpenFOAM for compressible gas channel flows at
+the velocities in this recuperator, so the practical division of labour
+is: OpenFOAM for fluid and conjugate heat transfer, Elmer or CalculiX for
+solid mechanical and thermal stress analysis.
+
+---
+
+### Installation — Ubuntu/Debian Linux
+
+```bash
+# OpenFOAM (includes chtMultiRegionFoam)
+sudo sh -c "wget -q -O - https://dl.openfoam.com/add-debian-repo.sh | bash"
+sudo apt install openfoam2406-default
+
+# ParaView (post-processing and visualisation)
+sudo apt install paraview
+
+# GMSH (meshing)
+sudo apt install gmsh
+
+# FreeCAD — use AppImage, not snap or flatpak
+# Download from: https://github.com/FreeCAD/FreeCAD/releases
+# Then install CfdOF from FreeCAD Addon Manager:
+# Tools → Addon Manager → CfdOF → Install
+```
+
+---
+
+## 29. Plate Pair Spacing — Calculated Values and Surface Enhancement
+
+### Important Correction to the U = 100 W/m²K Assumption
+
+The overall heat transfer coefficient U = 100 W/m²K assumed in Sections 6,
+12, and 13 was taken from published primary surface recuperator literature
+as a conservative industry figure for gas-to-gas recuperators with
+enhanced surfaces. The calculation below shows that this figure is
+achievable only with a corrugated or offset strip fin surface — not with
+the plain longitudinal ridge geometry described in Section 21. This section
+documents the calculated values honestly, explains the implication for
+plate count and stack height, and specifies what surface enhancement is
+needed.
+
+---
+
+### Hydraulic Diameters — Current Geometry
+
+From Section 21: cold channel 16 mm wide × 1.5 mm high, hot channel 16 mm
+wide × 5.0 mm high, plate thickness 0.10 mm SS347.
+
+| Channel | Width | Height | Area | Hydraulic diameter |
+|---|---|---|---|---|
+| Cold (compressed air) | 16 mm | 1.5 mm | 24 mm² | **2.74 mm** |
+| Hot (exhaust gas) | 16 mm | 5.0 mm | 80 mm² | **7.62 mm** |
+
+---
+
+### Flow Conditions and Reynolds Numbers
+
+Gas properties at mean channel temperatures (+5°C ambient, cruise power):
+
+| Property | Cold side | Hot side |
+|---|---|---|
+| Mean temperature | 358°C (631 K) | 380°C (653 K) |
+| Pressure | 628 kPa | 105 kPa |
+| Density | 3.47 kg/m³ | 0.560 kg/m³ |
+| Dynamic viscosity | 2.9 × 10⁻⁵ Pa·s | 3.1 × 10⁻⁵ Pa·s |
+| Thermal conductivity | 0.052 W/m·K | 0.055 W/m·K |
+
+With 58 pairs × 21 channels = **1,218 channels per package**:
+
+| Parameter | Cold side | Hot side |
+|---|---|---|
+| Channel velocity | 5.0 m/s | 13.2 m/s |
+| Reynolds number | **Re = 1,627** — laminar | **Re = 1,824** — laminar |
+
+Both streams are **fully laminar** throughout the recuperator. This is
+important: turbulent flow would give much higher Nusselt numbers and a
+higher U, but the channel geometry at these mass flows produces laminar
+conditions on both sides.
+
+---
+
+### Convection Coefficients — Plain Longitudinal Channels
+
+For laminar fully-developed flow in rectangular channels, the Nusselt
+number is given by the Shah & London (1978) correlation for constant wall
+temperature:
+
+$$Nu = 7.541\left(1 - 2.610\alpha + 4.970\alpha^2 - 5.119\alpha^3 + 2.702\alpha^4 - 0.548\alpha^5\right)$$
+
+where α = short side / long side.
+
+| Side | α | Nu | h_conv |
+|---|---|---|---|
+| Cold (16 × 1.5 mm) | 0.094 | 5.99 | **113.7 W/m²K** |
+| Hot (16 × 5.0 mm) | 0.312 | 4.05 | **29.3 W/m²K** |
+
+The hot side coefficient dominates the overall resistance. Wide, tall
+channels carry high volume flow efficiently but give poor convective heat
+transfer per unit area in laminar conditions — the boundary layer grows
+thick and the bulk gas never approaches the wall closely enough.
+
+**Overall U — plain channels:**
+
+$$\frac{1}{U} = \frac{1}{h_{cold}} + \frac{t_{wall}}{k_{SS347}} + \frac{1}{h_{hot}}$$
+
+$$\frac{1}{U} = \frac{1}{113.7} + \frac{0.0001}{16.0} + \frac{1}{29.3} = 0.00880 + 0.0000063 + 0.03413$$
+
+$$U_{plain} = \mathbf{23.3 \text{ W/m²K}}$$
+
+The wall conduction resistance is negligible (0.006% of total). The hot
+side convection resistance is the bottleneck, contributing 80% of the
+total thermal resistance.
+
+**Implication:** with U = 23.3 W/m²K instead of 100, the area required
+is 100/23.3 = **4.3× larger** than calculated in Sections 13 and 21.
+Plain longitudinal channels at these dimensions would require a stack
+height of approximately **1,655 mm per package** — clearly impractical.
+
+**Pressure drops are well within limits regardless:**
+
+| Side | ΔP | Limit | Status |
+|---|---|---|---|
+| Cold | **0.56 kPa** | 19 kPa | ✓ |
+| Hot | **0.21 kPa** | 12 kPa | ✓ |
+
+---
+
+### Offset Strip Fin (OSF) Surface Enhancement
+
+The solution used by all production primary surface recuperators — Solar
+Turbines, Heatric, RSAB T100 — is a corrugated or offset strip fin (OSF)
+geometry that periodically interrupts the boundary layer, preventing it
+from growing thick along the plate length. This is what the phrase
+"enhanced primary surface" in the industry literature refers to.
+
+The Manglik-Bergles (1995) correlation gives the j-factor and f-factor for
+OSF geometry:
+
+$$j = 0.6522\, Re^{-0.5403}\, \alpha^{-0.1541}\, \delta^{0.1499}\, \gamma^{-0.0678}\left(1 + 5.269 \times 10^{-5}\, Re^{1.340}\, \alpha^{0.504}\, \delta^{0.456}\, \gamma^{-1.055}\right)^{0.1}$$
+
+where α = fin spacing/height, δ = fin thickness/strip length, γ = fin
+thickness/fin spacing.
+
+**Proposed OSF geometry:**
+
+| Parameter | Cold side | Hot side |
+|---|---|---|
+| Channel height | 1.5 mm | 5.0 mm |
+| Fin spacing | 2.5 mm | 4.0 mm |
+| Strip length | 6 mm | 6 mm |
+| Fin thickness | 0.10 mm (plate foil) | 0.10 mm |
+| Hydraulic diameter | **1.86 mm** | **4.40 mm** |
+| Re | 891 | 844 |
+| j-factor | 0.0118 | 0.0141 |
+| **h_conv** | **216 W/m²K** | **111 W/m²K** |
+
+$$U_{OSF} = \frac{1}{\frac{1}{216} + \frac{0.0001}{16.0} + \frac{1}{111}} = \mathbf{73 \text{ W/m²K}}$$
+
+This is still below the 100 W/m²K design assumption but represents a
+3.1× improvement over plain channels. The residual gap to 100 W/m²K is
+closed by:
+
+- A tighter strip length (4–5 mm instead of 6 mm) — the boundary layer
+  resets more frequently
+- Closer fin spacing on the hot side (3.5 mm instead of 4.0 mm)
+- CFD optimisation of the specific OSF geometry (Section 28)
+
+The 100 W/m²K figure is achievable with OSF geometry — it is the
+standard published value for gas turbine recuperators running at similar
+conditions. What the calculation confirms is that it requires OSF
+geometry and cannot be achieved with plain longitudinal ridges.
+
+**OSF pressure drops remain comfortably within limits:**
+
+| Side | ΔP | Limit | Status |
+|---|---|---|---|
+| Cold | **0.35 kPa** | 19 kPa | ✓ |
+| Hot | **0.23 kPa** | 12 kPa | ✓ |
+
+---
+
+### Revised Plate Count and Stack Height — OSF Geometry
+
+With U = 73 W/m²K (OSF, conservative), the area and plate count are:
+
+$$A_{base} = \frac{117{,}000}{73.2 \times 22} = \mathbf{72.6 \text{ m}^2\ total}$$
+
+$$A_{+20\%} = 72.6 \times 1.20 = \mathbf{87.2 \text{ m}^2\ total}\ \rightarrow\ \mathbf{43.6 \text{ m}^2\ per\ package}$$
+
+| Parameter | Plain channels | OSF enhanced |
+|---|---|---|
+| U (W/m²K) | 23.3 | **73.2** |
+| Base area (total) | 228 m² | **72.6 m²** |
+| Plates per package (+20%) | 988 | **158** |
+| Stack height | 1,655 mm — impractical | **529 mm** |
+| Package envelope | — | **615 × 430 × 529 mm** |
+| Cold ΔP | 0.56 kPa ✓ | 0.35 kPa ✓ |
+| Hot ΔP | 0.21 kPa ✓ | 0.23 kPa ✓ |
+
+The 529 mm stack height fits the engine bay with a revised but not
+impossible installation. If CFD optimisation (Section 28) of the OSF
+geometry achieves U = 100 W/m²K, the plate count reduces to approximately
+**116 plates** and the stack height returns to the original **389 mm**
+figure from Section 21 — which is the target.
+
+---
+
+### Physical Meaning of the Plate Spacing
+
+The ridge height is the plate spacing — the ridges are structural
+stiffeners and spacers simultaneously. They hold the adjacent plate at
+the correct channel height against the 523 kPa pressure differential
+across the cold/hot interface.
+
+| Spacing element | Dimension | Function |
+|---|---|---|
+| Cold side ridge height | **1.5 mm** | Sets cold channel gap; supports plate against differential pressure |
+| SS347 foil thickness | **0.10 mm** | Primary heat transfer surface; structural membrane |
+| Hot side ridge height | **5.0 mm** | Sets hot channel gap; supports plate from hot side |
+| SS347 foil thickness | **0.10 mm** | Separating wall between channels |
+| **Total cell pitch** | **6.70 mm** | One complete cold+hot plate pair |
+
+The asymmetry (1.5 mm cold vs 5.0 mm hot) is driven entirely by the
+density difference between the two streams. Compressed air at 628 kPa
+and 358°C has a density of 3.47 kg/m³. Exhaust gas at 105 kPa and 380°C
+has a density of 0.56 kg/m³. The exhaust is **6.2 times less dense**,
+so it requires 6.2 times more channel cross-section to carry the same
+mass flow at a comparable velocity. The 5.0/1.5 = 3.3 ratio of channel
+heights is a compromise between matching volumetric flow and keeping the
+overall cell pitch reasonable.
+
+---
+
+### Summary — Plate Pair Spacing Specification
+
+| Parameter | Value | Basis |
+|---|---|---|
+| Cold channel clear height | **1.5 mm** | Ridge height — cold plate stamping |
+| Hot channel clear height | **5.0 mm** | Ridge height — hot plate stamping |
+| Plate foil thickness | **0.10 mm** | SS347 — both stampings |
+| Cell pitch (one pair) | **6.70 mm** | Sum of above |
+| Channel aspect ratio (cold) | 16 mm / 1.5 mm = **10.7** | Wide, shallow — low Re |
+| Channel aspect ratio (hot) | 16 mm / 5.0 mm = **3.2** | Less extreme |
+| Cold hydraulic diameter | **2.74 mm** | 4A/P |
+| Hot hydraulic diameter | **7.62 mm** | 4A/P |
+| Surface enhancement required | **Offset strip fin (OSF)** | Plain ridges give U = 23 W/m²K — insufficient |
+| OSF strip length | **6 mm** | Boundary layer reset frequency |
+| OSF cold fin spacing | **2.5 mm** | Within 1.5 mm channel height |
+| OSF hot fin spacing | **4.0 mm** | Within 5.0 mm channel height |
+| U achieved (OSF, conservative) | **73 W/m²K** | Manglik-Bergles correlation |
+| U target with CFD optimisation | **≥ 100 W/m²K** | Per original design assumption |
+| Stack height at U = 73 W/m²K | **529 mm** | 158 plates per package |
+| Stack height at U = 100 W/m²K | **389 mm** | 116 plates — original Section 21 value |
